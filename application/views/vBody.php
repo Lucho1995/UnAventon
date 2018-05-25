@@ -1,8 +1,4 @@
-  <script>
-    function clickAlert($mensaje){
-      alert($mensaje);
-    }
-  </script>
+  
    <!-- Registrarse Section -->
     <section id="about" class="content-section text-center">
       <div class="container">
@@ -13,21 +9,21 @@
             <div class="error">
               <?php echo validation_errors(); ?>
             </div>
-            <?php echo form_open('cMostrar/registrarse'); ?>
+            <form action="cRegistro" method="POST">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputNombre">Nombre *</label>
-                  <input type="text" class="form-control" name="nombre" value="<?php echo set_value('nombre'); ?>" placeholder="Nombre" >
+                  <input type="text" class="form-control" name="nombre" value="<?php echo set_value('nombre'); ?>" placeholder="Nombre" required></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputApellido">Apellido *</label>
-                  <input type="text" class="form-control" name="apellido" value="<?php echo set_value('apellido'); ?>" placeholder="Apellido" >
+                  <input type="text" class="form-control" name="apellido" value="<?php echo set_value('apellido'); ?>" placeholder="Apellido" required></br>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Email *</label>
-                  <input type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="E-mail" >
+                  <input type="email" class="form-control" name="email" value="<?php echo set_value('email'); ?>" placeholder="E-mail" required></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputFoto">Foto de perfil</label>
@@ -38,27 +34,25 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputFecha">Fecha de nacimiento *</label>
-                  <input type="date" class="form-control" name="fechaNac" placeholder="fecha" >
+                  <input type="date" class="form-control" name="fechaNac" placeholder="fecha" required></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputDNI">DNI *</label>
-                  <input type="text" class="form-control" name="dni" value="<?php echo set_value('dni'); ?>" placeholder="DNI" >
+                  <input type="text" class="form-control" name="dni" value="<?php echo set_value('dni'); ?>" placeholder="DNI" required></br>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputClave">Contraseña *</label>
-                  <input type="password" class="form-control" name="clave" placeholder="Contraseña">
+                  <input type="password" class="form-control" name="clave" placeholder="Contraseña" required></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputClave">Repita su contraseña *</label>
-                  <input type="password" class="form-control" name="clave_2" placeholder="Repita su contraseña">
+                  <input type="password" class="form-control" name="clave_2" placeholder="Repita su contraseña" required ></br>
                 </div>
               </div>
-              
-              <button type="submit" class="btn btn-default" >Confirmar</button>
-
+              <button type="submit" class="btn btn-default">Confirmar</button>
             </form>
             <div>
               <p>¿Ya estás registrado?  <a href="#iniciar"> Iniciá sesión.</a> </p>
@@ -79,20 +73,20 @@
       </div>
     </section> 
 
-    <!--Iniciar sesion Section -->
+   <!--Iniciar sesion Section -->
     <section id="iniciar" class="content-section text-center">
       <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
           <h2>Iniciar sesión</h2>
-          <form>
+          <form action="<?php echo base_url(); ?>cLogin" method="POST">
             <div>
               <label for="inputEmail">Ingresá tu E-mail</label></br>
-              <input type="email" id="email" placeholder="E-mail" class="form-group"></br>
+              <input type="email" id="email" placeholder="E-mail" class="form-group" name="email" required></br>
             </div>
             <div>
               <label for="inputClave">Ingresá tu contraseña</label></br>
-              <input type="password" id="clave" placeholder="Contraseña" class="form-group"></br>
+              <input type="password" id="clave" placeholder="Contraseña" class="form-group" name="clave" required></br>
             </div>
             <div>
               <button type="submit" class="btn btn-default">Confirmar</button>
@@ -103,6 +97,7 @@
       </div>
     </div>
     </section>
+
 
 
     <!-- Contact Section -->

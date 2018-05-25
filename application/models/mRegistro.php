@@ -12,7 +12,6 @@ class MRegistro extends CI_Model{
 	}
 
 	public function registrarse($param){
-
 		$campos = array(
 			'nombre'=>$param['nombre'],
 			'apellido'=> $param['apellido'],
@@ -22,31 +21,47 @@ class MRegistro extends CI_Model{
 			'dni'=> $param['dni'],
 			'clave'=> $param['clave']
 		);
-		$this->db->insert('usuario',$campos);
-		return $this->db->insert_id();
+
+		if($this->verificar($campos['email'],$campos['fechaNac'])){ 
+			$this->db->insert('usuario',$campos);
+			redirect('http://localhost/UnAventon/#iniciar');
+		}
 	}
-	public function verificar($email,$fechaNac){
+
+
+	private function verificar($email,$fechaNac){
 		if ($this->emailUnico($email) && $this->esMayor($fechaNac)){
 			return TRUE;
 		}
 		else{
 			if(!$this->emailUnico($email) && $this->esMayor($fechaNac)){
+			
 				echo '<script language="javascript">alert("El usuario con ese email ya esta registrado");</script>';
+				redirect('http://localhost/UnAventon/#registrarse');
+
+				
 			}
 		
 			else{
 				if($this->emailUnico($email) && !$this->esMayor($fechaNac)){
+			
 					echo '<script language="javascript">alert("Usuario menor de 16 años");</script>';
+
+
 				}
 				else{
+					
 					echo '<script language="javascript">alert("El usuario con ese email ya esta registrado y es menor a 16 años");</script>';
+
 				}
+				
 			}
+		
+		redirect('http://localhost/UnAventon/#registrarse');
+
 		}
 	}
-
-
-	public function emailUnico($email){
+	private function emailUnico($email){
 		$this->db->select('email');
 		$this->db->from('usuario');
 		$this->db->like('email', $email);
@@ -58,10 +73,11 @@ class MRegistro extends CI_Model{
 		}
 	}
 	public function esMayor($fechaNac){
-		$this->db->select('fechaNac');
-		$this->db->from('usuario');
-		$años = $fechaNac->diff(date('Y-m-d'));
-		if($años->y>=16){
+		$FechaActual = date('Y-m-d');
+		$fecha1 = date('Y',strtotime($fechaNac));
+		$fecha2 = date('Y',strtotime($FechaActual));	 
+		if($fecha2-$fecha1 >= 16){
+			//echo "<script> alert('nombre: $nombre');</script>";
 			return TRUE;
 		}
 		else{
@@ -69,3 +85,4 @@ class MRegistro extends CI_Model{
 		}
 	}
 }
+
