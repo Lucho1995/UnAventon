@@ -5,6 +5,7 @@ class CPerfil extends CI_Controller {
 
    function __construct() {
        parent::__construct();
+       $this->load->model('mLogin');
    }
 
    public function index(){
@@ -14,14 +15,12 @@ class CPerfil extends CI_Controller {
      $this->load->view('vFooter');
    }
 
-   public function formulario_editar_perfil(){
-      $data = array ();
-      $this->load->model('mPerfil');
-      $usuario=$this->mPerfil->obtener_usuario(7);//aca va el id de sesion
-      $data['perfil']=$usuario;
-    	$this->load->view('vHead');
-   	  $this->load->view('vEditarMiPerfil',$data);
-   	  $this->load->view('vFooter');
+   public function formulario_editar_perfil($id){
+      $perfil=$this->mLogin->get_perfil($id);
+    	$this->load->view('loguedIn/vHead');
+      $this->load->view('loguedIn/vHeader', $perfil);
+   	  $this->load->view('loguedIn/vEditarMiPerfil',$perfil);
+   	  $this->load->view('loguedIn/vFooter');
    }
 
    public function modificar_usuario($idUsuario){

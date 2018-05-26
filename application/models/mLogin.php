@@ -29,4 +29,28 @@ class MLogin extends CI_Model {
         $apellido= $query->row()->apellido;
         echo "<script language='javascript'>alert('Bienvenido $nombre $apellido');</script>";
     }
+
+    public function get_id($email){
+        $this->db->where('email', $email);
+        $query = $this->db->get('Usuario');
+        return $query->row()->idUsuario;
+    }
+
+    public function get_perfil($id){
+        $this->db->where('idUsuario', $id);
+        $query = $this->db->get('Usuario');
+        $perfil = array(
+            'idUsuario' => $id,
+            'nombre' => $query->row()->nombre,
+            'apellido' => $query->row()->apellido,
+            'foto' => $query->row()->foto,
+            'email' => $query->row()->email,
+            'reputacionPiloto' => $query->row()->reputacionPiloto,
+            'reputacionCopiloto' => $query->row()->reputacionCopiloto,
+            'clave' => $query->row()->clave,
+            'fechaNac' => $query->row()->fechaNac,
+            'dni' => $query->row()->dni,
+        );
+        return $perfil;
+    }
 }

@@ -11,9 +11,12 @@ class CLogin extends CI_Controller {
 		$this->load->helper('form');
   	}
 
-  	private function iniciar_sesion($email){
-  		$this->load->view('loguedIn/vheader');
-  		$this->load->view('loguedIn/vVerViajes');
+  	public function iniciar_sesion($id){
+  		$title = array('titulo' => 'Bienvenido!');
+  		$perfil = $this->mLogin->get_perfil($id);
+  		$this->load->view('vHead', $title);
+  		$this->load->view('loguedIn/vheader', $perfil);
+  		$this->load->view('loguedIn/vPerfil', $perfil);
   		$this->load->view('loguedIn/vFooter');
   	}
 
@@ -36,8 +39,9 @@ class CLogin extends CI_Controller {
 			$_SESSION['is_admin']     = (bool)$user->is_admin;
 			*/
 			// user login ok
+
 			$this->mLogin->saludo($email);
-			$this->iniciar_sesion($email);
+			$this->iniciar_sesion($this->mLogin->get_id($email));
 		} else {
 			
 			// login failed
