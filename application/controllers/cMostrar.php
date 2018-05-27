@@ -11,11 +11,9 @@ class CMostrar extends CI_Controller {
   }   
 
    public function index(){
-       $data = array('viajes' =>  $this->mViajes->get_Viajes() );
        $this->load->view('vHead');
        $this->load->view('vHeader');
        $this->load->view('vBody');
-       $this->load->view('vVerViajes',$data);
        $this->load->view('vFooter');
    }
 }

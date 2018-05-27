@@ -7,16 +7,27 @@ class CLogin extends CI_Controller {
     	parent::__construct();
     	// load model
     	$this->load->model('mLogin');
+    	$this->load->model('mViajes');
     	// load form helper library
 		$this->load->helper('form');
   	}
 
-  	public function iniciar_sesion($id){
+  	/*public function iniciar_sesion($id){
   		$title = array('titulo' => 'Bienvenido!');
   		$perfil = $this->mLogin->get_perfil($id);
-  		$this->load->view('vHead', $title);
+  		$this->load->view('loguedIn/vHead', $title);
   		$this->load->view('loguedIn/vheader', $perfil);
-  		$this->load->view('loguedIn/vPerfil', $perfil);
+  		$this->load->view('loguedIn/vVerViajes', $perfil);
+  		$this->load->view('loguedIn/vFooter');
+  	}*/
+
+  	public function login($usuarioId){
+  		$title = array('titulo' => 'Bienvenido!');
+  		$perfil = $this->mLogin->get_perfil($usuarioId);
+  		$viajes = array('viajes' => $this->mViajes->get_viajes($usuarioId));
+  		$this->load->view('loguedIn/vHead', $title);
+  		$this->load->view('loguedIn/vheader', $perfil);
+  		$this->load->view('loguedIn/vVerViajes', $viajes, $perfil);
   		$this->load->view('loguedIn/vFooter');
   	}
 
@@ -41,7 +52,7 @@ class CLogin extends CI_Controller {
 			// user login ok
 
 			$this->mLogin->saludo($email);
-			$this->iniciar_sesion($this->mLogin->get_id($email));
+			$this->login($this->mLogin->get_id($email));
 		} else {
 			
 			// login failed

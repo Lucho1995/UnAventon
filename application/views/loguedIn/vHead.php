@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Un aventón</title>
+    <title><?php echo $titulo; ?></title>
 
     <link href='<?php echo base_url();?>/img/logo2.png' rel='shortcut icon' type='image/x-icon'>
 
