@@ -10,7 +10,7 @@
     }
 
     function perfil(id) {
-      location.href="<?php echo base_url(); ?>"+"cLogin/iniciar_sesion/"+id;
+      location.href="<?php echo base_url(); ?>"+"cPerfil/miPerfil/"+id;
     }
   </script>
 
@@ -27,10 +27,16 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="" align="center">Viajes</a>
+              <a class="nav-link js-scroll-trigger" href="<?php echo base_url().'cVerViajes/misViajes/'.$idUsuario;?>" align="center">Mis Viajes</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger">|</a>
+              <a class="nav-link js-scroll-trigger" style="color:salmon;">|</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="<?php echo base_url().'cVerViajes/viajes/'.$idUsuario;?>" align="center">Todos los Viajes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" style="color: salmon;">|</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="javascript:confirmar()" align="center">Cerrar Sesión</a>

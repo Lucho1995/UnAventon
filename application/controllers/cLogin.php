@@ -12,7 +12,7 @@ class CLogin extends CI_Controller {
 		$this->load->helper('form');
   	}
 
-  	/*public function iniciar_sesion($id){
+  	/*public function miPerfil($id){
   		$title = array('titulo' => 'Bienvenido!');
   		$perfil = $this->mLogin->get_perfil($id);
   		$this->load->view('loguedIn/vHead', $title);
@@ -24,7 +24,7 @@ class CLogin extends CI_Controller {
   	public function login($usuarioId){
   		$title = array('titulo' => 'Bienvenido!');
   		$perfil = $this->mLogin->get_perfil($usuarioId);
-  		$viajes = array('viajes' => $this->mViajes->get_viajes($usuarioId));
+  		$viajes = array('viajes' => $this->mViajes->get_viajes());
   		$this->load->view('loguedIn/vHead', $title);
   		$this->load->view('loguedIn/vheader', $perfil);
   		$this->load->view('loguedIn/vVerViajes', $viajes, $perfil);

@@ -20,13 +20,18 @@ class MViajes extends CI_Model{
 		$resultado= $query->result();
 		return $resultado;
 	}*/
-	public function get_mis_viajes($usuarioId){
+	/*public function get_mis_viajes($usuarioId){
 		$this->db->where('usuarioId', $usuarioId);
 		$query = $this->db->get('viaje');
 		return $query->result_array();
-	}
-	public function get_viajes($usuarioId){
-		$query = $this->db->get('viaje');
+	}*/
+	public function get_viajes($usuarioId='Nulo'){
+		if ($usuarioId == 'Nulo') {
+			$query = $this->db->get('viaje');
+		} else {
+			$this->db->where('usuarioId', $usuarioId);
+			$query = $this->db->get('viaje');
+		}
 		return $query->result_array();
 	}
 }

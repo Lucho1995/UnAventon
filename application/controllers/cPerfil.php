@@ -8,12 +8,14 @@ class CPerfil extends CI_Controller {
        $this->load->model('mLogin');
    }
 
-   public function index(){
-     $this->load->model('mPerfil');
-   	 $this->load->view('vHead');
-     $this->load->view('vMiPerfil');
-     $this->load->view('vFooter');
-   }
+   public function miPerfil($id){
+      $title = array('titulo' => 'Bienvenido!');
+      $perfil = $this->mLogin->get_perfil($id);
+      $this->load->view('loguedIn/vHead', $title);
+      $this->load->view('loguedIn/vheader', $perfil);
+      $this->load->view('loguedIn/vPerfil', $perfil);
+      $this->load->view('loguedIn/vFooter');
+    }
 
    public function formulario_editar_perfil($id){
       $perfil=$this->mLogin->get_perfil($id);

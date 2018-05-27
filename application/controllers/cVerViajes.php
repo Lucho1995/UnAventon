@@ -10,8 +10,25 @@ class CVerViajes extends CI_Controller {
       $this->load->model('mViajes');
   }   
 
-   public function viajes($usuarioId){
-      $viajes = array('viajes' => $this->mViajes->get_viajes($usuarioId));
+   public function viajes($usuarioId='Nulo'){
+      $viajes = array('viajes' => $this->mViajes->get_viajes(),
+                      'titulo' => 'Lista de viejes');
+      if ($usuarioId == 'Nulo'){
+        $this->load->view('vHead');
+        $this->load->view('vheader2');
+        $this->load->view('loguedIn/vVerViajes', $viajes);
+        $this->load->view('loguedIn/vFooter');
+      } else {
+        $perfil = $this->mLogin->get_perfil($usuarioId);
+        $this->load->view('vHead');
+        $this->load->view('loguedIn/vheader', $perfil);
+        $this->load->view('loguedIn/vVerViajes', $viajes);
+        $this->load->view('loguedIn/vFooter');
+      }
+   }
+   public function misViajes($usuarioId){
+      $viajes = array('viajes' => $this->mViajes->get_viajes($usuarioId),
+                      'titulo' => 'Mis Viajes');
       $perfil = $this->mLogin->get_perfil($usuarioId);
       $this->load->view('vHead');
       $this->load->view('loguedIn/vheader', $perfil);

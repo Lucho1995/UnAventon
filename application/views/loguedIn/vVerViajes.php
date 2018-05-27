@@ -3,7 +3,7 @@
      <section id=vVerViajes class="content-section text-center">
         <div class="col-md-8 mb-4">
           <div class="card h-99">
-            <h6 class="stroke"><font color="salmon"><u>Lista de viajes</u></font></h6>
+            <h6 class="stroke"><font color="salmon"><u><?php echo $titulo ?></u></font></h6>
             <table class="table table-bordered">
               <thead>
                 <tr>
