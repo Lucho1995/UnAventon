@@ -20,7 +20,7 @@
               </thead>
                 <?php  foreach ($viajes as $row) {  ?>
                 <tr>
-<<<<<<< HEAD
+
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['origen'] ?></font></td>
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['destino'] ?></font></td>
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['fecha'] ?></font></td>
@@ -30,7 +30,6 @@
                   <td valign="center" align="center"><font color="salmon"><?php if($row['Periodico']==1){echo "Sí";} else {echo "No";}?></font></td>
                   <td valign="center" align="center"valign="center" align="center"><font color="salmon"><?php echo $row['vehiculoId'] ?></font></td>
                   <td valign="center" align="center"valign="center" align="center"><font color="salmon"><?php echo $row['usuarioId'] ?></font></td>
-=======
                   <td valign="center" align="center"><font color="black"><?php echo $row['origen'] ?></font></td>
                   <td valign="center" align="center"><font color="black"><?php echo $row['destino'] ?></font></td>
                   <td valign="center" align="center"><font color="black"><?php echo $row['fecha'] ?></font></td>
@@ -40,7 +39,6 @@
                   <td valign="center" align="center"><font color="black"><?php if($row['Periodico']==1){echo "Sí";} else {echo "No";}?></font></td>
                   <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['marca'].' '.$row['modelo'] ?></font></td>
                   <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['nombre'].' '.$row['apellido'] ?></font></td>
->>>>>>> 6fd94d8a807719464f99d34c9b32aede1268d702
                 </tr>
               <?php }   ?>
               </tbody>
