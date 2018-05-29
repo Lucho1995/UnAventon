@@ -12,6 +12,7 @@ class MViajes extends CI_Model{
 		$this->load->model('mLogin');
 	}
 
+
 	/*public function get_viajes($usuarioId='Nulo'){
 		if ($usuarioId == 'Nulo') {
 			$query = $this->db->get('viaje');
