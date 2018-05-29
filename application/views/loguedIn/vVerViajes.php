@@ -13,7 +13,6 @@
                   <th scope="col" valign="center" align="center"><font color="salmon">Hora</font></th>
                   <th scope="col" valign="center" align="center"><font color="salmon">Asientos</font></th>
                   <th scope="col" valign="center" align="center"><font color="salmon">Costo</font></th>
-                  <th scope="col" valign="center" align="center"><font color="salmon">Periodico</font></th>
                   <th scope="col" valign="center" align="center"><font color="salmon">Vehiculo</font></th>
                   <th scope="col" valign="center" align="center"><font color="salmon">Usuario</font></th>
                 </tr>
@@ -26,20 +25,8 @@
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['hora'] ?> hs.</font></td>
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['asientosDisp'] ?> </td>
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['Costo'] ?></font></td>
-                  <td valign="center" align="center"><font color="salmon"><?php if($row['Periodico']==1){echo "Sí";} else {echo "No";}?></font></td>
-                  <td valign="center" align="center"valign="center" align="center"><font color="salmon"><?php echo $row['vehiculoId'] ?></font></td>
-                  <td valign="center" align="center"valign="center" align="center"><font color="salmon"><?php echo $row['usuarioId'] ?></font></td>
-
-                  <td valign="center" align="center"><font color="black"><?php echo $row['origen'] ?></font></td>
-                  <td valign="center" align="center"><font color="black"><?php echo $row['destino'] ?></font></td>
-                  <td valign="center" align="center"><font color="black"><?php echo $row['fecha'] ?></font></td>
-                  <td valign="center" align="center"><font color="black"><?php echo $row['hora'] ?> hs.</font></td>
-                  <td valign="center" align="center"><font color="black"><?php echo $row['asientosDisp'] ?> </td>
-                  <td valign="center" align="center"><font color="black"><?php echo $row['Costo'] ?></font></td>
-                  <td valign="center" align="center"><font color="black"><?php if($row['Periodico']==1){echo "Sí";} else {echo "No";}?></font></td>
-                  <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['marca'].' '.$row['modelo'] ?></font></td>
-                  <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['nombre'].' '.$row['apellido'] ?></font></td>
-
+                  <td valign="center" align="center"valign="center" align="center"><font color="salmon"><?php echo $row['marca'].' '.$row['modelo'] ?></font></td>
+                  <td valign="center" align="center"valign="center" align="center"><font color="salmon"><?php echo $row['nombre'].' '.$row['apellido'] ?></font></td>
                 </tr>
               <?php }   ?>
               </tbody>

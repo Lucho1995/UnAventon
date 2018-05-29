@@ -27,7 +27,7 @@ class MViajes extends CI_Model{
 
 	public function get_viajes($usuarioId='Nulo'){
 		if ($usuarioId == 'Nulo') {
-			$query=($this->db->query('SELECT * FROM viaje INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario	 INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo'));
+			$query=($this->db->query('SELECT * FROM viaje INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario	 INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo LIMIT 10'));
 		} else {
 			$this->db->where('usuarioId', $usuarioId);
 			$query = $this->db->get('viaje');
