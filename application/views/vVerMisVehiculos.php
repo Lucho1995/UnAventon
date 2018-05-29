@@ -29,8 +29,8 @@
                           <td> <?php echo $row['seguro'] ?> </td>
                           <td> <?php echo $row['numPoliza'] ?> </td>
                           <td> <?php echo $row['capacidad'] ?> </td> 
-                          <td><a href="<?php echo base_url().'cVerMisVehiculos/eliminar_vehiculo/'.$idVehiculo; ?>" onclick="return confirm('¿Estás seguro/a que querés eliminar este elemento?')" title="Eliminar"><i class="fa fa-trash-o" style="font-size:20px"></i></td>
-                          <td><a href="<?php echo base_url()."cVerMisVehiculos/vista_modificar/".$idVehiculo; ?>" title="Modificar"><i class="fa fa-wrench" style="font-size:20px"></i></td> 
+                          <td><a href="<?php echo base_url().'cVerMisVehiculos/eliminar_vehiculo/'.$idVehiculo; ?>" onclick="return confirm('¿Estás seguro/a que querés eliminar este elemento?')" title="Eliminar"><i class="fa fa-trash-o"></i></td>
+                          <td><a href="<?php echo base_url()."cVerMisVehiculos/vista_modificar/".$idVehiculo; ?>" title="Modificar"><i class="fa fa-wrench"></i></td> 
                  </tr> 
                 <?php } }  ?>
               </tbody>

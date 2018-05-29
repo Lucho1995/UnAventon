@@ -50,6 +50,8 @@
               <a class="card-text" align="left"><font color="black" size="5">Como Copiloto: <?php if($reputacionCopiloto>0){echo"Buena";}else{if($reputacionCopiloto<0){echo"Mala";}else{echo"Regular";}}?></font></a><br>
           </div>
         </div>
+        <a href="<?php echo base_url()."cVerMisVehiculos/mostrar_vehiculos/".$idUsuario; ?>" class=".btn-link">  <h3><i class="fa fa-bars" style="font-size:24px"></i> Ver mis vehiculos  </h3></a>
+
     </div>
     <!-- /.container -->
     

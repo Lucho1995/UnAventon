@@ -16,6 +16,7 @@ class MPerfil extends CI_Model {
 	}
 
 	public function modificar_usuario($idUsuario,$param){
+        if ($this->esMayor($param['fechaNac'])){
     	$param = array (
     		'nombre'=> $param['nombre'],
     		'apellido'=> $param['apellido'],
@@ -26,6 +27,22 @@ class MPerfil extends CI_Model {
     	);
     	$this->db->where('idUsuario',$idUsuario);
     	$this->db->update('usuario',$param);
+        } else {
+            echo '<script language="javascript">alert("Debe ser mayor");</script>';
+            return false;
+        }
+    }
+
+    public function esMayor($fechaNac){
+        $FechaActual = date('Y-m-d');
+        $fecha1 = date('Y',strtotime($fechaNac));
+        $fecha2 = date('Y',strtotime($FechaActual));     
+        if($fecha2-$fecha1 >= 16){
+            return true;
+        }
+          else{
+            return false;
+        }
     }
 }
 
