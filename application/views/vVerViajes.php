@@ -29,12 +29,13 @@
                   <td> <?php echo $row->Costo ?> </td>
                   <td> <?php echo $row->Periodico ?> </td>
                   <td> <?php echo $row->vehiculoId ?> </td>
-                  <td> <?php echo $row->usuarioId ?> </td>
+                  <td> aaaaaqaaaa <?php echo $row->nombre ?> </td>
                 </tr>
               <?php }   ?>
               </tbody>
             </table>
           </div>
         </section>
+        <h1>culooooo</h1>
 
 

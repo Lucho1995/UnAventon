@@ -6,10 +6,12 @@ class MVehiculos extends CI_Model {
        parent::__construct();
    }
 
-   public function get_vehiculos(){ //me va  a llegar un parametro con el id de sesion
-    $query = $this->db->query('SELECT * from vehiculo where usuarioId=7');//aca tengo que cambiar por el id de sesion
-	  $vehiculos=($query->result_array()); 
-	  return $vehiculos;
+   public function get_vehiculos($idUsuario){ 
+      $this->db->select('*');
+      $this->db->from('vehiculo');
+      $this->db->where('usuarioId', $idUsuario);
+      $query = $this->db->get();
+      return($query->result_array());
 	 }
 
    public function get_vehiculo($idVehiculo){
@@ -44,4 +46,13 @@ class MVehiculos extends CI_Model {
     	$this->db->update('vehiculo',$param);
     }
 
+    public function patente_existe($patente,$usuario){
+      $this->db->select('*');
+      $this->db->from('vehiculo');
+      $this->db->where('patente',$patente);
+      $this->db->where('usuarioId',$usuario);
+      $query=$this->db->get();
+      $resultado=$query->result();
+      return $resultado;
+    }
 }

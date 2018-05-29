@@ -8,9 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Un aventón</title>
+    <title>Un Aventón</title>
 
-    <link href='<?php echo base_url();?>/img/logo2.png' rel='shortcut icon' type='image/x-icon'>
+    <link href='<?php echo base_url();?>img/logo2.png' rel='shortcut icon' type='image/x-icon'>
 
     <!-- Bootstrap core CSS -->
     <link href="<?php echo base_url();?>vendor/bootstrap/css/bootstrap.css" rel="stylesheet">

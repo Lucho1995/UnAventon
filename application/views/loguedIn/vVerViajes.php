@@ -27,8 +27,8 @@
                   <td valign="center" align="center"><font color="black"><?php echo $row['asientosDisp'] ?> </td>
                   <td valign="center" align="center"><font color="black"><?php echo $row['Costo'] ?></font></td>
                   <td valign="center" align="center"><font color="black"><?php if($row['Periodico']==1){echo "Sí";} else {echo "No";}?></font></td>
-                  <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['vehiculoId'] ?></font></td>
-                  <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['usuarioId'] ?></font></td>
+                  <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['marca'].' '.$row['modelo'] ?></font></td>
+                  <td valign="center" align="center"valign="center" align="center"><font color="black"><?php echo $row['nombre'].' '.$row['apellido'] ?></font></td>
                 </tr>
               <?php }   ?>
               </tbody>

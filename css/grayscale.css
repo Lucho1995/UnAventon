@@ -15,15 +15,41 @@ html {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6 {
+ {
   font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 700;
   margin: 0 0 35px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
+h4
+ {
+  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 650;
+  margin: 0 0 35px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+
+h5{
+    font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    margin: 0 0 35px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+h6
+  {
+  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  margin: 0 0 35px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  }
 
 p {
   font-size: 16px;
