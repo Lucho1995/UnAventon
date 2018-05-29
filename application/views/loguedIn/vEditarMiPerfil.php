@@ -5,7 +5,7 @@
 	<div class="container">
 	<div class="col-lg-5 mx-auto">
 	<div class="border">
-	<form method="POST" action="<?php echo base_url(); ?>/cPerfil/modificar_usuario/<?php echo $idUsuario; ?>" onsubmit="return validar()">     
+	<form method="POST" action="<?php echo base_url(); ?>/cPerfil/modificar_usuario/<?php echo $idUsuario; ?>">     
                 <br> 
                 <p><font color="salmon">Los campos con * son obligatorios.</font></p>
         	<label><font color="salmon">Nombre *</font></label></br> 
@@ -26,7 +26,7 @@
                 <input type="file" name="foto" >
                 <br>
                 <br>
-                <button type=submit class="btn btn-default">Confirmar</button>
+                <button type=submit class="btn btn-default" onclick="validar()">Confirmar</button>
                 <br>
                 <br>
 	</form>
@@ -36,16 +36,15 @@
         <br>
         <br>
         <a href="">Dar de baja la cuenta</a>
-
 	</div>
-
 </body>
 <script>
     function validar(){
         clave1 = document.getElementById('clave1').value;
         clave2 = document.getElementById('clave2').value;
         doc = document.getElementById('dni').value;
-        if (document.getElementById('nombre').value.length == 0) {
+        nacim=document.getElementById('fechaNac').value.
+        if (document.getElementById('nombre').value.length==0) {
                 alert("Tiene que escribir su nombre");
                 return false;
         }
@@ -55,7 +54,7 @@
         }
         if (document.getElementById('email').value.length==0) {
                 alert("Tiene que escribir su email");
-                return false;
+                return false
         }
         if (clave1!=clave2) {
                 alert("Las contraseñas no coinciden");
@@ -65,6 +64,5 @@
                 alert("El campo DNI solo admite caracteres numericos");
                 return false;
         }
-        return true;
     }
 </script>

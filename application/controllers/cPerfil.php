@@ -36,9 +36,7 @@ class CPerfil extends CI_Controller {
           'fechaNac' => $this->input->post('fechaNac'),
           'dni' => $this->input->post('dni'),
          );
-
-        $this->mPerfil->modificar_usuario($idUsuario,$data);
-        redirect('http://localhost/UnAventon/cPerfil/miPerfil/'.$idUsuario);
+    $this->mPerfil->modificar_usuario($idUsuario,$data);
+   // redirect('http://localhost/UnAventon/cPerfil');
     }
-   
 }
