@@ -29,12 +29,20 @@
                   <td> <?php echo $row->Costo ?> </td>
                   <td> <?php echo $row->Periodico ?> </td>
                   <td> <?php echo $row->vehiculoId ?> </td>
+<<<<<<< HEAD
                   <td> <?php echo $row->usuarioId ?> </td>
+=======
+                  <td>  <?php echo $row->usuarioId ?> </td>
+>>>>>>> c6fead1cbb9425f3be76201eeb1c4ade91fa5db0
                 </tr>
               <?php }   ?>
               </tbody>
             </table>
           </div>
         </section>
+<<<<<<< HEAD
+=======
+        
+>>>>>>> c6fead1cbb9425f3be76201eeb1c4ade91fa5db0
 
 

@@ -105,30 +105,8 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>Contactanos</h2>
-            <p>Feel free to leave us a comment on the
-              <a href="http://startbootstrap.com/template-overviews/grayscale/">Grayscale template overview page</a>
-              on Start Bootstrap to give some feedback about this theme!</p>
-            <ul class="list-inline banner-social-buttons">
-              <li class="list-inline-item">
-                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
-                  <i class="fa fa-twitter fa-fw"></i>
-                  <span class="network-name">Twitter</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
-                  <i class="fa fa-github fa-fw"></i>
-                  <span class="network-name">Github</span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
-                  <i class="fa fa-google-plus fa-fw"></i>
-                  <span class="network-name">Google+</span>
-                </a>
-              </li>
-            </ul>
+            <h2>¡Sientase bien al dar o recibir un aventón!</h2>
+            <p>Con el sistema de viajes Un Aventón, usted puede sentir el placer de dar un aventón, o incluso que le hagan uno. Este sistema cuenta con una mecánica fiable y fácil de entender de calificaciones, además de comentarios adicionales para que usted se sienta seguro/a de formar parte de nuestra comunidad que crece a pasos agigantados. El registro es gratis. ¡No te lo pierdas!</p>
           </div>
         </div>
       </div>
