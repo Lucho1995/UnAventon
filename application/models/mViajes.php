@@ -12,19 +12,11 @@ class MViajes extends CI_Model{
 		$this->load->model('mLogin');
 	}
 
-
-	public function get_viajes($usuarioId='Nulo'){
-		if ($usuarioId == 'Nulo') {
-			$query = $this->db->get('viaje');
-			
-		}
-	}	
-
-	public function get_viajes($usuarioId='Nulo'){
+	/*public function get_viajes($usuarioId='Nulo'){
 		if ($usuarioId == 'Nulo') {
 			$query = $this->db->get('viaje');
 		}
-	}
+	}*/
 
 	/*public function get_mis_viajes($usuarioId){
 		$this->db->where('usuarioId', $usuarioId);
