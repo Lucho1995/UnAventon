@@ -12,23 +12,24 @@ class CLogin extends CI_Controller {
 		$this->load->helper('form');
   	}
 
-  	/*public function miPerfil($id){
-  		$title = array('titulo' => 'Bienvenido!');
-  		$perfil = $this->mLogin->get_perfil($id);
-  		$this->load->view('loguedIn/vHead', $title);
-  		$this->load->view('loguedIn/vheader', $perfil);
-  		$this->load->view('loguedIn/vVerViajes', $perfil);
-  		$this->load->view('loguedIn/vFooter');
-  	}*/
 
-  	public function login($usuarioId){
-  		$title = array('titulo' => 'Bienvenido!');
-  		$perfil = $this->mLogin->get_perfil($usuarioId);
-  		$viajes = array('viajes' => $this->mViajes->get_viajes());
-  		$this->load->view('loguedIn/vHead', $title);
-  		$this->load->view('loguedIn/vheader', $perfil);
-  		$this->load->view('loguedIn/vVerViajes', $viajes, $perfil);
-  		$this->load->view('loguedIn/vFooter');
+  	public function login($perfil){
+  		if ($this->session->userdata('logueado')) {
+	  		$title = array('titulo' => 'Bienvenida/o!');
+	  		$viajes = array('viajes' => $this->mViajes->get_viajes());
+	  		$this->load->view('loguedIn/vHead', $title);
+	  		$this->load->view('loguedIn/vheader', $perfil);
+	  		$this->load->view('loguedIn/vVerViajes', $viajes, $perfil);
+	  		$this->load->view('loguedIn/vFooter');
+  		}
+  	}
+
+  	public function logout() {
+  		$usuario_data=array (
+  			'logueado' => false
+  		);
+  		$this->session->set_userdata($usuario_data);
+  		redirect(base_url());
   	}
 
 	public function index() {
@@ -39,24 +40,27 @@ class CLogin extends CI_Controller {
 	
 		if ($this->mLogin->validate($email, $clave)) {
 					
-			/*$user_id = $this->user_model->get_user_id_from_username($username);
-			$user    = $this->user_model->get_user($user_id);
-			
-			// set session user datas
-			$_SESSION['user_id']      = (int)$user->id;
-			$_SESSION['username']     = (string)$user->username;
-			$_SESSION['logged_in']    = (bool)true;
-			$_SESSION['is_confirmed'] = (bool)$user->is_confirmed;
-			$_SESSION['is_admin']     = (bool)$user->is_admin;
-			*/
-			// user login ok
+			//se crea la sesion con el usuario que la inicio
+			$id=$this->mLogin->get_id($email);
+			$perfil=$this->mLogin->get_perfil($id);
+			$usuario_data=array (
+				'idUsuario' => $perfil['idUsuario'],
+				'nombre' => $perfil ['nombre'],
+				'apellido' => $perfil ['apellido'],
+				'error' => $this->session->flashdata('error'),
+				'logueado' => true
+			);
+			$this->session->set_userdata($usuario_data);
 
-			$this->mLogin->saludo($email);
-			$this->login($this->mLogin->get_id($email));
+			// user login ok
+			$nombre=$perfil['nombre'];
+			$apellido=$perfil['apellido'];
+			echo "<script language='javascript'>alert('Bienvenido $nombre $apellido');</script>";
+			$this->login($perfil);
 		} else {
 			
 			// login failed
-			echo '<script language="javascript">alert("No has iniciado sesion");</script>';
+			echo '<script language="javascript">alert("Nombre de usuario y/o contraseña incorrectos");</script>';
 			redirect('http://localhost/UnAventon/#iniciar','refresh');
 		}
 		

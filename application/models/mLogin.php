@@ -22,13 +22,6 @@ class MLogin extends CI_Model {
         // then return false.
         return false;
     }
-    public function saludo($email){
-        $this->db->where('email', $email);
-        $query = $this->db->get('Usuario');
-        $nombre= $query->row()->nombre;
-        $apellido= $query->row()->apellido;
-        echo "<script language='javascript'>alert('Bienvenido $nombre $apellido');</script>";
-    }
 
     public function get_id($email){
         $this->db->where('email', $email);

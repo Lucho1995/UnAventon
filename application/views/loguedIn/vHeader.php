@@ -5,7 +5,7 @@
     function confirmar(){
       var confirmacion = confirm("¿Estás seguro de cerrar sesión?");
       if(confirmacion == true){
-        location.href="<?php echo base_url(); ?>";
+        location.href="<?php echo base_url(); ?>cLogin/logout";
       }
     }
 
@@ -18,6 +18,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <img src="<?php echo base_url() ?>img/logo2.png" height="50" width="50">
       <div class="container">
         <a href="javascript:perfil('<?php echo $idUsuario; ?>')"><?php echo $nombre; echo " "; echo $apellido ?></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

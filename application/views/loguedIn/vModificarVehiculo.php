@@ -1,5 +1,6 @@
   
   <body>
+
         <section id="formulario-modificar-veh" class="content-section text-center">
         <h5> Modificar vehiculo </h5>
           <h6><?php echo $vehiculo[0]['marca']." ".$vehiculo[0]['modelo'];  ?></h6>
@@ -37,7 +38,7 @@
   <script>
     function validar(){
         nump = document.getElementById('numPoliza').value;
-        cap =  document.getElementById('capacidad').value
+        cap =  document.getElementById('capacidad').value;
         if (document.getElementById('marca').value.length==0) {
                 alert("Tiene que escribir la marca del vehiculo");
                 return false;
@@ -62,5 +63,6 @@
                 alert("La capacidad del vehiculo solo admite caracteres numericos");
                 return false;
         }
+        return true;
     }
 </script>

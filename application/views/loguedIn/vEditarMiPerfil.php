@@ -5,7 +5,7 @@
 	<div class="container">
 	<div class="col-lg-5 mx-auto">
 	<div class="border">
-	<form method="POST" action="<?php echo base_url(); ?>/cPerfil/modificar_usuario/<?php echo $idUsuario; ?>">     
+	<form method="POST" action="<?php echo base_url(); ?>/cPerfil/modificar_usuario/<?php echo $idUsuario; ?>" onsubmit="return validar()">     
                 <br> 
                 <p><font color="salmon">Los campos con * son obligatorios.</font></p>
         	<label><font color="salmon">Nombre *</font></label></br> 
@@ -26,7 +26,7 @@
                 <input type="file" name="foto" >
                 <br>
                 <br>
-                <button type=submit class="btn btn-default" onclick="validar()">Confirmar</button>
+                <button type=submit class="btn btn-default">Confirmar</button>
                 <br>
                 <br>
 	</form>
@@ -43,7 +43,7 @@
         clave1 = document.getElementById('clave1').value;
         clave2 = document.getElementById('clave2').value;
         doc = document.getElementById('dni').value;
-        nacim=document.getElementById('fechaNac').value.
+        nacim=document.getElementById('fechaNac').value;
         if (document.getElementById('nombre').value.length==0) {
                 alert("Tiene que escribir su nombre");
                 return false;
@@ -64,5 +64,6 @@
                 alert("El campo DNI solo admite caracteres numericos");
                 return false;
         }
+        return true;
     }
 </script>

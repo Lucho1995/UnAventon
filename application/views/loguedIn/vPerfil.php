@@ -51,5 +51,6 @@
           </div>
         </div>
     </div>
+                  <h1><a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" ><i class="fa fa-reorder" style="font-size:20px"></i> Ver mis vehiculos </a></h1>
     <!-- /.container -->
     

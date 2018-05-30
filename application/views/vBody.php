@@ -106,7 +106,11 @@
         <div class="row">
           <div class="col-lg-8 mx-auto">
             <h2>¡Sientase bien al dar o recibir un aventón!</h2>
-            <p>Con el sistema de viajes Un Aventón, usted puede sentir el placer de dar un aventón, o incluso que le hagan uno. Este sistema cuenta con una mecánica fiable y fácil de entender de calificaciones, además de comentarios adicionales para que usted se sienta seguro/a de formar parte de nuestra comunidad que crece a pasos agigantados. El registro es gratis. ¡No te lo pierdas!</p>
+            <p>Con el sistema de viajes
+            <a href="#iniciar">Un Aventón</a>, usted puede sentir el placer de dar un aventón, o incluso que le hagan uno. Este sistema cuenta con una mecánica fiable y fácil de entender de calificaciones, además de comentarios adicionales para que usted se sienta seguro/a de formar parte de nuestra comunidad que crece a pasos agigantados. El registro es gratis. ¡No te lo pierdas!</p>
+            <br>
+            <br>
+            <img src="<?php base_url(); ?>img/logo2.png" alt="Logo" height="200" width="200" align="center">
           </div>
         </div>
       </div>
