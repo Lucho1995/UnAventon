@@ -8,21 +8,21 @@
                    <form action="<?php echo base_url(); ?>cVerMisVehiculos/registrar_vehiculo/<?php echo $id; ?>" method="POST" onsubmit="return validar()">
                     <p> Todos los campos son obligatorios </p>
                     <label>Marca</label></br>
-                    <input type="text" name="marca"  class="form-group" required></br>
+                    <input type="text" name="marca" id="marca"  class="form-group" required></br>
                     <label>Modelo</label></br>
-                    <input type="text" name="modelo"  class="form-group" required></br>
+                    <input type="text" name="modelo" id="modelo" class="form-group" required></br>
                     <label>Patente</label></br>
-                    <input type="text" name="patente" class="form-group" required></br>
+                    <input type="text" name="patente" id="patente" class="form-group" required></br>
                     <label>Color</label></br>
-                    <input type="text" name="color"  class="form-group" required></br>
+                    <input type="text" name="color" id="color"  class="form-group" required></br>
                     <label>Seguro</label></br>
-                    <input type="text" name="seguro" class="form-group" required></br>
+                    <input type="text" name="seguro" id="seguro" class="form-group" required></br>
                     <label>Poliza</label></br>
-                    <input type="text" name="numPoliza"  class="form-group" required></br>
+                    <input type="text" name="numPoliza" id="numPoliza" class="form-group" required></br>
                     <label>Capacidad</label></br>
-                    <input type="text" name="capacidad"  class="form-group" required></br>
+                    <input type="text" name="capacidad"  id="capacidad" class="form-group" required></br>
                     <br>
-                    <button type="submit" onclick="Registrar" class="btn btn-default">Confirmar</button>
+                    <button type="submit" class="btn btn-default">Confirmar</button>
                     <br>
                     <br>
                 </form>
@@ -31,7 +31,7 @@
             </div>
         </section>
   </body>
-  <script>:
+  <script>
     function validar(){
         nump = document.getElementById('numPoliza').value;
         cap =  document.getElementById('capacidad').value;
@@ -44,10 +44,6 @@
                 return false;
         }
         if (document.getElementById('color').value.length==0) {
-                alert("Tiene que escribir el color del vehiculo");
-                return false;
-        }
-        if (document.getElementById('patente').value.length==0) {
                 alert("Tiene que escribir el color del vehiculo");
                 return false;
         }

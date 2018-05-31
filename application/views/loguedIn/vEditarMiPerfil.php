@@ -16,13 +16,13 @@
                 <input type="e-mail" name="email" id="email" value="<?php echo $email;  ?>" class="form-group" required></br>
             <label><font color="salmon">Clave *</font></label></br>
                 <input type="password" name="clave" id="clave1" value="<?php echo $clave;  ?>" class="form-group" required></br>
-            <label><font color="salmon">Repita su clave *</font></label></br>
+            <label color="salmon"><font color="salmon">Repita su clave *</font></label></br>
                 <input type="password" name="clave" id="clave2" value="<?php echo $clave;  ?>" class="form-group" required></br>
-            <label>Fecha de nacimiento </label></br>
+            <label color="salmon"><font color="salmon">Fecha de nacimiento* </font> </label></br>
                 <input type="date" name="fechaNac" id="fechaNac" value="<?php echo $fechaNac;  ?>" class="form-group" required></br>
-            <label>DNI </label></br>
+            <label color="salmon"><font color="salmon">DNI * </font></label></br>
                 <input type="text" name="dni" id="dni" value="<?php echo $dni;  ?>" class="form-group" required></br>
-            <label for="inputFoto">Foto de perfil </label></br>
+            <label for="inputFoto" color="salmon"><font color="salmon">Foto de perfil</font> </label></br>
                 <input type="file" name="foto" >
                 <br>
                 <br>

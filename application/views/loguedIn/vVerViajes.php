@@ -3,8 +3,8 @@
      <section id=vVerViajes class="content-section text-center">
         <div class="col-form-label-sm">
           <div class="card h-99">
-            <h6 class="stroke"><font color="salmon"><u><?php echo $titulo ?></u></font></h6>
-            <table class="table user table-hover" style="background-color:black; border: 1px solid salmon; ">
+            <h5 class="card-header"><font color="salmon"><u><?php echo $titulo ?></u></font></h5>
+            <table class="table table-striped table-dark" style="background-color:black; border: 1px solid salmon; ">
               <thead>
                 <tr>
                   <th scope="col" valign="center" align="center"><font color="salmon">Origen</font></th>
@@ -17,6 +17,7 @@
                   <th scope="col" valign="center" align="center"><font color="salmon">Usuario</font></th>
                 </tr>
               </thead>
+              <tbody>
                 <?php  foreach ($viajes as $row) {  ?>
                 <tr>
                   <td valign="center" align="center"><font color="salmon"><?php echo $row['origen'] ?></font></td>
@@ -32,4 +33,5 @@
               </tbody>
             </table>
           </div>
+        </div>
         </section>

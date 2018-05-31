@@ -9,24 +9,24 @@
               <div class="col-lg-5 mx-auto">
                 <div class="border">
                    <br>
-                   <form action="<?php echo base_url(); ?>cVerMisVehiculos/modificar_vehiculo/<?php echo $id; ?>" method="POST">
-                    <p> Los campos con * son obligatorios </p>
+                   <form action="<?php echo base_url(); ?>cVerMisVehiculos/modificar_vehiculo/<?php echo $id; ?>" method="POST" onsubmit="return validar()">
+                    <p> Todos los campos son obligatorios. </p>
                     <label>Marca</label></br>
-                    <input type="text" name="marca" value="<?php echo $vehiculo[0]['marca']; ?>" class="form-group" required></br>
+                    <input type="text" name="marca" id="marca" value="<?php echo $vehiculo[0]['marca']; ?>" class="form-group" required></br>
                     <label>Modelo</label></br>
-                    <input type="text" name="modelo" value="<?php echo $vehiculo[0]['modelo']; ?>" class="form-group" required></br>
+                    <input type="text" name="modelo" id="modelo" value="<?php echo $vehiculo[0]['modelo']; ?>" class="form-group" required></br>
                     <label>Patente</label></br>
-                    <input type="text" name="patente" value="<?php echo $vehiculo[0]['patente']; ?>"class="form-group" required></br>
-                    <label>Color *</label></br>
-                    <input type="text" name="color" value="<?php echo $vehiculo[0]['color']; ?>" class="form-group" required></br>
-                    <label>Seguro *</label></br>
-                    <input type="text" name="seguro" value="<?php echo $vehiculo[0]['seguro']; ?>" class="form-group" required></br>
-                    <label>Poliza *</label></br>
-                    <input type="text" name="numPoliza" value="<?php echo $vehiculo[0]['numPoliza']; ?>" class="form-group" required></br>
-                    <label>Capacidad *</label></br>
-                    <input type="text" name="capacidad" value="<?php echo $vehiculo[0]['capacidad']; ?>" class="form-group" required></br>
+                    <input type="text" name="patente" id="patente" value="<?php echo $vehiculo[0]['patente']; ?>"class="form-group" required></br>
+                    <label>Color </label></br>
+                    <input type="text" name="color" id="color" value="<?php echo $vehiculo[0]['color']; ?>" class="form-group" required></br>
+                    <label>Seguro </label></br>
+                    <input type="text" name="seguro" id="seguro" value="<?php echo $vehiculo[0]['seguro']; ?>" class="form-group" required></br>
+                    <label>Poliza </label></br>
+                    <input type="text" name="numPoliza" id="numPoliza" value="<?php echo $vehiculo[0]['numPoliza']; ?>" class="form-group" required></br>
+                    <label>Capacidad </label></br>
+                    <input type="text" name="capacidad" id="capacidad" value="<?php echo $vehiculo[0]['capacidad']; ?>" class="form-group" required></br>
                     <br>
-                    <button type="submit" onclick="validar" class="btn btn-default">Confirmar</button>
+                    <button type="submit" class="btn btn-default">Confirmar</button>
                     <br>
                     <br>
                 </form>
@@ -48,10 +48,6 @@
                 return false;
         }
         if (document.getElementById('color').value.length==0) {
-                alert("Tiene que escribir el color del vehiculo");
-                return false;
-        }
-        if (document.getElementById('patente').value.length==0) {
                 alert("Tiene que escribir el color del vehiculo");
                 return false;
         }

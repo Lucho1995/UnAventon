@@ -47,10 +47,11 @@
             <h6 class="card-header"><font color="salmon">Reputaciones</font></h6>
               <a class="card-text" align="left"><font color="rose" size="5"><br>Como Piloto: <?php if($reputacionPiloto>0){echo"Buena";}else{if($reputacionPiloto<0){echo"Mala";}else{echo"Regular";}}?></font></a>
               <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="5">Como Copiloto: <?php if($reputacionCopiloto>0){echo"Buena";}else{if($reputacionCopiloto<0){echo"Mala";}else{echo"Regular";}}?></font></a><br>
+              <a class="card-text" align="left"><font color="black" size="5">Como Copiloto: <?php if($reputacionCopiloto>0){echo"Buena";}else{if($reputacionCopiloto<0){echo"Mala";}else{echo"Regular";}}?></font></a>
           </div>
         </div>
+        <h4><a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" ><i class="fa fa-bars" style="font-size:23px"></i> Ver mis vehiculos </a></h4>
     </div>
-                  <h1><a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" ><i class="fa fa-reorder" style="font-size:20px"></i> Ver mis vehiculos </a></h1>
+
     <!-- /.container -->
     
