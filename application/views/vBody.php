@@ -89,6 +89,10 @@
               <input type="password" id="clave" placeholder="Contraseña" class="form-group" name="clave" required></br>
             </div>
             <div>
+              <input type="checkbox" name="mantener-sesion" > Mantener la sesion iniciada
+              <br>(De lo contrario, la sesión se cerrará después de 10 minutos)
+            </div>
+            <div>
               <button type="submit" class="btn btn-default">Confirmar</button>
             </div>
           </form>

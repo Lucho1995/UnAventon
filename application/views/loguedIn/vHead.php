@@ -22,6 +22,11 @@
 
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>css/grayscale.css" rel="stylesheet">
+    <!-- Botones personalizados -->
+    <link href="<?php echo base_url();?>css/buttons.css" rel="stylesheet">
+    <!-- Tablita personalizada -->
+    <link href="<?php echo base_url();?>css/tablita.css" rel="stylesheet">
+    
     <style type="text/css">
       .error{
       color: red;

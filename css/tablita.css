@@ -1,0 +1,45 @@
+.datagrid table { 
+	border-collapse: collapse; 
+	text-align: left; 
+	width: 100%; 
+} 
+.datagrid {
+	font: normal 12px/150% Arial, Helvetica, sans-serif; 
+	background: black; 
+	overflow: hidden; 
+	-webkit-border-radius: 14px; 
+	-moz-border-radius: 14px; 
+	border-radius: 14px; 
+}
+.datagrid table td, .datagrid table th { 
+	padding: 1px 11px; 
+}
+.datagrid table thead th {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #FF9696), color-stop(1, #FA8072) );
+	background:-moz-linear-gradient( center top, #FF9696 5%, #FA8072 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF9696', endColorstr='#FA8072');
+	background-color:#FF9696; 
+	color:#FFFFFF; 
+	font-size: 15px; 
+	font-weight: bold; 
+	border-left: 1px solid #000000;
+}
+.datagrid table thead th:first-child { 
+	border: none; 
+}
+.datagrid table tbody td { 
+	color: #000000; 
+	border-left: 1px solid #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+.datagrid table tbody .alt td {
+	background: #FFC8C2;
+	color: #000000;
+}
+.datagrid table tbody td:first-child {
+	border-left: none;
+}
+.datagrid table tbody tr:last-child td {
+	border-bottom: none;
+}

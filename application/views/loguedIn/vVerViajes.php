@@ -35,3 +35,56 @@
           </div>
         </div>
         </section>
+
+        <!-- Tablita -->
+          <div class="datagrid">
+            <table>
+              <thead>
+                <tr align="center">
+                  <th scope="col" valign="center" align="center"><font color="black">Origen</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Destino</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Fecha</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Hora</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Asientos</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Costo</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Vehiculo</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Usuario</font></th>
+                  <th scope="col" valign="center" align="center"><font color="black">Detalles</font></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php  $columna1=false; ?>
+                <?php  foreach ($viajes as $row) {  ?>
+                  <?php  if ($columna1 == true) { ?>
+                    <tr>
+                      <tr class="alt" style="color: blue;">
+                        <td><?php echo $row['origen'] ?></td>
+                        <td><?php echo $row['destino'] ?></td>
+                        <td><?php echo $row['fecha'] ?></td>
+                        <td><?php echo $row['hora'] ?></td>
+                        <td><?php echo $row['asientosDisp'] ?></td>
+                        <td><?php echo $row['Costo'] ?></td>
+                        <td><?php echo $row['marca'].' '.$row['modelo'] ?></td>
+                        <td><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
+                        <td><a href="#" class="button button-pill button-flat-caution" style="background-color: black"><i class="fa fa-car" style="color: salmon"></i><font color="salmon">Ver mis vehiculos</font></a></td>
+                      </tr>
+                    </tr>
+                  <?php $columna1 = false; }else{ ?>
+                    <tr>
+                      <td><font color="white"><?php echo $row['origen'] ?></td>
+                      <td><font color="white"><?php echo $row['destino'] ?></td>
+                      <td><font color="white"><?php echo $row['fecha'] ?></td>
+                      <td><font color="white"><?php echo $row['hora'] ?></td>
+                      <td><font color="white"><?php echo $row['asientosDisp'] ?></td>
+                      <td><font color="white"><?php echo $row['Costo'] ?></td>
+                      <td><font color="white"><?php echo $row['marca'].' '.$row['modelo'] ?></td>
+                      <td><font color="white"><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
+                      <td><a href="#" class="button button-pill button-flat-caution"><i class="fa fa-car"s></i>Ver mis vehiculos</a></td>
+                    </tr>
+                  <?php $columna1 = true; } ?>
+                <?php }  ?>
+              </tbody>
+            </table>
+          </div>
+    
+        </section>
