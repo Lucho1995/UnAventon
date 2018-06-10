@@ -7,17 +7,23 @@ class CVerMisVehiculos extends CI_Controller {
        parent::__construct();
        $this->load->model('mVehiculos');
        $this->load->model('mLogin');
+       $this->load->model('mVehiculos');
    }
 
    public function vista_registrar(){
     if ($this->session->userdata('logueado')) {
-      $title = array('titulo' => 'Un Aventon!');
-      $id = array('id' => $this->session->userdata('idUsuario'));
-      $perfil = $this->mLogin->get_perfil($this->session->userdata('idUsuario'));
-      $this->load->view('loguedIn/vHead', $title);
-      $this->load->view('loguedIn/vHeader', $perfil);
-      $this->load->view('loguedIn/vRegistrarVehiculo', $id);
-      $this->load->view('loguedIn/vFooter');
+      if ($this->session->userdata('idUsuario') == $id){
+        $title = array('titulo' => 'Un Aventon!');
+        $id = array('id' => $this->session->userdata('idUsuario'));
+        $perfil = $this->mLogin->get_perfil($this->session->userdata('idUsuario'));
+        $this->load->view('loguedIn/vHead', $title);
+        $this->load->view('loguedIn/vHeader', $perfil);
+        $this->load->view('loguedIn/vRegistrarVehiculo', $id);
+        $this->load->view('loguedIn/vFooter');
+      } else {
+        echo "<script language='javascript'>alert('Accseso denegado');</script>";
+        redirect(base_url().'#iniciar','refresh');
+      } 
     } else {
       echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
       redirect(base_url().'#iniciar','refresh');  
@@ -25,7 +31,6 @@ class CVerMisVehiculos extends CI_Controller {
    }
 
    public function registrar_vehiculo($idUsuario){
-     $this->load->model('mVehiculos');
      $datos = array(
                     'marca' => $this->input->post('marca'),
                     'modelo' => $this->input->post('modelo'),
@@ -41,15 +46,20 @@ class CVerMisVehiculos extends CI_Controller {
 
    public function ver_mis_vehiculos($id){
       if ($this->session->userdata('logueado')){
-        $data = $this->mVehiculos->get_vehiculos($id);
-        $title = array('titulo' => 'Bienvenido!');
-        $perfil = $this->mLogin->get_perfil($id);
-        $this->load->model('mVehiculos');
-        $data['vehiculos']=$this->mVehiculos->get_vehiculos($id);
-        $this->load->view('vHead');
-        $this->load->view('loguedIn/vheader', $perfil);
-        $this->load->view('loguedIn/vVerMisVehiculos', $data);
-        $this->load->view('loguedIn/vFooter');
+        if ($this->session->userdata('idUsuario') == $id){
+          $data = $this->mVehiculos->get_vehiculos($id);
+          $title = array('titulo' => 'Bienvenido!');
+          $perfil = $this->mLogin->get_perfil($id);
+          $this->load->model('mVehiculos');
+          $data['vehiculos']=$this->mVehiculos->get_vehiculos($id);
+          $this->load->view('vHead');
+          $this->load->view('loguedIn/vheader', $perfil);
+          $this->load->view('loguedIn/vVerMisVehiculos', $data);
+          $this->load->view('loguedIn/vFooter');
+        } else {
+          echo "<script language='javascript'>alert('Accseso denegado');</script>";
+          redirect(base_url().'#iniciar','refresh');
+        }
       } else { 
           echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
           redirect(base_url().'#iniciar','refresh');   
@@ -58,20 +68,25 @@ class CVerMisVehiculos extends CI_Controller {
 
     public function vista_modificar($idVehiculo){
        if ($this->session->userdata('logueado')) {
-              $this->load->model('mVehiculos');
-              $title = array('titulo' => 'Bienvenido!');
-              $id=$this->session->userdata('idUsuario');
-              $perfil = $this->mLogin->get_perfil($id);
-              $vehiculo=$this->mVehiculos->get_vehiculo($idVehiculo);
-              $data = array ();
-              $data['vehiculo']=$vehiculo;
-              $this->load->view('loguedIn/vHead');
-              $this->load->view('loguedIn/vheader',$perfil);
-              $this->load->view('loguedIn/vModificarVehiculo', $data);
-              $this->load->view('loguedIn/vFooter');
+        if ($this->session->userdata('idUsuario') == $id){
+          $this->load->model('mVehiculos');
+          $title = array('titulo' => 'Bienvenido!');
+          $id=$this->session->userdata('idUsuario');
+          $perfil = $this->mLogin->get_perfil($id);
+          $vehiculo=$this->mVehiculos->get_vehiculo($idVehiculo);
+          $data = array ();
+          $data['vehiculo']=$vehiculo;
+          $this->load->view('loguedIn/vHead');
+          $this->load->view('loguedIn/vheader',$perfil);
+          $this->load->view('loguedIn/vModificarVehiculo', $data);
+          $this->load->view('loguedIn/vFooter');
+        } else {
+          echo "<script language='javascript'>alert('Accseso denegado');</script>";
+          redirect(base_url().'#iniciar','refresh');
+        }
       } else {
-              echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
-              redirect(base_url().'#iniciar','refresh');        
+        echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
+        redirect(base_url().'#iniciar','refresh');        
       }
     }
 
@@ -100,8 +115,13 @@ class CVerMisVehiculos extends CI_Controller {
         if ($this->session->userdata('logueado')) {
           //$perfil = $this->mLogin->get_perfil($id);
           //$data['vehiculos']=$this->mVehiculos->get_vehiculos();
-          $this->mVehiculos->eliminar_vehiculo($idVehiculo);
-          redirect('http://localhost/UnAventon/cVerMisVehiculos/ver_mis_vehiculos/'.$this->session->userdata('idUsuario'), 'refresh');
+          if ($this->session->userdata('idUsuario') == $id){
+            $this->mVehiculos->eliminar_vehiculo($idVehiculo);
+            redirect('http://localhost/UnAventon/cVerMisVehiculos/ver_mis_vehiculos/'.$this->session->userdata('idUsuario'), 'refresh');
+          } else {
+            echo "<script language='javascript'>alert('Accseso denegado');</script>";
+            redirect(base_url().'#iniciar','refresh');
+          }
         } else {
               echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
               redirect(base_url().'#iniciar','refresh');            

@@ -11,6 +11,14 @@
 	-moz-border-radius: 14px; 
 	border-radius: 14px; 
 }
+.datagrid2 {
+	font: normal 12px/150% Arial, Helvetica, sans-serif; 
+	background: salmon; 
+	overflow: hidden; 
+	-webkit-border-radius: 14px; 
+	-moz-border-radius: 14px; 
+	border-radius: 14px; 
+}
 .datagrid table td, .datagrid table th { 
 	padding: 1px 11px; 
 }

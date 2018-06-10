@@ -36,15 +36,19 @@
               <a class="btn btn-default" href="javascript:editar(<?php echo $idUsuario ?>)"><font color="salmon">Editar perfil</font></a>
             </div>
           </div>
+          <br>
+          <div>
+            <a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" class="button button-pill button-flat-caution" style="border-radius: 30px;">
+              <i class="fa fa-car" style="font-size:33px">Ver mis vehiculos</i>
+            </a>
+          </div>
         </div>
       </div>
       <!-- /.row -->
       <hr color="salmon">
-      </div>
       <!-- /.row -->
-      <div class="row" align="center">
-        <br><br><br>
-        <div class="col-md-4 mb-4">
+      <div>
+        <div class="col-md-4 mb-4" align="left">
           <div class="card h-99" align="center" >
             <h6 class="card-header"><font color="salmon" size="5">
               <i class="fa fa-star" style="font-size: 25px"></i>
@@ -52,45 +56,57 @@
             </font></h6>
               <a class="card-text" align="left">
                 <font color="rose" size="5"><br>
-                  Como Piloto:
-                  <?php 
-                    if($reputacionPiloto>0){
-                      echo"Buena";}
-                    else{
-                      if($reputacionPiloto<0){
-                        echo"Mala";
-                      }else{
-                        echo"Regular";
-                      }
+                  Como Piloto:<br>
+                  <i class="fa fa-chevron-right" style="font-size: 15px"></i>
+                  <?php
+                    if ($reputacionPiloto > 50) {
+                      echo "Excelente!";
+                    } elseif ($reputacionPiloto > 25) {
+                      echo "Muy Buena";
+                    } elseif ($reputacionPiloto > 10) {
+                      echo "Buena";
+                    } elseif ($reputacionPiloto > -10) {
+                      echo "Regular";
+                    } elseif ($reputacionPiloto > -25) {
+                      echo "Mala";
+                    } elseif ($reputacionPiloto > -50) {
+                      echo "Muy Mala";
+                    } else {
+                      echo "Pésima...";
                     }
                   ?>
+                  <i class="fa fa-arrow-right" style="font-size: 20px"></i>
+                  <?php echo $reputacionPiloto; ?> Puntos
                 </font>
               </a>
               <hr align="right" size="100" color="f1f1f1" size="100">
               <a class="card-text" align="left">
                 <font color="black" size="5">
-                  Como Copiloto:
+                  Como Copiloto:<br>
+                  <i class="fa fa-chevron-right" style="font-size: 15px"></i>
                   <?php
-                    if($reputacionCopiloto>0){
-                      echo"Buena";
-                    }else{
-                      if($reputacionCopiloto<0){
-                        echo"Mala";
-                      }else{
-                        echo"Regular";
-                      }
+                    if ($reputacionCopiloto > 50) {
+                      echo "Excelente!";
+                    } elseif ($reputacionCopiloto > 25) {
+                      echo "Muy Buena";
+                    } elseif ($reputacionCopiloto > 10) {
+                      echo "Buena";
+                    } elseif ($reputacionCopiloto > -10) {
+                      echo "Regular";
+                    } elseif ($reputacionCopiloto > -25) {
+                      echo "Mala";
+                    } elseif ($reputacionCopiloto > -50) {
+                      echo "Muy Mala";
+                    } else {
+                      echo "Pésima...";
                     }
                   ?>
+                  <i class="fa fa-arrow-right" style="font-size: 20px"></i>
+                  <?php echo $reputacionCopiloto; ?> Puntos
                 </font>
               </a><br>
               <hr align="right" size="100" color="f1f1f1" size="100">
           </div>
         </div>
-        <h1 align="right">
-          <a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" class="button button-pill button-flat-caution" style="border-radius: 100px;"><i class="fa fa-car" style="font-size:38px"></i>
-            Ver mis vehiculos
-          </a>
-        </h1>
-
     </div>
     <!-- /.container -->

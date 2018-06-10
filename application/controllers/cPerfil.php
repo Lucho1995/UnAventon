@@ -10,12 +10,17 @@ class CPerfil extends CI_Controller {
 
    public function miPerfil($id){
       if ($this->session->userdata('logueado')) {
-        $title = array('titulo' => 'Bienvenido!');
-        $perfil = $this->mLogin->get_perfil($id);
-        $this->load->view('loguedIn/vHead', $title);
-        $this->load->view('loguedIn/vheader', $perfil);
-        $this->load->view('loguedIn/vPerfil', $perfil);
-        $this->load->view('loguedIn/vFooter');
+        if ($this->session->userdata('idUsuario') == $id){
+          $title = array('titulo' => 'Bienvenido!');
+          $perfil = $this->mLogin->get_perfil($id);
+          $this->load->view('loguedIn/vHead', $title);
+          $this->load->view('loguedIn/vheader', $perfil);
+          $this->load->view('loguedIn/vPerfil', $perfil);
+          $this->load->view('loguedIn/vFooter');
+        } else {
+          echo "<script language='javascript'>alert('Accseso denegado');</script>";
+          redirect(base_url().'#iniciar','refresh');
+        }
       } else {
         echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
         redirect(base_url().'#iniciar','refresh');

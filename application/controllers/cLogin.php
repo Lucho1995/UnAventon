@@ -51,7 +51,10 @@ class CLogin extends CI_Controller {
 				'logueado' => true
 			);
 			$this->session->set_userdata($usuario_data);
-
+			//sesion temporal
+			if (!$this->input->post('mantener-sesion')) {
+				$this->session->mark_as_temp('logueado', 600);
+			}
 			// user login ok
 			$nombre=$perfil['nombre'];
 			$apellido=$perfil['apellido'];
