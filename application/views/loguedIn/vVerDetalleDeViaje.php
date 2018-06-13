@@ -89,17 +89,17 @@
   </form>
   </div>
   <div class="col-sm-4">
-    <h4 class="form-signin-heading"><font color="salmon">Comentarios</font></h4>
     <div class="col-sm-15" >
       <div class="card h-99" align="center" style="margin-right: 75px" >
         <h6 class="card-header">
           <font color="salmon" size="5">
-            <i class="fa fa-address-card" style="font-size: 25px"></i> Detalles del Piloto
+            <i class="fa fa-comments" style="font-size: 30px"> Comentarios</i> 
           </font>
-        </h6>
+        </h6> 
         <?php foreach ($preguntas as $row) { ?>
           <a class="card-text" align="left">
             <font color="salmon" size=" 4">
+              <i class="fa fa-comment" style="font-size: 20px"></i>
             <?php
               if ( is_null($row['nombre']) ) {
                 echo "Anonimo dijo:";
@@ -139,50 +139,3 @@
 <br>
 <br>
 <br>
-DETALLES DEL PILOTO
-A PHP ERROR WAS ENCOUNTERED
-Severity: Notice
-
-Message: Undefined variable: aux
-
-Filename: loguedIn/vVerDetalleDeViaje.php
-
-Line Number: 101
-
-Backtrace:
-
-File: C:\xampp\htdocs\UnAventon\application\views\loguedIn\vVerDetalleDeViaje.php
-Line: 101
-Function: _error_handler
-
-File: C:\xampp\htdocs\UnAventon\application\controllers\cVerViajes.php
-Line: 70
-Function: view
-
-File: C:\xampp\htdocs\UnAventon\index.php
-Line: 315
-Function: require_once
-
-A PHP ERROR WAS ENCOUNTERED
-Severity: Warning
-
-Message: Invalid argument supplied for foreach()
-
-Filename: loguedIn/vVerDetalleDeViaje.php
-
-Line Number: 101
-
-Backtrace:
-
-File: C:\xampp\htdocs\UnAventon\application\views\loguedIn\vVerDetalleDeViaje.php
-Line: 101
-Function: _error_handler
-
-File: C:\xampp\htdocs\UnAventon\application\controllers\cVerViajes.php
-Line: 70
-Function: view
-
-File: C:\xampp\htdocs\UnAventon\index.php
-Line: 315
-Function: require_once
-
