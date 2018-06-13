@@ -93,6 +93,11 @@
               <br>(De lo contrario, la sesión se cerrará después de 10 minutos)
             </div>
             <div>
+              <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Recordarme
+              </label>
+            </div>
+            <div>
               <button type="submit" class="btn btn-default">Confirmar</button>
             </div>
           </form>

@@ -32,5 +32,11 @@ class MViajes extends CI_Model{
 			$query=($this->db->query('SELECT * FROM viaje INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo INNER JOIN usuario ON viaje.usuarioId = usuario.idUsuario WHERE idUsuario='.$usuarioId));
 		}
 		return $query->result_array();
+	}		
+	public function get_viaje($idViaje){
+		$query=($this->db->query('SELECT * FROM viaje INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario	 INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo WHERE idViaje='.$idViaje));
+				return $query->result_array();
+
+
 	}
 }

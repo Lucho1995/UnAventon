@@ -32,7 +32,7 @@
                         <td><?php echo $row['Costo'] ?></td>
                         <td><?php echo $row['marca'].' '.$row['modelo'] ?></td>
                         <td><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
-                        <td align="center"><a href="#" class="button button-pill button-flat-caution" style="font-size: 15px; background-color: black; padding: 1px 3px;"><i class="fa fa-info-circle" style="color: salmon; font-size:15px" ></i><font color="salmon" style="font-size:15px">  Más detalles</font></a></td>
+                        <td align="center"><a href="<?php echo base_url().'cVerViajes/vista_detalle_viaje/'.$idUsuario.'/'.$row['idViaje'];?>" class="button button-pill button-flat-caution" style="font-size: 15px; background-color: black; padding: 1px 3px;"><i class="fa fa-info-circle" style="color: salmon; font-size:15px" ></i><font color="salmon" style="font-size:15px">  Más detalles</font></a></td>
                       </tr>
                   <?php $columna1 = false; }else{ ?>
                     <tr style="height: 55px;">
@@ -44,7 +44,7 @@
                         <td><font color="white"><?php echo $row['Costo'] ?></td>
                         <td><font color="white"><?php echo $row['marca'].' '.$row['modelo'] ?></td>
                         <td><font color="white"><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
-                        <td align="center"><a href="#" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 3px;"><i class="fa fa-info-circle" style="font-size:15px"></i>  Más detalles</a></td>
+                        <td align="center"><a href="<?php echo base_url().'cVerViajes/vista_detalle_viaje/'.$idUsuario.'/'.$row['idViaje']  ;?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 3px;"><i class="fa fa-info-circle" style="font-size:15px"></i>  Más detalles</a></td>
                     </tr>
                   <?php $columna1 = true; } ?>
                 <?php }  ?>

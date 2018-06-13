@@ -18,7 +18,7 @@ class CLogin extends CI_Controller {
 	  		$title = array('titulo' => 'Bienvenida/o!');
 	  		$viajes = array('viajes' => $this->mViajes->get_viajes());
 	  		$this->load->view('loguedIn/vHead', $title);
-	  		$this->load->view('loguedIn/vheader', $perfil);
+	  		$this->load->view('loguedIn/vHeader', $perfil);
 	  		$this->load->view('loguedIn/vVerViajes', $viajes, $perfil);
 	  		$this->load->view('loguedIn/vFooter');
   		}
