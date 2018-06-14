@@ -49,7 +49,9 @@
           <td>
             <?php echo $row['estado'] ?>
           </td>
-          <?php if ($row['estado'] == 'Pendiente' ) { ?>
+          <?php if ($row['usuarioId'] == $this->session->Userdata('idUsuario') )  { ?>
+
+          <?php   if ($row['estado'] == 'Pendiente' ) { ?>
             <td>
               <a href="#" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
                 <i class="fa fa-check-circle" style="font-size:15px" ></i>
@@ -57,18 +59,19 @@
               </a>
             </td>
             <td>
-              <a href="#" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
+              <a href="<?php echo base_url().'cPostulantes/rechazar_postulado'.'/'.$row['usuarioId'] ?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
                 <i class="fa fa-times-circle" style="font-size:15px" ></i>
                <font style="font-size:15px"> Rechazar</font>
               </a>
             </td>
           <?php } elseif ($row['estado'] == 'Aceptado' ) { ?>
             <td>
-              <a href="#" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
+              <a href="<?php echo base_url().'cPostulantes/rechazar_postulado'.'/'.$row['usuarioId']?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
                 <i class="fa fa-times-circle" style="font-size:15px" ></i>
                 <font style="font-size:15px"> Rechazar</font>
               </a>
             </td>
+          <?php   } ?>
           <?php } ?>
         </tr>
       <?php } ?>

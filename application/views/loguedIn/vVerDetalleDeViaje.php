@@ -72,6 +72,25 @@
       <a class="card-text" align="left">
         <font color="black" size="4"><b>E-Mail:</b> <?php echo $piloto['email']; ?> </font>
       </a>
+      <hr align="right" size="100" color="f1f1f1" size="100">
+      <a class="card-text" align="left">
+        <font color="black" size="4"><b>Reputacion:</b> <?php
+              if ($piloto['reputacionCopiloto'] > 50) {
+                echo "Excelente!";
+              } elseif ($piloto['reputacionCopiloto'] > 25) {
+                echo "Muy Buena";
+              } elseif ($piloto['reputacionCopiloto'] > 10) {
+                echo "Buena";
+              } elseif ($piloto['reputacionCopiloto'] > -10) {
+                echo "Regular";
+              } elseif ($piloto['reputacionCopiloto'] > -25) {
+                echo "Mala";
+              } elseif ($piloto['reputacionCopiloto'] > -50) {
+                echo "Muy Mala";
+              } else {
+                echo "Pésima...";
+              }
+            ?></font>
       <br>
     </div>
     <div>

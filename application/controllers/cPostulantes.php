@@ -19,7 +19,7 @@ class CPostulantes extends CI_Controller {
         $this->load->view('loguedIn/vPostulantes', $postulantes);
         $this->load->view('loguedIn/vFooter');
       } else {
-        echo "<script language='javascript'>alert('Acceso denegado');</script>";
+        echo "<script language='javascript'>alert('Para ver la lista de postulantes, inicia sesion');</script>";
         redirect(base_url().'#iniciar','refresh');
       }
     } else {
@@ -27,4 +27,17 @@ class CPostulantes extends CI_Controller {
       redirect(base_url().'#iniciar','refresh');
     }
   }
+public function rechazar_postulado($idPostulado){
+   $postulado=$this->mPostulantes->get_postulado($idPostulado);
+   /*print_r($postulado);
+   die("jijij");*/
+   if($postulado[0]['estado']=='Aceptado'){
+      $this->mPostulantes->rechazar_postulado_aceptado($idPostulado);
+   }  
+   else{
+      $this->mPostulantes->rechazar_postulado($idPostulado);
+   }
+   $this->vista_postulantes($this->session->userdata('idUsuario'),$postulado[0]['viajeId']);
+  
+}
 }
