@@ -26,6 +26,8 @@
     <link href="<?php echo base_url();?>css/buttons.css" rel="stylesheet">
     <!-- Tablita personalizada -->
     <link href="<?php echo base_url();?>css/tablita.css" rel="stylesheet">
+    <!-- Tablita postulantes -->
+    <link href="<?php echo base_url();?>css/postulantes.css" rel="stylesheet">
     
     <style type="text/css">
       .error{

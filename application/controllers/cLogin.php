@@ -13,20 +13,21 @@ class CLogin extends CI_Controller {
   	}
 
 
-  	public function login($perfil){
+  	public function login(){
   		if ($this->session->userdata('logueado')) {
 	  		$title = array('titulo' => 'Bienvenida/o!');
 	  		$viajes = array('viajes' => $this->mViajes->get_viajes());
 	  		$this->load->view('loguedIn/vHead', $title);
-	  		$this->load->view('loguedIn/vHeader', $perfil);
-	  		$this->load->view('loguedIn/vVerViajes', $viajes, $perfil);
+	  		$this->load->view('loguedIn/vHeader');
+	  		$this->load->view('loguedIn/vVerViajes', $viajes);
 	  		$this->load->view('loguedIn/vFooter');
   		}
   	}
 
   	public function logout() {
   		$usuario_data=array (
-  			'logueado' => false
+  			'logueado' => false,
+  			'idUsuario' => 'visitante'
   		);
   		$this->session->set_userdata($usuario_data);
   		redirect(base_url());
@@ -59,7 +60,7 @@ class CLogin extends CI_Controller {
 			$nombre=$perfil['nombre'];
 			$apellido=$perfil['apellido'];
 			echo "<script language='javascript'>alert('Bienvenido $nombre $apellido');</script>";
-			$this->login($perfil);
+			$this->login();
 		} else {
 			
 			// login failed

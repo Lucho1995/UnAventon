@@ -27,16 +27,35 @@ class MViajes extends CI_Model{
 
 	public function get_viajes($usuarioId='Nulo'){
 		if ($usuarioId == 'Nulo') {
-			$query=($this->db->query('SELECT * FROM viaje INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario	 INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo LIMIT 10'));
+			$query=(
+				$this->db->query(
+					'SELECT * FROM viaje
+					INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario
+					INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo
+					LIMIT 10'
+					)
+				);
 		} else {
-			$query=($this->db->query('SELECT * FROM viaje INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo INNER JOIN usuario ON viaje.usuarioId = usuario.idUsuario WHERE idUsuario='.$usuarioId));
+			$query=(
+				$this->db->query(
+					'SELECT * FROM viaje
+					INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo
+					INNER JOIN usuario ON viaje.usuarioId = usuario.idUsuario
+					WHERE idUsuario='.$usuarioId
+					)
+				);
 		}
 		return $query->result_array();
 	}		
 	public function get_viaje($idViaje){
-		$query=($this->db->query('SELECT * FROM viaje INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario	 INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo WHERE idViaje='.$idViaje));
-				return $query->result_array();
-
-
+		$query=(
+			$this->db->query(
+				'SELECT * FROM viaje
+				INNER JOIN usuario ON viaje.usuarioId=usuario.idUsuario
+				INNER JOIN vehiculo ON viaje.vehiculoId=vehiculo.idVehiculo
+				WHERE idViaje='.$idViaje
+				)
+			);
+		return $query->result_array();
 	}
 }
