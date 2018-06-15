@@ -1,8 +1,7 @@
 <br><br><br>
 <body>
  <div id="wrapper" style="background-color: black; margin-left: 135px">
-  <h1><font color="salmon" size="6">Lista de copilotos postulados</font></h1>
-  
+  <h1><font color="salmon" size="6">Lista de copilotos postulados</font></h1>A
   <table id="keywords" style="background-color: black">
     <thead>
       <tr style="background-color: salmon; color: black;">

@@ -44,10 +44,8 @@
               <a class="card-text" align="left"><font color="black" size="4"><i class="fa fa-chevron-right"></i> Capacidad: <?php echo $viaje[0]['capacidad']; ?> personas </font></a><br>
               </div>
           </div>
-  </div>
-  <div class="col-sm-4">    
-  </div>
-  <div class="col-sm-4" >
+    </div>
+    <div class="col-sm-4">
     <div class="card h-99" align="center" style="margin-right: 75px" >
       <h6 class="card-header">
       <font color="salmon" size="5">
@@ -93,13 +91,19 @@
             ?></font>
       <br>
     </div>
-    <div>
-      <br>  
-      <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-pill button-flat-caution" style="border-radius: 30px;">
-        <i class="fa fa-list" style="font-size:25px"><font size="6"> Ver Postulantes</font></i>
-      </a>
     </div>
-  </div>
+
+  <div class="col-sm-4" >
+   <a href="<?php echo base_url().'cPostulantes/postularse/'.$piloto['idUsuario'].'/'.$viaje[0]['idViaje']; ?>" class="button button-flat-caution" style='width:355px; height:55px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>    Postularme</h3></a> 
+
+   <br>
+   <br>
+   <br>
+
+  <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:55px;'>
+        <h3><i class="fa fa-list" style="font-size:25px"><font size="6"></font></i>  Ver postulantes</h3>
+      </a>
+ </div>
 </div>
 
 <div style="margin-left: 60px; margin-right: 60px">
@@ -156,8 +160,7 @@
       </div>
     </div>
   </div>
-<div>
-    
+<div>  
 
   </div>
 </div>
