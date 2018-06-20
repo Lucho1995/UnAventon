@@ -94,15 +94,13 @@
     </div>
 
   <div class="col-sm-4" >
-   <a href="<?php echo base_url().'cPostulantes/postularse/'.$piloto['idUsuario'].'/'.$viaje[0]['idViaje']; ?>" class="button button-flat-caution" style='width:355px; height:55px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>    Postularme</h3></a> 
-
-   <br>
-   <br>
-   <br>
-
-  <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:55px;'>
-        <h3><i class="fa fa-list" style="font-size:25px"><font size="6"></font></i>  Ver postulantes</h3>
+    <?php if ($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
+      <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:55px;'>
+      <h3><i class="fa fa-list" style="font-size:25px"><font size="6"></font></i>  Ver postulantes</h3>
       </a>
+    <?php }else{ ?>
+      <a href="<?php echo base_url().'cPostulantes/postularse/'.$piloto['idUsuario'].'/'.$viaje[0]['idViaje']; ?>" class="button button-flat-caution" style='width:355px; height:55px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>    Postularme</h3></a>
+    <?php } ?>
  </div>
 </div>
 
