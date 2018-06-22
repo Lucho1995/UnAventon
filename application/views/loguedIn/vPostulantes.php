@@ -1,7 +1,7 @@
 <br><br><br>
 <body>
  <div id="wrapper" style="background-color: black; margin-left: 135px">
-  <h1><font color="salmon" size="6">Lista de copilotos postulados</font></h1>A
+  <h1><font color="salmon" size="6">Lista de copilotos postulados</font></h1>
   <table id="keywords" style="background-color: black">
     <thead>
       <tr style="background-color: salmon; color: black;">
@@ -63,7 +63,7 @@
             </td>
           <?php } elseif ($row['estado'] == 'Aceptado' ) { ?>
             <td>
-              <a href="<?php echo base_url().'cPostulantes/rechazar_postulado'.'/'.$row['idUsuario']?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
+              <a href="javascript:penalizacion('<?php echo $row['idUsuario'] ?>')" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
                 <i class="fa fa-times-circle" style="font-size:15px" ></i>
                 <font style="font-size:15px"> Rechazar</font>
               </a>

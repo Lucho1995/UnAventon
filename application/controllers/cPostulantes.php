@@ -33,7 +33,10 @@ class CPostulantes extends CI_Controller {
         $this->mPostulantes->rechazar_postulado_aceptado($idPostulado);
      }  
      else{
-        $this->mPostulantes->rechazar_postulado($idPostulado);
+        $datos = array('estado' => 'Rechazado', 'usuarioId' => $idPostulado);
+        $this->mPostulantes->rechazar_postulado($datos);
+        $aux=$this->mPostulantes->get_postulado($idPostulado);
+        $this->vista_postulantes($this->session->userdata('idUsuario'),$aux[0]['viajeId']);
      }
      $this->vista_postulantes($this->session->userdata('idUsuario'),$postulado[0]['viajeId']);
   }
@@ -44,4 +47,5 @@ class CPostulantes extends CI_Controller {
     $aux=$this->mPostulantes->get_postulado($idPostulado);
     $this->vista_postulantes($this->session->userdata('idUsuario'),$aux[0]['viajeId']);
   }
+
 }

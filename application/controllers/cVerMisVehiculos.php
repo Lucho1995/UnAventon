@@ -10,13 +10,13 @@ class CVerMisVehiculos extends CI_Controller {
        $this->load->model('mVehiculos');
    }
 
-   public function vista_registrar(){
+   public function vista_registrar($id){
     if ($this->session->userdata('logueado')) {
       if ($this->session->userdata('idUsuario') == $id){
         $title = array('titulo' => 'Un Aventon!');
         $id = array('id' => $this->session->userdata('idUsuario'));
         $perfil = $this->mLogin->get_perfil($this->session->userdata('idUsuario'));
-        $this->load->view('loguedIn/vHead', $title);
+        $this->load->view('vHead', $title);
         $this->load->view('loguedIn/vHeader', $perfil);
         $this->load->view('loguedIn/vRegistrarVehiculo', $id);
         $this->load->view('loguedIn/vFooter');
@@ -66,7 +66,7 @@ class CVerMisVehiculos extends CI_Controller {
       }
     }
 
-    public function vista_modificar($idVehiculo){
+    public function vista_modificar($id,$idVehiculo){
        if ($this->session->userdata('logueado')) {
         if ($this->session->userdata('idUsuario') == $id){
           $this->load->model('mVehiculos');
@@ -76,7 +76,7 @@ class CVerMisVehiculos extends CI_Controller {
           $vehiculo=$this->mVehiculos->get_vehiculo($idVehiculo);
           $data = array ();
           $data['vehiculo']=$vehiculo;
-          $this->load->view('loguedIn/vHead');
+          $this->load->view('vHead');
           $this->load->view('loguedIn/vheader',$perfil);
           $this->load->view('loguedIn/vModificarVehiculo', $data);
           $this->load->view('loguedIn/vFooter');

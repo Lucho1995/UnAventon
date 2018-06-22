@@ -14,12 +14,11 @@ class CVerViajes extends CI_Controller {
 
    public function viajes($id='visitante'){
       $viajes = array('viajes' => $this->mViajes->get_viajes(),
-                      'titulo' => 'Viajes publicados');
+                      'titulo' => 'Todos los viajes');
       if ($this->session->userdata('logueado')) {
         if ($this->session->userdata('idUsuario') == $id){
-          $perfil = $this->mLogin->get_perfil($this->session->userdata('idUsuario'));
           $this->load->view('vHead');
-          $this->load->view('loguedIn/vheader', $perfil);
+          $this->load->view('loguedIn/vheader');
           $this->load->view('loguedIn/vVerViajes', $viajes);
           $this->load->view('loguedIn/vFooter');
         } else {
@@ -33,25 +32,24 @@ class CVerViajes extends CI_Controller {
           $this->load->view('loguedIn/vFooter');       
       }     
    }
-   public function misViajes($id){
-      if ($this->session->userdata('logueado')){
-        if ($this->session->userdata('idUsuario') == $id){
-          $viajes = array('viajes' => $this->mViajes->get_viajes($id),
-                          'titulo' => 'Mis Viajes');
-          $perfil = $this->mLogin->get_perfil($id);
-          $this->load->view('vHead');
-          $this->load->view('loguedIn/vHeader', $perfil);
-          $this->load->view('loguedIn/vVerViajes', $viajes,$id);
-          $this->load->view('loguedIn/vFooter');
-        } else {
-          echo "<script language='javascript'>alert('Accseso denegado');</script>";
-          redirect(base_url().'#iniciar','refresh');
-        }
+  public function misViajes($id){
+    if ($this->session->userdata('logueado')){
+      if ($this->session->userdata('idUsuario') == $id){
+        $viajes = array('viajes' => $this->mViajes->get_viajes($id),
+                        'titulo' => 'Lista de mis viajes');
+        $this->load->view('vHead');
+        $this->load->view('loguedIn/vHeader');
+        $this->load->view('loguedIn/vVerViajes', $viajes,$id);
+        $this->load->view('loguedIn/vFooter');
+      } else {
+        echo "<script language='javascript'>alert('Accseso denegado');</script>";
+        redirect(base_url().'#iniciar','refresh');
+      }
     } else {
-          echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
-          redirect(base_url().'#iniciar','refresh');       
+      echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
+      redirect(base_url().'#iniciar','refresh');       
     }
-   }
+  }
 
   public function vista_detalle_viaje($id,$idViaje){
     $viaje = $this->mViajes->get_viaje($idViaje);
@@ -77,6 +75,24 @@ class CVerViajes extends CI_Controller {
       $this->load->view('vHeader2');
       $this->load->view('loguedIn/vVerDetalleDeViaje', $parametros);
       $this->load->view('loguedIn/vFooter');
+    }
+  }
+
+  public function vista_editar_viaje($id, $idViaje){
+    if ($this->session->userdata('logueado')){
+      if ($this->session->userdata('idUsuario') == $id){
+        $viajes = array('viajes' => $this->mViajes->get_viajes($id));
+        $this->load->view('vHead');
+        $this->load->view('loguedIn/vHeader');
+        $this->load->view('loguedIn/vModificarViaje');
+        $this->load->view('loguedIn/vFooter');
+      } else {
+        echo "<script language='javascript'>alert('Accseso denegado');</script>";
+        redirect(base_url().'#iniciar','refresh');
+      }
+    } else {
+      echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
+      redirect(base_url().'#iniciar','refresh');       
     }
   }
 }

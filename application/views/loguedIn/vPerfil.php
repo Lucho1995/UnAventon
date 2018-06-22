@@ -38,8 +38,7 @@
           </div>
           <br>
           <div>
-            <a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" class="button button-pill button-flat-caution" style="border-radius: 30px;">
-              <i class="fa fa-car" style="font-size:33px">Ver mis vehiculos</i>
+            <a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" class="button button-pill button-flat-caution" style="border-radius: 30px;"><font size="5"><i class="fa fa-car"></i>  Ver mis vehiculos</font>
             </a>
           </div>
         </div>
