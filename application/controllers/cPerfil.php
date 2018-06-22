@@ -13,7 +13,7 @@ class CPerfil extends CI_Controller {
         if ($this->session->userdata('idUsuario') == $id){
           $title = array('titulo' => 'Bienvenido!');
           $perfil = $this->mLogin->get_perfil($id);
-          $this->load->view('loguedIn/vHead', $title);
+          $this->load->view('vHead', $title);
           $this->load->view('loguedIn/vheader', $perfil);
           $this->load->view('loguedIn/vPerfil', $perfil);
           $this->load->view('loguedIn/vFooter');

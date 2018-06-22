@@ -14,7 +14,7 @@ class CPostulantes extends CI_Controller {
     $postulantes = array('postulantes' => $this->mPostulantes->get_postulantes($idViaje));
     if ($this->session->userdata('logueado')) {
       if ($this->session->userdata('idUsuario') == $id) {
-        $this->load->view('loguedIn/vHead');
+        $this->load->view('vHead');
         $this->load->view('loguedIn/vHeader');
         $this->load->view('loguedIn/vPostulantes', $postulantes);
         $this->load->view('loguedIn/vFooter');
@@ -36,7 +36,6 @@ class CPostulantes extends CI_Controller {
         $datos = array('estado' => 'Rechazado', 'usuarioId' => $idPostulado);
         $this->mPostulantes->rechazar_postulado($datos);
         $aux=$this->mPostulantes->get_postulado($idPostulado);
-        $this->vista_postulantes($this->session->userdata('idUsuario'),$aux[0]['viajeId']);
      }
      $this->vista_postulantes($this->session->userdata('idUsuario'),$postulado[0]['viajeId']);
   }
