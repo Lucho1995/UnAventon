@@ -46,5 +46,17 @@ class CPostulantes extends CI_Controller {
     $aux=$this->mPostulantes->get_postulado($idPostulado);
     $this->vista_postulantes($this->session->userdata('idUsuario'),$aux[0]['viajeId']);
   }
+  public function postularse ($idUsuario, $idViaje) {
+    if ($this->session->userdata('logueado')) {
+          $data = array (
+              'estado' => 'pendiente',
+              'viajeId' => $idViaje,
+            'usuarioId' => $this->session->userdata('idUsuario')
+          );
+          
+          $this->mPostulantes->postularse($data);
+          redirect (base_url().'cVerViajes/vista_detalle_viaje'.'/'.$idUsuario.'/'.$idViaje, 'refresh');
+        }
+  }
 
 }

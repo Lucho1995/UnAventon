@@ -58,4 +58,19 @@ class MViajes extends CI_Model{
 			);
 		return $query->result_array();
 	}
+	public function publicar_viaje($param){
+		$campos=array(
+			'origen' => $param['origen'],
+			'destino' => $param['destino'],
+			'fecha' => $param['fecha'],
+			'hora' => $param['hora'],
+			'descripcion' => $param['descripcion'],
+			'costo' => $param['costo'],
+			'vehiculoId' => $param['vehiculoId'],
+			'asientosDisp' => $param['asientosDisp'],
+			'usuarioId' => $param['usuarioId'],
+			//'periodico' => $param['periodico']
+		);
+		$this->db->insert('viaje', $campos);
+	}
 }

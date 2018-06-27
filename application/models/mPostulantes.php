@@ -42,4 +42,28 @@ class MPostulantes extends CI_Model {
      $this->db->where('usuarioId', $postulado['usuarioId']);
      $this->db->update('postulacion', $postulado);
    }
+    private function usuario_postulado($idViaje,$idUsuario){
+      $this->db->select('*');
+      $this->db->from('postulacion');
+      $this->db->where('usuarioId',$idUsuario);
+      $this->db->where('viajeId',$idViaje);
+      if ($this->db->count_all_results()>=1){
+        return true;
+      } else {
+        return false;
+      }
+    }
+   public function postularse($datos){
+      if (!$this->usuario_postulado($datos['viajeId'], $datos['usuarioId'])){
+        $campos = array (
+          'estado' => $datos['estado'],
+          'viajeId' => $datos['viajeId'],
+          'usuarioId' => $datos['usuarioId']
+        );
+        $this->db->insert('postulacion',$campos);
+        echo '<script language="javascript">alert("¡Tu postulación fue procesada con exito! Ahora debes esperar que el piloto responda a tu solicitud.");</script>';
+      } else {
+        echo '<script language="javascript">alert("Ya estas postulado en este viaje.");</script>';
+      }
+    } 
 }

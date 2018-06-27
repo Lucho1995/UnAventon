@@ -101,5 +101,13 @@ class MVehiculos extends CI_Model {
     }
   
   }
+   public function buscar_id($idVehiculo){
+      $this->db->select('capacidad');
+      $this->db->from('vehiculo');
+      $this->db->where('idVehiculo', $idVehiculo);
+      $query = $this->db->get();
+      return ($query->result_array());
+    }
+
 
 }
