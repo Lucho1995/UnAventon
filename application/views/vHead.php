@@ -17,8 +17,8 @@
 
     <!-- Custom fonts for this template -->
     <link href="<?php echo base_url();?>vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    <link href="<?php echo base_url()?>css/font1.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url()?>css/font2.css" rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>css/grayscale.css" rel="stylesheet">

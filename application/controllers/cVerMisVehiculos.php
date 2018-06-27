@@ -67,8 +67,8 @@ class CVerMisVehiculos extends CI_Controller {
     }
 
     public function vista_modificar($id,$idVehiculo){
-       if ($this->session->userdata('logueado')) {
-        if ($this->session->userdata('idUsuario') == $id){
+       //if ($this->session->userdata('logueado')) {
+        //if ($this->session->userdata('idUsuario') == $id){
           $this->load->model('mVehiculos');
           $title = array('titulo' => 'Bienvenido!');
           $id=$this->session->userdata('idUsuario');
@@ -80,18 +80,18 @@ class CVerMisVehiculos extends CI_Controller {
           $this->load->view('loguedIn/vheader',$perfil);
           $this->load->view('loguedIn/vModificarVehiculo', $data);
           $this->load->view('loguedIn/vFooter');
-        } else {
+       /* } else {
           echo "<script language='javascript'>alert('Accseso denegado');</script>";
           redirect(base_url().'#iniciar','refresh');
         }
       } else {
         echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
         redirect(base_url().'#iniciar','refresh');        
-      }
+      }*/
     }
 
     public function modificar_vehiculo($idVehiculo){
-       if ($this->session->userdata('logueado')){
+       /*if ($this->session->userdata('logueado')){ */
               $this->load->model('mVehiculos');
               $vehiculo=$this->mVehiculos->get_vehiculo($idVehiculo);
               $data = array (
@@ -101,14 +101,15 @@ class CVerMisVehiculos extends CI_Controller {
                 'color' => $this->input->post('color'),
                 'seguro' => $this->input->post('seguro'),
                 'numPoliza' => $this->input->post('numPoliza'),
-                'capacidad' => $this->input->post('capacidad')
+                'capacidad' => $this->input->post('capacidad'),
+                'usuarioId' => $this->session->userdata('idUsuario')
               );
               $this->mVehiculos->modificar_vehiculo($idVehiculo,$data);
               redirect('http://localhost/UnAventon/cVerMisVehiculos/ver_mis_vehiculos/'.$this->session->userdata('idUsuario'), 'refresh');
-       } else {
+       /*} else {
               echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
               redirect(base_url().'#iniciar','refresh');             
-       }
+       }*/
     }
 
     public function eliminar_vehiculo($idVehiculo){

@@ -33,25 +33,20 @@ class MVehiculos extends CI_Model {
     }
 
     public function patente_existe($patente, $idVehiculo){
-       $this->db->select('*');
-       $this->db->from('vehiculo');
-       $this->db->like('patente',$patente);
-       $query= $this->db->get();
-       if ($query->num_rows()==1) {
-          $vehiculo= $query->result_array();
-          if ($vehiculo['idVehiculo']=$idVehiculo){
-            return false;
-          } else {
+        $this->db->select('patente');
+        $this->db->from('vehiculo');
+        $this->db->where('patente',$patente);
+        $this->db->where('idVehiculo<>', $idVehiculo);
+        if($this->db->count_all_results()>=1){
             return true;
-          }
-       }
-       return false; 
-       
+        }
+        else{
+            return false;
+        }
     }
 
     public function modificar_vehiculo($idVehiculo,$param){
-      if (! $this->patente_existe($param['patente'], $idVehiculo)){
-      	$param = array (
+      	$campos = array (
       		'marca'=> $param['marca'],
       		'modelo'=> $param['modelo'],
       		'patente'=> $param['patente'],
@@ -60,13 +55,18 @@ class MVehiculos extends CI_Model {
       		'numPoliza'=> $param['numPoliza'],
       		'capacidad'=> $param['capacidad']
       	);
-      	$this->db->where('idVehiculo',$idVehiculo);
-      	$this->db->update('vehiculo',$param);
-    } else { 
-        //redirect('http://localhost/UnAventon/cPerfil/miPerfil/'.$idUsuario);
-        echo "<script language='javascript'>alert('La patente ya existe');</script>";
-      }
+        $id=$param['usuarioId'];
+        if ($this->patente_existe($campos['patente'], $idVehiculo)){
+          echo "<script language='javascript'>alert('La patente ya existe');</script>";
+          redirect(base_url().'cVerMisVehiculos/vista_modificar/'.$id.'/'.$idVehiculo, 'refresh');
+        	/*$this->db->where('idVehiculo',$idVehiculo);
+        	$this->db->update('vehiculo',$campos);*/
+        } else { 
+          $this->db->where('idVehiculo',$idVehiculo);
+          $this->db->update('vehiculo',$campos);
+        }
     }
+
 
     public function registrar_vehiculo($datos){
     $campos = array(
