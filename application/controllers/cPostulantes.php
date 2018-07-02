@@ -59,8 +59,10 @@ class CPostulantes extends CI_Controller {
         } else {
           echo "<script language='javascript'>alert('Por favor, inicie sesión para postularse');</script>";
           redirect (base_url()."#iniciar", 'refresh');
+          //hola
         }
   }
+
 
   public function darse_de_baja($idViaje){
     if ($this->session->userdata('logueado')){
