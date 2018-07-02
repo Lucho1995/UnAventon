@@ -197,7 +197,7 @@ class CVerViajes extends CI_Controller {
       $postulantes =$this->mPostulantes->get_postulantes($idViaje);
       $cantAceptados=0;
       foreach ($postulantes as $row ) {
-        if($row[0]['estado']== 'Aceptado'){
+        if($row['estado']== 'Aceptado'){
           $cantAceptados++;
         }
       }
@@ -206,7 +206,7 @@ class CVerViajes extends CI_Controller {
       }else{
         $this->mViajes->baja_de_viaje_sin_postulantes($idViaje);
       }
-      //redirect(base_url().'cVerViajes/misViajes/'.$id, 'refresh');
+      redirect(base_url().'cVerViajes/misViajes/'.$id, 'refresh');
 
 
   }
