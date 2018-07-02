@@ -58,6 +58,7 @@ class CPostulantes extends CI_Controller {
           redirect (base_url().'cVerViajes/vista_detalle_viaje'.'/'.$idUsuario.'/'.$idViaje, 'refresh');
         } else {
           echo "<script language='javascript'>alert('Por favor, inicie sesión para postularse');</script>";
+          redirect (base_url()."#iniciar", 'refresh');
         }
   }
 
