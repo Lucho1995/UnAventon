@@ -9,7 +9,7 @@ class CPostulantes extends CI_Controller {
       $this->load->model('mViajes');
       $this->load->model('mPostulantes');
   }   
-  //Muestra la vista con los postulantes para cada viaje 
+
   public function vista_postulantes($id,$idViaje){
     $postulantes = array('postulantes' => $this->mPostulantes->get_postulantes($idViaje));
     if ($this->session->userdata('logueado')) {
@@ -27,7 +27,6 @@ class CPostulantes extends CI_Controller {
       redirect(base_url().'#iniciar','refresh');
     }
   }
-  //Rechaza un postulante del viaje 
   public function rechazar_postulado($idPostulado){
      $postulado=$this->mPostulantes->get_postulado($idPostulado);
      if($postulado[0]['estado']=='Aceptado'){
@@ -40,14 +39,13 @@ class CPostulantes extends CI_Controller {
      }
      $this->vista_postulantes($this->session->userdata('idUsuario'),$postulado[0]['viajeId']);
   }
-//Acepta un postulante del viaje
+
   public function aceptar_postulado($idPostulado){
     $postulado = array('estado' => 'Aceptado', 'usuarioId' => $idPostulado);
     $this->mPostulantes->aceptar_postulado($postulado);
     $aux=$this->mPostulantes->get_postulado($idPostulado);
     $this->vista_postulantes($this->session->userdata('idUsuario'),$aux[0]['viajeId']);
   }
-  //Se postula a un viaje
   public function postularse ($idUsuario, $idViaje) {
     if ($this->session->userdata('logueado')) {
           $data = array (
