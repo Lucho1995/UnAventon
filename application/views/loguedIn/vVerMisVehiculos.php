@@ -1,5 +1,5 @@
      <section id=mostrar-vehiculos class="content-section text-center">
-        <h1> Mis Vehículos <h2>
+        <h1 style="text-align: center"> Mis Vehículos </h1>
             <div class="col-form-label-sm">
             <table class="table users table-hover">
               <thead>

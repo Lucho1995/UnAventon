@@ -3,6 +3,8 @@
 <br>
 <br>
 <br>
+  <br>
+  <br>
 <div class="row">
   <div class="col-sm-4" >
           <div class="card h-99" align="center" style="margin-left: 75px ">
@@ -73,17 +75,17 @@
       <hr align="right" size="100" color="f1f1f1" size="100">
       <a class="card-text" align="left">
         <font color="black" size="4"><b>Reputacion:</b> <?php
-              if ($piloto['reputacionCopiloto'] > 50) {
+              if ($piloto['reputacionPiloto'] > 50) {
                 echo "Excelente!";
-              } elseif ($piloto['reputacionCopiloto'] > 25) {
+              } elseif ($piloto['reputacionPiloto'] > 25) {
                 echo "Muy Buena";
-              } elseif ($piloto['reputacionCopiloto'] > 10) {
+              } elseif ($piloto['reputacionPiloto'] > 10) {
                 echo "Buena";
-              } elseif ($piloto['reputacionCopiloto'] > -10) {
+              } elseif ($piloto['reputacionPiloto'] > -10) {
                 echo "Regular";
-              } elseif ($piloto['reputacionCopiloto'] > -25) {
+              } elseif ($piloto['reputacionPiloto'] > -25) {
                 echo "Mala";
-              } elseif ($piloto['reputacionCopiloto'] > -50) {
+              } elseif ($piloto['reputacionPiloto'] > -50) {
                 echo "Muy Mala";
               } else {
                 echo "Pésima...";
@@ -93,16 +95,38 @@
     </div>
     </div>
 
-  <div class="col-sm-4" >
+    <div>
     <?php if ($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
-      <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:55px;'>
-      <h3><i class="fa fa-list" style="font-size:25px"><font size="6"></font></i>  Ver postulantes</h3>
+      <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'>
+      <h3><i class="fa fa-list" style="font-size:24px"></i><font style="font-size: 26px">Ver postulantes</font></h3>
       </a>
+      <br>
+      <br>
+      <br>
+      <br>
+      <a href="<?php echo base_url().'cVerViajes/vista_editar_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'>
+        <h3><i class="fa fa-list" style="font-size:25px"><font size="6"></font></i>Editar viaje</h3>
+      </a>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+       <a href="<?php echo base_url().'cVerViajes/baja_de_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'>
+        <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Dar de baja viaje</font></h3>
+      </a>
+      </div>
     <?php }else{ ?>
-      <a href="<?php echo base_url().'cPostulantes/postularse/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje']; ?>" class="button button-flat-caution" style='width:355px; height:55px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>    Postularme</h3></a>
+      <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
     <?php } ?>
+    <br>
+    <br>
+    <br>
+    <br>
+
  </div>
 </div>
+
 
 <div style="margin-left: 60px; margin-right: 60px">
   <hr color="salmon">

@@ -65,5 +65,39 @@ class MPostulantes extends CI_Model {
       } else {
         echo '<script language="javascript">alert("Ya estas postulado en este viaje.");</script>';
       }
+    }
+
+    private function obtener_usuario($idUsuario){
+      $this->db->select('*');
+      $this->db->from('usuario');
+      $this->db->where('idUsuario', $idUsuario);
+      $query=$this->db->get();
+      return ($query->result_array());
+    }
+
+    public function darse_de_baja_aceptado($idUsuario){
+      $usuario=$this->obtener_usuario($idUsuario);
+      $decrementRep=$usuario[0]['reputacionCopiloto'] - 1;
+      $this->db->where('usuarioId', $idUsuario);
+      $this->db->delete('postulacion');
+      $this->db->set('reputacionCopiloto',$decrementRep);
+      $this->db->where('idUsuario', $idUsuario);
+      $this->db->update('usuario');
     } 
+
+    public function darse_de_baja($idUsuario){
+      $this->db->where('usuarioId', $idUsuario);
+      $this->db->delete('postulacion');
+    }
+    
+    public function get_viajes_postule($usuarioId){
+      $this->db->select('*');
+      $this->db->from('postulacion');
+      $this->db->join('viaje', 'viaje.idViaje = postulacion.viajeId');
+      $this->db->join('vehiculo', 'vehiculo.idVehiculo = viaje.vehiculoId');
+      $this->db->join('usuario', 'usuario.idUsuario = viaje.usuarioId');
+      $this->db->where('postulacion.usuarioId', $usuarioId);
+      $query = $this->db->get();
+      return $query->result_array();
+    }
 }

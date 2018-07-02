@@ -7,36 +7,36 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputNombre">Origen</label>
-                  <input type="text" class="form-control" name="origen"></br>
+                  <input type="text" class="form-control" name="origen" required></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputApellido">Destino</label>
-                  <input type="text" class="form-control" name="destino"></br>
+                  <input type="text" class="form-control" name="destino" required></br>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputFecha">Fecha</label>
-                  <input type="date" class="form-control" name="fecha"></br>
+                  <input type="date" class="form-control" name="fecha" required></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputHora">Hora</label>
-                    <input type="time" class="form-control-file" name="hora" >
+                    <input type="time" class="form-control-file" name="hora" required>
                 </div>
               </div>
 
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputDesc">Descripcion (opcional)</label>
+                  <label for="inputDesc">Descripción (opcional)</label>
                   <textarea class="form-control" name="descripcion" placeholder="Ingrese una breve descripcion o aclaracion."></textarea></br>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputCosto">Costo</label>
-                  <input type="number" class="form-control" name="costo"></br>
+                  <input type="number" class="form-control" name="costo" required></br>
                 </div>
 				<div class="form-group col-md-6">
                   <label for="inputAsientos">Seleccione un vehiculo</label>
-                  <select name="vehiculoId">
+                  <select name="vehiculoId" required>
                   	<?php foreach ($vehiculos as $vehiculo) {
                   		?><option value="<?php echo $vehiculo['idVehiculo']; ?>"><?php echo $vehiculo['marca'].' '.$vehiculo['modelo']?></option>
                   <?php	} ?>
@@ -68,14 +68,10 @@
                   		<input type="checkbox" name="dias[]" value="Sunday">Domingo</input></br>
                 </div>
                 <div class="form-group col-md-4">
-              	 <label>Indique desde que fecha se realizara el viaje</label><br>
-              	 <br>
-              	 <br>
-              	 <input type="date"  name="fechaInicio"></input><br>
                   <br>
                   </br>
                 <div class="form-group col-md-12">
-                <label>Indique hasta que fecha se realizara el viaje</label><br>
+                <label>Indique hasta qué fecha se realizara el viaje (la fecha que indicó anteriormente es considerada la fecha de inicio)</label><br>
                 <br>
                 <br>
                 <input type="date" name="fechaFin"></input><br>

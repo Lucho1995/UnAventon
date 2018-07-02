@@ -59,4 +59,19 @@ class CPostulantes extends CI_Controller {
         }
   }
 
+  public function darse_de_baja($idViaje){
+    if ($this->session->userdata('logueado')){
+      $postulantes=$this->mPostulantes->get_postulantes($idViaje);
+      $idUsuario=$this->session->userdata('idUsuario');
+      foreach ($postulantes as $row){
+        if ($row['estado'] == "aceptado") {
+          $this->mPostulantes->darse_de_baja_aceptado($idUsuario);
+        } else {
+          $this->mPostulantes->darse_de_baja($idUsuario);
+        }
+      }
+      echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
+      redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
+    }
+  }
 }

@@ -40,6 +40,9 @@
           <div>
             <a href="<?php echo base_url().'/cVerMisVehiculos/ver_mis_vehiculos/'.$idUsuario ?>" class="button button-pill button-flat-caution" style="border-radius: 30px;"><font size="5"><i class="fa fa-car"></i>  Ver mis vehiculos</font>
             </a>
+           <br><br>
+            <a href="<?php echo base_url().'/cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario') ?>" class="button button-pill button-flat-caution" style="border-radius: 50px;"><font size="4"><i class="fa fa-list"></i></font><font size="4">  Viajes a los que me postule</font>
+            </a>
           </div>
         </div>
       </div>
