@@ -11,7 +11,7 @@ class CVerViajes extends CI_Controller {
       $this->load->model('mVehiculos');
       $this->load->model('mPreguntas');
   }   
-
+  //Muestra todos los viajes 
    public function viajes($id='visitante'){
       $viajes = array('viajes' => $this->mViajes->get_viajes(),
                       'titulo' => 'Todos los viajes');
@@ -32,6 +32,7 @@ class CVerViajes extends CI_Controller {
           $this->load->view('loguedIn/vFooter');       
       }     
    }
+   //Muestra todos los viajes de un usuario particular
   public function misViajes($id){
     if ($this->session->userdata('logueado')){
       if ($this->session->userdata('idUsuario') == $id){
@@ -50,7 +51,7 @@ class CVerViajes extends CI_Controller {
       redirect(base_url().'#iniciar','refresh');       
     }
   }
-
+  //Muestra el detalle de un viaje en particular
   public function vista_detalle_viaje($id,$idViaje){
     $viaje = $this->mViajes->get_viaje($idViaje);
     $parametros = array(
