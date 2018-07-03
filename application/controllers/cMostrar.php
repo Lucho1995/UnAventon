@@ -19,3 +19,4 @@ class CMostrar extends CI_Controller {
 }
   
 //hola
+//como estas_
