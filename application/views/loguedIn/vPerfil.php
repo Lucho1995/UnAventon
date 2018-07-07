@@ -12,28 +12,32 @@
     <div class="container">
 
       <!-- Heading Row -->
-      <div class="row my-4">
-        <div class="col-lg-8">
-          <img src="" alt="">
-          <h1>(Foto de perfil)</h1>
+      <div class="row my-5">
+        <div class="col-md-4 mb-4 border" style="margin-left: 30px;">
+          <h2 style="margin-top: 200px"><font size="10">(SIN FOTO DE PERFIL)</font></h2>
         </div>
         <!-- /.col-md-4 -->
-        <div class="col-md-4 mb-4">
-          <div class="card h-99" align="center" >
-            <h6 class="card-header"><font color="salmon" size="5">
-              <i class="fa fa-user" style="font-size: 25px"></i> Mis datos personales
-            </font></h6>
-              <a class="card-text" align="left"><font color="rose" size="4">Nombre: <?php echo $nombre; ?> </font></a>
+        <div class="col-md-4 mb-6" style="margin-left: 275px">
+          <div class="card h-99" align="center">
+            <h5 class="card-header">
+              <font color="salmon">
+                <i class="fa fa-user" style="font-size: 25px;"></i> Mis datos personales
+              </font>
+            </h5>
+            <div style="text-align: left;">
+              <br>
+              <font face="sans-serif" color="rose" style="font-size: 21px">Nombre: <?php echo $nombre; ?> </font>
               <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="4"> Apellido: <?php echo $apellido; ?> </font></a>
+              <font face="sans-serif" color="black" style="font-size: 21px"> Apellido: <?php echo $apellido; ?> </font>
               <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="4">Fecha de nacimiento: <?php echo $fechaNac; ?> </font></a>
+              <font face="sans-serif" color="black" style="font-size: 21px">Fecha de nacimiento: <?php echo $fechaNac; ?> </font>
               <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="4">DNI: <?php echo $dni; ?> </font></a>
+              <font face="sans-serif" color="black" style="font-size: 21px">DNI: <?php echo $dni; ?> </font>
               <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="4">E-Mail: <?php echo $email; ?> </font></a>
+              <font face="sans-serif" color="black" style="font-size: 21px">E-Mail: <?php echo $email; ?> </font>
+            </div>
             <div class="card-footer" align="center">
-              <a class="btn btn-default" href="javascript:editar(<?php echo $idUsuario ?>)"><font color="salmon">Editar perfil</font></a>
+              <a style="border-color: black; color: black" class="btn btn-default" href="javascript:editar(<?php echo $idUsuario ?>)">Editar perfil</a>
             </div>
           </div>
           <br>
@@ -111,4 +115,5 @@
           </div>
         </div>
     </div>
+    <br><br><br>
     <!-- /.container -->

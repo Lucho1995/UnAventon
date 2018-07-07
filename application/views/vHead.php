@@ -17,8 +17,6 @@
 
     <!-- Custom fonts for this template -->
     <link href="<?php echo base_url();?>vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url()?>css/font1.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url()?>css/font2.css" rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>css/grayscale.css" rel="stylesheet">
@@ -28,6 +26,8 @@
     <link href="<?php echo base_url();?>css/tablita.css" rel="stylesheet">
     <!-- Tablita postulantes -->
     <link href="<?php echo base_url();?>css/postulantes.css" rel="stylesheet">
+    <!-- Custom fonts for this template -->
+    <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css">
     
     
     <style type="text/css">

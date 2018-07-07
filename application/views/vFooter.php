@@ -1,7 +1,11 @@
+    <div class="col-lg-8 mx-auto">
+       <hr color="salmon">
+    </div>
     <footer>
       <div class="container text-center">
-        <p>Copyright &copy; Compumundo Hipermegared 2018</p>
+        <p>Copyright &copy; Compumundo Hipermegared 2018</p><img style="margin-top: 100px" src="<?php base_url(); ?>img/logo2.png" alt="Logo" height="30" width="30" align="center">
       </div>
+      <br>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
