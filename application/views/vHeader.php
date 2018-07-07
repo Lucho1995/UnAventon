@@ -1,7 +1,12 @@
 
+<script type="text/javascript">
+  function jodete() {
+    alert("Jodete");
+  }
+</script>
+
 
   <body id="page-top">
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <img src="<?php echo base_url() ?>img/logo2.png" height="50" width="50">

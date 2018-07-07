@@ -1,6 +1,6 @@
 <br><br><br>
 <body>
- <div id="wrapper" style="background-color: black; margin-left: 135px">
+ <div id="wrapper" style="background-color: black; margin-left: 150px">
   <h1><font color="salmon" size="6">Lista de copilotos postulados</font></h1>
   <table id="keywords" style="background-color: black">
     <thead>
@@ -15,6 +15,7 @@
     </thead>
     <tbody> 
       <?php foreach ($postulantes as $row) { ?>
+      <?php   if ($row['estado'] != 'Rechazado' ) { ?>
         <tr style="color: salmon;">
           <td class="lalign">
             <?php echo $row['nombre']." ".$row['apellido']; ?>
@@ -70,6 +71,7 @@
             </td>
           <?php } ?>
         </tr>
+      <?php   } ?>
       <?php } ?>
     </tbody>
   </table>
