@@ -28,6 +28,8 @@
     <link href="<?php echo base_url();?>css/postulantes.css" rel="stylesheet">
     <!-- Custom fonts for this template -->
     <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css">
+    <!-- Checkbox personalizados -->
+    <link href="<?php echo base_url();?>css/checkbox.css" rel="stylesheet" type="text/css">
     
     
     <style type="text/css">

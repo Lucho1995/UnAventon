@@ -93,16 +93,15 @@
               <input type="password" id="clave" placeholder="Contraseña" class="form-control" name="clave" required></br>
             </div>
             <div>
-              <label>
-                <input type="checkbox" name="mantener-sesion" > Mantener la sesion iniciada
-                <br>(De lo contrario, la sesión se cerrará después de 10 minutos)
-              </label>
+              <input type="checkbox" name="mantener-sesion" id="sesion" class="css-checkbox">
+              <label for="sesion" class="css-label"></label> Mantener la sesion iniciada
+              <br>
+              (De lo contrario, la sesión se cerrará después de 10 minutos)
             </div>
             <br>
             <div>
-              <label class="checkbox">
-                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Recordarme
-              </label>
+              <input class="css-checkbox" type="checkbox" value="remember-me" id="rememberMe" name="rememberMe">
+              <label for="rememberMe" class="css-label"></label> Recordarme
             </div>
             <br>
             <div>
@@ -125,7 +124,7 @@
           <div class="col-lg-8 mx-auto">
             <h2 style="font-style: italic;">¡Sientase bien al dar o recibir un aventón!</h2><br>
             <p>Con el sistema de viajes
-            <a href="#iniciar" style="font-style: italic;">Un Aventón</a>, usted puede sentir el placer de dar un aventón, o incluso que le hagan uno. Este sistema cuenta con una mecánica fiable y fácil de entender de calificaciones, además de comentarios adicionales para que usted se sienta seguro/a de formar parte de nuestra comunidad que crece a pasos agigantados. El registro es gratis. ¡No te lo pierdas!</p>
+            <a href="#iniciar" style="font-style: italic;">Un Aventón &reg;</a> usted puede sentir el placer de dar un aventón, o incluso que le hagan uno. Este sistema cuenta con una mecánica fiable y fácil de entender de calificaciones, además de comentarios adicionales para que usted se sienta seguro/a de formar parte de nuestra comunidad que crece a pasos agigantados. El registro es gratis. ¡No te lo pierdas!</p>
             <br>
             <br>
             <img style="margin-top: 100px" src="<?php base_url(); ?>img/logo2.png" alt="Logo" height="150" width="150" align="center">

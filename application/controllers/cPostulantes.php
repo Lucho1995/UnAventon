@@ -49,7 +49,7 @@ class CPostulantes extends CI_Controller {
   public function postularse ($idUsuario, $idViaje) {
     if ($this->session->userdata('logueado')) {
           $data = array (
-              'estado' => 'pendiente',
+              'estado' => 'Pendiente',
               'viajeId' => $idViaje,
             'usuarioId' => $this->session->userdata('idUsuario')
           );
@@ -69,10 +69,8 @@ class CPostulantes extends CI_Controller {
       $postulantes=$this->mPostulantes->get_postulantes($idViaje);
       $idUsuario=$this->session->userdata('idUsuario');
       foreach ($postulantes as $row){
-        if ($row['estado'] == "aceptado") {
+        if ($row['usuarioId'] == $idUsuario) {
           $this->mPostulantes->darse_de_baja_aceptado($idUsuario);
-        } else {
-          $this->mPostulantes->darse_de_baja($idUsuario);
         }
       }
       echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";

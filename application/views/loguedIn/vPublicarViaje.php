@@ -1,7 +1,11 @@
-<section id="formulario-publicar-viaje" class="content-section text-center">
-<h3>Publica un viaje</h3>
-<div class=border>
-<p style="color:salmon;"><i>Todos los campos son obligatorios.</i></p>
+  <section id="formulario-publicar-viaje" class="content-section text-center">
+  <h5>Publica un viaje</h5><br>
+  <div class=border>
+  <br>
+  <font face="sans-serif" style="color: salmon; font-style: italic;">
+    Todos los campos son obligatorios.
+  </font>
+  <br><br>
 		<div class="container">
             <form method="POST" action="<?php echo base_url();?>cVerViajes/publicar_viaje/<?php echo $this->session->userdata('idUsuario')?>" >
               <div class="form-row">
@@ -43,29 +47,33 @@
                   </select>
                 </div></br>
                 <br>
-                <div class="form-row">
-                  <label for="inputPeriodico">¿Es un viaje periodico?</label>
-                  <input type="checkbox" id="check" class="form-control" name="periodico" onchange="javascript:mostrar()"></br>
+                <div>
+                  <input type="checkbox" id="check" class="css-checkbox" name="periodico" onchange="javascript:mostrar()"/>
+                  <label for="check" class="css-label"></label> ¿Es un viaje periodico?
+                  </br>
                 </div>
               </div><br>
-             <div  id="content" style="display: none;">
+            <div  id="content" style="display: none;"><!-- style="display: none;" -->
                 <div class="form-row">
-                  <div class="form-group col-md-6">
-              	    <label>Indique los dias de la semana que realizara el viaje</label><br>
+                  <div class="form-group col-md-5 border" style="margin-left: 90px">
                     <br>
-                  		<input type="checkbox" name="dias[]" value="Monday">Lunes</input></br>
-                  		<br>
-                  		<input type="checkbox" name="dias[]" value="Tuesday">Martes</input></br>
-                  		<br>
-                  		<input type="checkbox" name="dias[]" value="wednesday">Miercoles</input></br>
-                  		<br>
-                  		<input type="checkbox" name="dias[]" value="Thursday">Jueves</input></br>
-                  		<br>
-                  		<input type="checkbox" name="dias[]" value="Friday">Viernes</input></br>
-                  		<br>
-                  		<input type="checkbox" name="dias[]" value="Saturday">Sabado</input></br>
-                  		<br>
-                  		<input type="checkbox" name="dias[]" value="Sunday">Domingo</input></br>
+              	    <label style="font-style: italic;">Indique los dias de la semana que realizara el viaje</label><br>
+                    <br>
+                  	<input type="checkbox" name="dias[]" value="Monday" class="css-checkbox" id="box"/>
+                    <label for="box" class="css-label"></label> Lunes
+                  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  	<input type="checkbox" name="dias[]" value="Tuesday" class="css-checkbox" id="box2"/><label for="box2" class="css-label"></label> Martes
+                  	<br><br>
+                  	<input type="checkbox" name="dias[]" value="wednesday" class="css-checkbox" id="box3"/><label for="box3" class="css-label"></label> Miercoles
+                  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  	<input type="checkbox" name="dias[]" value="Thursday" class="css-checkbox" id="box4"/><label for="box4" class="css-label"></label> Jueves
+                  	<br><br>
+                  	<input type="checkbox" name="dias[]" value="Friday" class="css-checkbox" id="box5"/><label for="box5" class="css-label"></label> Viernes
+                  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  	<input type="checkbox" name="dias[]" value="Saturday" class="css-checkbox" id="box6"/><label for="box6" class="css-label"></label> Sabado
+                  	<br><br>
+                  	<input style="margin-right: 50px" type="checkbox" name="dias[]" value="Sunday" class="css-checkbox" id="box7"/><label for="box7" class="css-label"></label> Domingo
+                    <br><br>
                 </div>
                 <div class="form-group col-md-4">
                   <br>

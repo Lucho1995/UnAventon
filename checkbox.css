@@ -1,24 +1,3 @@
-p{
-	font: 125% sans-serif;
-}
-
-h2{
-	font: 150% sans-serif;
-}
-
-h5{
-	font: 150% sans-serif;
-}
-
-label{
-	font: 100% sans-serif;
-}
-
-input{
-	font-style: italic;
-	font: sans-serif;
-}
-
 body {
   font-family: "helvetica";
 }
@@ -54,8 +33,8 @@ input[type=checkbox].css-checkbox+label.css-label-yellow,
 input[type=checkbox].css-checkbox+label.css-label-blue,
 input[type=checkbox].css-checkbox+label.css-label-purple {
   padding-left: 22px;
-  height: 65px;
-  width: 65px;
+  height: 16px;
+  width: 16px;
   display: inline-block;
   line-height: 15px;
   background-repeat: no-repeat;
@@ -80,25 +59,5 @@ input[type=checkbox].css-checkbox:checked+label.css-label-yellow,
 input[type=checkbox].css-checkbox:checked+label.css-label-blue,
 input[type=checkbox].css-checkbox:checked+label.css-label-purple {
   background-position: 0 -66px;
-}
-
-.css-label {
-  background-image: url(http://codeopus.net/file/blog/check1.png);
-}
-
-.css-label-red {
-  background-image: url(http://codeopus.net/file/blog/check2.png);
-}
-
-.css-label-yellow {
-  background-image: url(http://codeopus.net/file/blog/check3.png);
-}
-
-.css-label-blue {
-  background-image: url(http://codeopus.net/file/blog/check4.png);
-}
-
-.css-label-purple {
-  background-image: url(http://codeopus.net/file/blog/check5.png);
 }
 

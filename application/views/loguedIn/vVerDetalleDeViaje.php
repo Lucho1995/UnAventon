@@ -8,9 +8,10 @@
 <div class="row">
   <div class="col-sm-4" >
           <div class="card h-99" align="center" style="margin-left: 75px ">
-            <h6 class="card-header"><font color="salmon" size="5">
-            <i class="fa fa-car" style="font-size: 25px"></i> <b>Detalles del viaje</b>
-            </font></h6>
+            <h5 class="card-header"><font color="salmon" size="5">
+            <i class="fa fa-car" style="font-size: 25px"></i> Detalles del viaje
+            </font></h5>
+              <br>
               <a class="card-text" align="left"><font color="rose" size="4"><b>Origen</b> : <?php echo $viaje[0]['origen']; ?></font></a>
               <hr align="right" size="100" color="f1f1f1" size="100">
               <a class="card-text" align="left"><font color="black" size="4"><b>Destino:</b> <?php echo $viaje[0]['destino']; ?></font></a>
@@ -49,10 +50,12 @@
     </div>
     <div class="col-sm-4">
     <div class="card h-99" align="center" style="margin-right: 75px" >
-      <h6 class="card-header">
-      <font color="salmon" size="5">
-        <i class="fa fa-address-card" style="font-size: 25px"></i> Detalles del Piloto
-      </font></h6>
+      <h5 class="card-header">
+        <font color="salmon" size="5">
+          <i class="fa fa-address-card" style="font-size: 25px"></i> Detalles del Piloto
+        </font>
+      </h5>
+      <br>
       <a class="card-text" align="left">
         <font color="rose" size="4"><b>Nombre:</b> <?php echo $piloto['nombre']; ?> </font>
       </a>
@@ -90,7 +93,9 @@
               } else {
                 echo "Pésima...";
               }
-            ?></font>
+            ?>
+          <br>
+          </font>
       <br>
     </div>
     </div>
@@ -136,14 +141,15 @@
   <br><br><br>
   <div class="col-sm-6">
     <form action ="<?php echo base_url().'cPreguntas/cargar_comentarios/'.$idViaje; ?>" class="form-signin" method="POST">
-    <h4 class="form-signin-heading"><font color="salmon">Puede ingresar un comentario</font></h4>
+    <h5 class="form-signin-heading"><font color="salmon">Puede ingresar un comentario</font></h5>
+    <br>
     <div class="col-sm-4">
-      <font color="salmon">Usuario (Opcional)</font>
+      <font color="salmon" face="sans-serif">Usuario (Opcional)</font>
       <input type="text" class="form-control" name="nombre" autofocus="" />
       <br>
     </div>
     <div class="col-sm-5">
-      <font color="salmon">Comentario</font>
+      <font color="salmon" face="sans-serif">Comentario</font>
       <textarea class="form-control" name="cuerpo" required="Comentario obligatorio"/> </textarea>
     </div>
     <br>
@@ -155,28 +161,48 @@
   <div class="col-sm-6">
     <div class="col-sm-15" >
       <div class="card h-99" align="center" style="margin-right: 75px" >
-        <h6 class="card-header">
+        <h5 class="card-header">
           <font color="salmon" size="5">
-            <i class="fa fa-comments" style="font-size: 30px"> Comentarios</i> 
+            <i class="fa fa-comments" style="font-size: 25px"></i> Comentarios
           </font>
-        </h6> 
+        </h5>
         <?php foreach ($preguntas as $row) { ?>
           <a class="card-text" align="left">
-            <font color="salmon" size=" 4">
-              <i class="fa fa-comment" style="font-size: 20px"></i>
-              <?php
-                if ( is_null($row['nombre']) ) {
-                  echo "Anonimo dijo:";
-                } else {
-                  echo $row['nombre']." dijo:";
-                }
-              ?>
-            </font>
+            <div>
+              <font color="salmon" size="4" face="sans-serif" style="margin-left: 5px">
+                <i class="fa fa-comment" style="font-size: 20px"></i>
+                
+                <?php
+                  if ( $row['nombre'] == "" ) {
+                    echo "Anonimo pregunto:";
+                  } else {
+                    echo $row['nombre']." pregunto:";
+                  }
+                ?>
+              </font>
+            </div>
           </a>
-          <br>
-          <font color="black" size="4"><?php echo $row['cuerpo']; ?></font>
-          <br>
-          <div align="left"><font color="gray" size="1">Comentado el: <?php echo $row['fecha'] ?></font></div>
+          <font color="black" size="5" style="text-align: left; margin-left: 30px">
+            <?php echo $row['cuerpo']; ?>
+          </font>
+          <div style="text-align: right;">
+            <font color="gray" size="1">
+              Comentado el: <?php echo $row['fecha'] ?>
+            </font>
+          </div>
+          <?php if ( $row['respuesta'] != "" ) { ?>
+            <div style="font-style: italic; font-weight: bold; text-align: left; margin-left: 30px">
+              <font color="salmon" size="3" face="sans-serif" style="text-align: left;">
+                <i class="fa fa-reply fa-rotate-180" style="font-size: 25px;"></i>
+                El piloto respondió:
+              </font>
+              <div style="margin-left: 20px">
+                <font color="black" face="sans-serif" style="margin-left: 50px">
+                  <?php echo $row['respuesta']; ?>
+                </font>
+              </div>
+            </div>
+          <?php } ?>
           <hr align="right" size="100" color="#D5D5D5" size="100">
         <?php } ?>
       </div>
