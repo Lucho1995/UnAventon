@@ -107,7 +107,7 @@ class CVerViajes extends CI_Controller {
         $perfil = $this->mLogin->get_perfil($this->session->userdata('idUsuario'));
         $data = array ();
         $data['vehiculos'] = $this->mVehiculos->get_vehiculos($perfil['idUsuario']);
-        $this->load->view('loguedIn/vHead', $title);
+        $this->load->view('vHead', $title);
         $this->load->view('loguedIn/vHeader', $perfil);
         $this->load->view('loguedIn/vPublicarViaje', $data, $id);
         $this->load->view('loguedIn/vFooter');

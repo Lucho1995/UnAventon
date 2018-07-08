@@ -1,7 +1,13 @@
     <footer>
-      <div class="container text-center">
-        <p >Copyright &copy; Compumundo Hipermegared 2018</p>
+    <div class="col-lg-8 mx-auto">
+       <hr color="salmon">
+    </div>
+    <footer>
+      <div style="text-align: center;">
+        <font face="sans-serif">Copyright &copy; Compumundo Hipermegared 2018</font>
+        <img style="" src="http://localhost/UnAventon/img/logo2.png" alt="Logo" height="32" width="32">
       </div>
+      <br>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
