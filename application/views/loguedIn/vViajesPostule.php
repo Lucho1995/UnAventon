@@ -32,7 +32,7 @@
                   <td><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
                   <td align="center"><?php echo $row['estado'] ?></td>
                   <td>
-                    <a href="<?php echo base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$row['idViaje']  ;?>" class="button button-pill button-flat-caution" style="font-size: 15px; background-color: black; padding: 3px;">
+                    <a href="<?php echo base_url().'cPostulantes/darse_de_baja/'.$this->session->userdata('idUsuario').'/'.$row['idViaje']  ;?>" class="button button-pill button-flat-caution" style="font-size: 15px; background-color: black; padding: 3px;">
                       <i class="fa fa-times-circle" style="color: salmon; font-size:15px"></i>
                       <font color="salmon" style="font-size:15px">  Darme de baja</font>
                     </a>

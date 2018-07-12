@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MPostulantes extends CI_Model {
@@ -75,18 +75,20 @@ class MPostulantes extends CI_Model {
       return ($query->result_array());
     }
 
-    public function darse_de_baja_aceptado($idUsuario){
+    public function darse_de_baja_aceptado($idUsuario, $viajeId){
       $usuario=$this->obtener_usuario($idUsuario);
       $decrementRep=$usuario[0]['reputacionCopiloto'] - 1;
       $this->db->where('usuarioId', $idUsuario);
+      $this->db->where('viajeId', $viajeId);
       $this->db->delete('postulacion');
       $this->db->set('reputacionCopiloto',$decrementRep);
       $this->db->where('idUsuario', $idUsuario);
       $this->db->update('usuario');
     } 
 
-    public function darse_de_baja($idUsuario){
+    public function darse_de_baja($idUsuario, $viajeId){
       $this->db->where('usuarioId', $idUsuario);
+      $this->db->where('viajeId', $viajeId);
       $this->db->delete('postulacion');
     }
     

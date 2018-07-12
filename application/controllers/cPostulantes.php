@@ -63,18 +63,25 @@ class CPostulantes extends CI_Controller {
         }
   }
 
-
   public function darse_de_baja($idViaje){
-    if ($this->session->userdata('logueado')){
-      $postulantes=$this->mPostulantes->get_postulantes($idViaje);
-      $idUsuario=$this->session->userdata('idUsuario');
-      foreach ($postulantes as $row){
-        if ($row['usuarioId'] == $idUsuario) {
-          $this->mPostulantes->darse_de_baja_aceptado($idUsuario);
+   // if ($this->session->userdata('logueado')){
+    $postulantes=$this->mPostulantes->get_postulantes($idViaje);
+    $idUsuario=$this->session->userdata('idUsuario');
+    foreach ($postulantes as $postulado) {
+      if ($postulado['idUsuario'] == $idUsuario) {
+        $viajeId = $postulado['viajeId'];
+        if ($postulado['estado'] == 'Aceptado') {
+          if ($confirmacion){
+            $this->mPostulantes->darse_de_baja_aceptado($idUsuario, $viajeId);
+            echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
+            redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
+          }
+        } else {
+          $this->mPostulantes->darse_de_baja($idUsuario, $viajeId);
+          echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
+          redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
         }
       }
-      echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
-      redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
     }
   }
 }
