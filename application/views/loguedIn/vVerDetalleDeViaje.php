@@ -3,8 +3,8 @@
 <br>
 <br>
 <br>
-  <br>
-  <br>
+<br>
+<br>
 <div class="row">
   <div class="col-sm-4" >
           <div class="card h-99" align="center" style="margin-left: 75px ">
@@ -49,7 +49,7 @@
           </div>
     </div>
     <div class="col-sm-4">
-    <div class="card h-99" align="center" style="margin-right: 75px" >
+    <div class="card h-99" align="center" style="margin-right: 40px" >
       <h5 class="card-header">
         <font color="salmon" size="5">
           <i class="fa fa-address-card" style="font-size: 25px"></i> Detalles del Piloto
@@ -100,29 +100,31 @@
     </div>
     </div>
 
-    <div>
+    <div class="col-sm-4">
+    <h5 class="form-signin-heading"><font color="salmon">Usted puede</font></h5>
+    <br>
     <?php if ($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
-      <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'>
+      <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'>
       <h3><i class="fa fa-list" style="font-size:24px"></i><font style="font-size: 26px">Ver postulantes</font></h3>
       </a>
       <br>
       <br>
       <br>
       <br>
-      <a href="<?php echo base_url().'cVerViajes/vista_editar_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'>
-        <h3><i class="fa fa-list" style="font-size:25px"><font size="6"></font></i>Editar viaje</h3>
+      <a href="<?php echo base_url().'cVerViajes/vista_editar_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:20px;'>
+        <h3><i class="fa fa-list" style="font-size:25px"></i><font size="6"></font>Editar viaje</h3>
       </a>
       <br>
       <br>
       <br>
       <br>
       <div>
-       <a href="<?php echo base_url().'cVerViajes/baja_de_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'>
+       <a href="<?php echo base_url().'cVerViajes/baja_de_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'>
         <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Dar de baja viaje</font></h3>
       </a>
       </div>
     <?php }else{ ?>
-      <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
+      <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
     <?php } ?>
     <br>
     <br>
@@ -139,27 +141,42 @@
 
 <div class="wrapper row" style="margin-left: 75px">
   <br><br><br>
+
+  <!-- Sección comentar -->
   <div class="col-sm-6">
     <form action ="<?php echo base_url().'cPreguntas/cargar_comentarios/'.$idViaje; ?>" class="form-signin" method="POST">
-    <h5 class="form-signin-heading"><font color="salmon">Puede ingresar un comentario</font></h5>
+    <h5 class="form-signin-heading"><font color="salmon">Ingresar un comentario</font></h5>
     <br>
-    <div class="col-sm-4">
-      <font color="salmon" face="sans-serif">Usuario (Opcional)</font>
+    <div class="col-sm-4" id="content1" style="display: block; margin-top: 6px">
+      <br>
+      <br>
+      <br>
+    </div>
+    <div class="col-sm-4" id="content2" style="display: none;">
+      <font color="salmon" face="sans-serif">Su Nombre</font>
       <input type="text" class="form-control" name="nombre" autofocus="" />
       <br>
     </div>
     <div class="col-sm-5">
-      <font color="salmon" face="sans-serif">Comentario</font>
-      <textarea class="form-control" name="cuerpo" required="Comentario obligatorio"/> </textarea>
+      <font color="salmon" face="sans-serif">Comentario</font><br>
+      <textarea id="myTextarea" name="adr" class="form-control" required></textarea>
+    </div>
+    <br>
+    <div style="margin-left: 14px">
+      <input type="checkbox" id="check" class="css-checkbox" name="periodico" onchange="javascript:mostrar()" checked/>
+      <label for="check" class="css-label"></label> Comentar como anónimo
     </div>
     <br>
     <div style="margin-left: 15px">
-      <button class="btn btn-default" type="submit" style="background-color: salmon; border-color: salmon"><font color="black">Comentar</font></button>
+      <button class="btn btn-default" type="submit">Comentar</button>
     </div>
   </form>
-  </div>
+</div>
+
   <div class="col-sm-6">
     <div class="col-sm-15" >
+
+      <!-- Cuadro Comentarios -->
       <div class="card h-99" align="center" style="margin-right: 75px" >
         <h5 class="card-header">
           <font color="salmon" size="5">
@@ -174,9 +191,9 @@
                 
                 <?php
                   if ( $row['nombre'] == "" ) {
-                    echo "Anonimo pregunto:";
+                    echo "Anonimo dijo:";
                   } else {
-                    echo $row['nombre']." pregunto:";
+                    echo $row['nombre']." dijo:";
                   }
                 ?>
               </font>
@@ -191,7 +208,7 @@
             </font>
           </div>
           <?php if ( $row['respuesta'] != "" ) { ?>
-            <div style="font-style: italic; font-weight: bold; text-align: left; margin-left: 30px">
+            <div style="font-style: italic; font-weight: bold; text-align: left; margin-left: 1px">
               <font color="salmon" size="3" face="sans-serif" style="text-align: left;">
                 <i class="fa fa-reply fa-rotate-180" style="font-size: 25px;"></i>
                 El piloto respondió:
@@ -202,16 +219,62 @@
                 </font>
               </div>
             </div>
+          <?php } elseif($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
+            <div class="card-header">
+              <button type="button" class="btn btn-default" onclick="javascript:respuesta(<?php echo$row['idPregunta'] ?>)" data-toggle="modal" data-target="#myModal" style="font-size: 15px; padding: 3px; border-color: black;">
+                <font color="black"> Responder</font>
+              </button>
+            </div>
           <?php } ?>
           <hr align="right" size="100" color="#D5D5D5" size="100">
         <?php } ?>
       </div>
     </div>
   </div>
-<div>  
+</div>
 
+<script type="text/javascript">
+  function respuesta(idPregunta) {
+    document.getElementById("idPregunta").value = idPregunta;
+  }
+
+  function mostrar(){
+        element1 = document.getElementById("content1");
+        element2 = document.getElementById("content2");
+        check = document.getElementById("check");
+        if (check.checked) {
+            element1.style.display='block';
+            element2.style.display='none';
+        }
+        else {
+            element1.style.display='none';
+            element2.style.display='block';
+        }
+}
+</script>
+<!------------------------------------------------------------------------------------------------------>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="background-color: black; border-color: salmon;">
+      <div class="modal-body">
+        <font color="salmon" face="sans-serif" size="4">Escriba su respuesta</font><br><br>
+        <form action ="<?php echo base_url().'cPreguntas/cargar_respuesta/'.$idViaje; ?>" class="form-signin" method="POST">
+        <input type="hidden" name="idPregunta" id="idPregunta"/>
+        <textarea class="form-control" id="respuesta" name="respuesta" required></textarea>
+      </div>
+      <div align="right" style="margin-right: 5px; margin-bottom: 5px">
+        <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Comentar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size:15px; padding:3px;">
+          Cancelar
+        </button>
+      </div>
+    </div>
   </div>
 </div>
+<!------------------------------------------------------------------------------------------------------>
+
 <br>
 <br>
 <br>

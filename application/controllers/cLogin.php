@@ -59,7 +59,7 @@ class CLogin extends CI_Controller {
 			// user login ok
 			$nombre=$perfil['nombre'];
 			$apellido=$perfil['apellido'];
-			echo "<script language='javascript'>alert('Bienvenido $nombre $apellido!');</script>";
+			echo "<script language='javascript'>alert('Bienvenido/a $nombre $apellido!');</script>";
 			$this->login();
 		} else {
 			

@@ -7,8 +7,7 @@ class MPreguntas extends CI_Model {
        parent::__construct();
     }
 
-   public function cargar_comentario($datos){
-   	
+  public function cargar_comentario($datos){
    	$campos = array(
     'nombre'=>$datos['nombre'],
     'fecha'=> $datos['fecha'],
@@ -17,12 +16,20 @@ class MPreguntas extends CI_Model {
     );
     $this->db->insert('preguntas',$campos);
     echo '<script language="javascript">alert("Su comentario ha sido publicado exitosamente");</script>';
-   }
-   public function get_pregunta($idViaje){
+  }
+
+  public function cargar_respuesta($respuesta){
+    $this->db->where('idPregunta',$respuesta['idPregunta']);
+    $this->db->where('viajeId',$respuesta['viajeId']);
+    $this->db->update('preguntas',$respuesta);
+    echo '<script language="javascript">alert("Su respuesta ha sido publicada exitosamente");</script>';
+  }
+
+  public function get_pregunta($idViaje){
    	$this->db->where('viajeId', $idViaje);
    	$query = $this->db->get('preguntas');
    /*	print_r($query->result_array()[0]);
    	die();*/
    	return $query->result_array();
-   }	
+  }	
  } 

@@ -53,7 +53,7 @@
                   </br>
                 </div>
               </div><br>
-            <div  id="content" style="display: none;"><!-- style="display: none;" -->
+            <div  id="content" style="display: none;">
                 <div class="form-row">
                   <div class="form-group col-md-5 border" style="margin-left: 90px">
                     <br>

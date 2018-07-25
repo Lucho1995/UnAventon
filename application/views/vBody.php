@@ -1,8 +1,7 @@
   
    <!-- Registrarse Section -->
-    <section id="about" class="content-section text-center">
-      <div class="container">
-        <div class="row">
+    <section class="content-section text-center">
+        <div id="about" class="row">
           <div class="col-lg-8 mx-auto">
             <h2>Registrarse</h2><br>
             <p style="font-style: italic;">Los campos con * son obligatorios.</p><br>

@@ -1,5 +1,3 @@
-
-
 <section id=vVerViajes class="content-section text-center">
   <div class="col-form-label-sm">
     <div class="card h-99" style="background-color: #E8E6E6">
@@ -35,9 +33,7 @@
                   <td><font size="3"><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
                   <td align="center">
                     <a href="<?php echo base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$row['idViaje'];?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px; margin-top: 10px">
-                      <i class="fa fa-info-circle" style="color: black; font-size:15px;"></i>
-                      <font color="black" style="font-size:15px">  Más detalles</font>
-                    </a>
+                      <i class="fa fa-info-circle" style="font-size:15px;"></i> Más detalles</a>
                   </td>
                 </tr>
                 <?php $columna1 = false; }else{ ?>
@@ -52,8 +48,9 @@
                   <td><font color="white" size="3"><?php echo $row['nombre'].' '.$row['apellido'] ?></td>
                   <td align="center">
                     <a href="<?php echo base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$row['idViaje']  ;?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 3px; margin-top: 10px">
-                    <i class="fa fa-info-circle" style="font-size:15px"></i>  Más detalles</a></td>
-                    </tr>
+                    <i class="fa fa-info-circle" style="font-size:15px"></i>  Más detalles</a>
+                  </td>
+                </tr>
                 <?php $columna1 = true; } ?>
                 <?php }  ?>
                 <?php } ?>

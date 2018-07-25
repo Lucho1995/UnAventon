@@ -20,6 +20,16 @@ class CPreguntas extends CI_Controller {
   		);
   		$this->mPreguntas->cargar_comentario($preguntas);
   		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
-	 }
+	  }
+
+    public function cargar_respuesta($idViaje){
+      $respuesta = array(
+        'respuesta' => $this->input->post('respuesta'),
+        'idPregunta' => $this->input->post('idPregunta'),
+        'viajeId'=> $idViaje,
+      );
+      $this->mPreguntas->cargar_respuesta($respuesta);
+      redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
+    }
 	 
  }

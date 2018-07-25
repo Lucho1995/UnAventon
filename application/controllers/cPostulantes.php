@@ -33,18 +33,18 @@ class CPostulantes extends CI_Controller {
         $this->mPostulantes->rechazar_postulado_aceptado($idPostulado);
      }  
      else{
-        $datos = array('estado' => 'Rechazado', 'usuarioId' => $idPostulado);
-        $this->mPostulantes->rechazar_postulado($datos);
+        $postulado[0]['estado'] = 'Rechazado';
+        $this->mPostulantes->rechazar_postulado($postulado);
         $aux=$this->mPostulantes->get_postulado($idPostulado);
      }
      $this->vista_postulantes($this->session->userdata('idUsuario'),$postulado[0]['viajeId']);
   }
 
   public function aceptar_postulado($idPostulado){
-    $postulado = array('estado' => 'Aceptado', 'usuarioId' => $idPostulado);
+    $postulado = $this->mPostulantes->get_postulado($idPostulado);
+    $postulado[0]['estado'] = 'Aceptado';
     $this->mPostulantes->aceptar_postulado($postulado);
-    $aux=$this->mPostulantes->get_postulado($idPostulado);
-    $this->vista_postulantes($this->session->userdata('idUsuario'),$aux[0]['viajeId']);
+    $this->vista_postulantes($this->session->userdata('idUsuario'),$postulado[0]['viajeId']);
   }
   public function postularse ($idUsuario, $idViaje) {
     if ($this->session->userdata('logueado')) {
@@ -63,18 +63,23 @@ class CPostulantes extends CI_Controller {
         }
   }
 
-
   public function darse_de_baja($idViaje){
-    if ($this->session->userdata('logueado')){
-      $postulantes=$this->mPostulantes->get_postulantes($idViaje);
-      $idUsuario=$this->session->userdata('idUsuario');
-      foreach ($postulantes as $row){
-        if ($row['usuarioId'] == $idUsuario) {
-          $this->mPostulantes->darse_de_baja_aceptado($idUsuario);
+   // if ($this->session->userdata('logueado')){
+    $postulantes=$this->mPostulantes->get_postulantes($idViaje);
+    $idUsuario=$this->session->userdata('idUsuario');
+    foreach ($postulantes as $postulado) {
+      if ($postulado['idUsuario'] == $idUsuario) {
+        $viajeId = $postulado['viajeId'];
+        if ($postulado['estado'] == 'Aceptado') {
+            $this->mPostulantes->darse_de_baja_aceptado($idUsuario, $viajeId);
+            echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
+            redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
+        } else {
+          $this->mPostulantes->darse_de_baja($idUsuario, $viajeId);
+          echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
+          redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
         }
       }
-      echo "<script language='javascript'>alert('Su postulacion fue dada de baja.');</script>";
-      redirect (base_url().'cVerViajes/vista_viajes_postule/'.$this->session->userdata('idUsuario'), 'refresh');
     }
   }
 }
