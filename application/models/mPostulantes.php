@@ -34,13 +34,15 @@ class MPostulantes extends CI_Model {
    }
 
    public function rechazar_postulado($postulado){
-      $this->db->where('usuarioId', $postulado['usuarioId']);
-      $this->db->update('postulacion', $postulado);
+      $this->db->where('usuarioId', $postulado[0]['usuarioId']);
+      $this->db->where('viajeId', $postulado[0]['viajeId']);
+      $this->db->update('postulacion', $postulado[0]);
    }
 
    public function aceptar_postulado($postulado){
-     $this->db->where('usuarioId', $postulado['usuarioId']);
-     $this->db->update('postulacion', $postulado);
+     $this->db->where('usuarioId', $postulado[0]['usuarioId']);
+     $this->db->where('viajeId', $postulado[0]['viajeId']);
+     $this->db->update('postulacion', $postulado[0]);
    }
     private function usuario_postulado($idViaje,$idUsuario){
       $this->db->select('*');

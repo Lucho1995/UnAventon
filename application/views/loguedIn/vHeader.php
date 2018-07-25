@@ -13,10 +13,10 @@
       location.href="<?php echo base_url(); ?>"+"cPerfil/miPerfil/"+id;
     }
 
-    function penalizacion(idPostulado){
+    function penalizacion(idPostulado, idViaje){
       var confirmacion = confirm("¿Estás seguro/a de cancelar un copiloto aceptado? Se le descontará un punto de reputación como piloto");
       if(confirmacion == true){
-        location.href="<?php echo base_url().'cPostulantes/rechazar_postulado'.'/'?>"+idPostulado;
+        location.href="<?php echo base_url().'cPostulantes/rechazar_postulado'.'/'?>"+idPostulado+"/"+idViaje;
       }
     }
   </script>
