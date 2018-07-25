@@ -96,8 +96,13 @@
             ?>
           <br>
           </font>
+      </a>
       <br>
     </div>
+        <br>
+        <?php if ($this->session->userdata('idUsuario')==){ ?>
+          <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:65px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Puntuar Piloto</h3></a>  
+        <?php } ?>
     </div>
 
     <div class="col-sm-4">
