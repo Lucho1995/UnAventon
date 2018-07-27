@@ -93,7 +93,9 @@
     </form>
 </div> 
 </section>
-
+<?PHP 
+//HOLAAAA 
+?>
 <script>
   function validar(){
     if (document.getElementById('origen').value.length==0){
@@ -107,5 +109,6 @@
     return true;
   }
 </script>
+
 
         
