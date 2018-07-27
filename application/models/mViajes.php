@@ -121,4 +121,20 @@ class MViajes extends CI_Model{
 			$this->db->where('idUsuario', $idUsuario);
 			$this->db->update('usuario');		
 	}
+	
+	public function buscar($consulta){
+		$this->db->select('*');
+		$this->db->from('viaje');
+		$this->db->join('vehiculo', 'viaje.vehiculoId = vehiculo.idVehiculo');
+		$this->db->join('usuario', 'viaje.usuarioId = usuario.idUsuario');
+		$this->db->like('origen', $consulta['origen']);
+		$this->db->like('destino', $consulta['destino']);
+		$this->db->like('fecha',$consulta['fecha']);
+		$query=$this->db->get();
+		if ($query->num_rows()>0){
+			return ($query->result_array());
+		} else {
+			return FALSE;
+		}
+	}
 }

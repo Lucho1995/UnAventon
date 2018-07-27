@@ -210,4 +210,39 @@ class CVerViajes extends CI_Controller {
 
 
   }
+
+  public function filtrar($id='visitante'){
+      $origen=$this->input->post('origen');
+      $destino=$this->input->post('destino');
+      $fecha=$this->input->post('fecha');
+
+      $data=array();
+      
+      $consulta=array(
+        'origen' => $origen,
+        'destino' => $destino,
+        'fecha' => $fecha
+      );
+
+      if ($origen || $destino || $fecha) {
+        $result = $this->mViajes->buscar($consulta);
+        if ($result != FALSE) {
+          $datos = array( 'result' => $result,
+                          'titulo' => 'Tu busqueda');
+        } else {
+          $datos=array( 'result' => '',
+                        'titulo' => 'No se encontraron viajes que coincidan con tu busqueda');
+        } 
+        } else {
+          $datos=array( 'result' => '',
+                        'titulo' => 'No se encontraron viajes que coincidan con tu busqueda');
+        } 
+
+        $this->load->view('vHead');
+        $this->load->view('loguedIn/vHeader');
+        $this->load->view('loguedIn/vVerViajesFiltro',$datos);
+        $this->load->view('loguedIn/vFooter');        
+
+
+      } 
 }

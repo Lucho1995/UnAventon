@@ -23,7 +23,9 @@
           </thead>
           <tbody style="text-align: center;">
             <?php  $columna1=false; ?>
-            <?php  foreach ($viajes as $row) {  ?>
+            <?php  
+              if ($result) {
+              foreach ($result as $row) {  ?>
               <?php  if ($row['idViaje'] > 0) { ?>
                <?php  if ($columna1 == true) { ?>
                 <tr class="alt" style="height: 55px;">
@@ -58,7 +60,9 @@
                     </tr>
                 <?php $columna1 = true; } ?>
                 <?php }  ?>
-                <?php } ?>
+                <?php } 
+                } 
+                ?>
           </tbody>
         </table>
       </div>
@@ -91,21 +95,4 @@
       <br>
       <button type="submit" class="btn btn-default">Enviar</button>
     </form>
-</div> 
 </section>
-
-<script>
-  function validar(){
-    if (document.getElementById('origen').value.length==0){
-      alert("Debe llenar el campo origen");
-      return false;
-    }
-    if (document.getElementById('destino').value.length==0){
-      alert("Debe llenar el campo destino");
-      return false;
-    }
-    return true;
-  }
-</script>
-
-        

@@ -23,9 +23,15 @@
                   <label for="inputFecha">Fecha</label>
                   <input type="date" class="form-control" name="fecha" required></br>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="inputHora">Hora</label>
-                    <input type="time" class="form-control-file" name="hora" required>
+                <div class="form-row">
+                    <div class="col">
+                      <label for="inputHora">Hora inicio</label>
+                      <input type="time" name="hora" class="form-control">
+                    </div>
+                    <div class="col">
+                      <label for="inputHoraFin">Hora fin</label>
+                      <input type="time" name="horaFin" class="form-control">
+                    </div>
                 </div>
               </div>
 
@@ -53,7 +59,7 @@
                   </br>
                 </div>
               </div><br>
-            <div  id="content" style="display: none;">
+            <div  id="content" style="display: none;"><!-- style="display: none;" -->
                 <div class="form-row">
                   <div class="form-group col-md-5 border" style="margin-left: 90px">
                     <br>
