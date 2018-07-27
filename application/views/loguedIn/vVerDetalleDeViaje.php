@@ -49,94 +49,79 @@
           </div>
     </div>
     <div class="col-sm-4">
-    <div class="card h-99" align="center" style="margin-right: 40px" >
-      <h5 class="card-header">
-        <font color="salmon" size="5">
-          <i class="fa fa-address-card" style="font-size: 25px"></i> Detalles del Piloto
-        </font>
-      </h5>
-      <br>
-      <a class="card-text" align="left">
-        <font color="rose" size="4"><b>Nombre:</b> <?php echo $piloto['nombre']; ?> </font>
-      </a>
-      <hr align="right" size="100" color="f1f1f1" size="100">
-      <a class="card-text" align="left">
-        <font color="black" size="4"> <b>Apellido:</b> <?php echo $piloto['apellido']; ?> </font>
-      </a>
-      <hr align="right" size="100" color="f1f1f1" size="100">
-      <a class="card-text" align="left">
-        <font color="black" size="4"><b>Fecha de nacimiento:</b> <?php echo $piloto['fechaNac']; ?></font>
-      </a>
-      <hr align="right" size="100" color="f1f1f1" size="100">
-      <a class="card-text" align="left">
-        <font color="black" size="4"><b>DNI:</b> <?php echo $piloto['dni']; ?> </font>
-      </a>
-      <hr align="right" size="100" color="f1f1f1" size="100">
-      <a class="card-text" align="left">
-        <font color="black" size="4"><b>E-Mail:</b> <?php echo $piloto['email']; ?> </font>
-      </a>
-      <hr align="right" size="100" color="f1f1f1" size="100">
-      <a class="card-text" align="left">
-        <font color="black" size="4"><b>Reputacion:</b> <?php
-              if ($piloto['reputacionPiloto'] > 50) {
-                echo "Excelente!";
-              } elseif ($piloto['reputacionPiloto'] > 25) {
-                echo "Muy Buena";
-              } elseif ($piloto['reputacionPiloto'] > 10) {
-                echo "Buena";
-              } elseif ($piloto['reputacionPiloto'] > -10) {
-                echo "Regular";
-              } elseif ($piloto['reputacionPiloto'] > -25) {
-                echo "Mala";
-              } elseif ($piloto['reputacionPiloto'] > -50) {
-                echo "Muy Mala";
-              } else {
-                echo "Pésima...";
-              }
-            ?>
-          <br>
+      <div class="card h-99" align="center" style="margin-right: 40px" >
+        <h5 class="card-header">
+          <font color="salmon" size="5">
+            <i class="fa fa-address-card" style="font-size: 25px"></i> Detalles del Piloto
           </font>
-      </a>
-      <br>
-    </div>
+        </h5>
         <br>
-        <?php   
-          $horaActual= date(' G:i:s');
-          $FechaActual =date('Y-m-d');
-          $fechaHoraActual=strtotime($FechaActual.''.$horaActual);
-          $horaFinViaje= $viaje[0]['horaFin'];
-          $fechaViaje=($viaje[0]['fecha']);
-          $fechaHoraFin=strtotime($viaje[0]['fecha'].''.$viaje[0]['horaFin']);
-          if ($fechaHoraActual>$fechaHoraFin){
-            $postulantes = array('postulantes' => $this->mPostulantes->get_postulantes($idViaje));
-            $cant=0;
-            foreach ($postulantes['postulantes'] as $row) {
-                if(($row['idUsuario']==$this->session->userdata('idUsuario'))&&($row['estado']=='Aceptado')){
-                  $cant++;
+        <a class="card-text" align="left">
+          <font color="rose" size="4"><b>Nombre:</b> <?php echo $piloto['nombre']; ?> </font>
+        </a>
+        <hr align="right" size="100" color="f1f1f1" size="100">
+        <a class="card-text" align="left">
+          <font color="black" size="4"> <b>Apellido:</b> <?php echo $piloto['apellido']; ?> </font>
+        </a>
+        <hr align="right" size="100" color="f1f1f1" size="100">
+        <a class="card-text" align="left">
+          <font color="black" size="4"><b>Fecha de nacimiento:</b> <?php echo $piloto['fechaNac']; ?></font>
+        </a>
+        <hr align="right" size="100" color="f1f1f1" size="100">
+        <a class="card-text" align="left">
+          <font color="black" size="4"><b>DNI:</b> <?php echo $piloto['dni']; ?> </font>
+        </a>
+        <hr align="right" size="100" color="f1f1f1" size="100">
+        <a class="card-text" align="left">
+          <font color="black" size="4"><b>E-Mail:</b> <?php echo $piloto['email']; ?> </font>
+        </a>
+        <hr align="right" size="100" color="f1f1f1" size="100">
+        <a class="card-text" align="left">
+          <font color="black" size="4"><b>Reputacion:</b> <?php
+                if ($piloto['reputacionPiloto'] > 50) {
+                  echo "Excelente!";
+                } elseif ($piloto['reputacionPiloto'] > 25) {
+                  echo "Muy Buena";
+                } elseif ($piloto['reputacionPiloto'] > 10) {
+                  echo "Buena";
+                } elseif ($piloto['reputacionPiloto'] > -10) {
+                  echo "Regular";
+                } elseif ($piloto['reputacionPiloto'] > -25) {
+                  echo "Mala";
+                } elseif ($piloto['reputacionPiloto'] > -50) {
+                  echo "Muy Mala";
+                } else {
+                  echo "Pésima...";
                 }
-            }
-            if($cant>0){
               ?>
-              <a href="<?php echo base_url().'cPuntaje/vista_puntuar_copiloto'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:65px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Puntuar Piloto</h3></a>
-            <?php } ?>
-        <?php } ?>
-
-        
+            <br>
+            </font>
+        <br>
+      <!-- Falta esconder el botón si fuiste copiloto aceptado o si el viaje no terminó -->
+      <?php if($viaje[0]['usuarioId'] != $this->session->userdata('idUsuario')) { ?>
+        <div class="card-footer" align="center">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" style="font-size: 15px; padding: 3px; border-color: black;">
+            <font color="black"> Puntuar piloto</font>
+          </button>
+        </div>
+      <?php } ?>
+      <!---------------------------------------------------------------------------------->
+      </div>
     </div>
 
     <div class="col-sm-4">
-    <h5 class="form-signin-heading"><font color="salmon">Usted puede</font></h5>
-    <br>
-    <?php if ($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
+      <h5 class="form-signin-heading"><font color="salmon">Usted puede</font></h5>
+      <br>
+      <?php if ($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
       <a href="<?php echo base_url().'cPostulantes/vista_postulantes'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'>
-      <h3><i class="fa fa-list" style="font-size:24px"></i><font style="font-size: 26px">Ver postulantes</font></h3>
+        <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Ver postulantes</font></h3>
       </a>
       <br>
       <br>
       <br>
       <br>
-      <a href="<?php echo base_url().'cVerViajes/vista_editar_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:20px;'>
-        <h3><i class="fa fa-list" style="font-size:25px"></i><font size="6"></font>Editar viaje</h3>
+      <a href="<?php echo base_url().'cVerViajes/vista_editar_viaje'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'>
+        <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5"></font>Editar viaje</h3>
       </a>
       <br>
       <br>
@@ -183,7 +168,7 @@
     </div>
     <div class="col-sm-5">
       <font color="salmon" face="sans-serif">Comentario</font><br>
-      <textarea id="myTextarea" name="adr" class="form-control" required></textarea>
+      <textarea id="cuerpo" name="cuerpo" class="form-control" required></textarea>
     </div>
     <br>
     <div style="margin-left: 14px">
@@ -245,7 +230,7 @@
             </div>
           <?php } elseif($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
             <div class="card-header">
-              <button type="button" class="btn btn-default" onclick="javascript:respuesta(<?php echo$row['idPregunta'] ?>)" data-toggle="modal" data-target="#myModal" style="font-size: 15px; padding: 3px; border-color: black;">
+              <button type="button" class="btn btn-default" onclick="javascript:respuesta(<?php echo$row['idPregunta'] ?>)" data-toggle="modal" data-target="#myModal1" style="font-size: 15px; padding: 3px; border-color: black;">
                 <font color="black"> Responder</font>
               </button>
             </div>
@@ -277,19 +262,59 @@
 }
 </script>
 <!------------------------------------------------------------------------------------------------------>
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<!-- Modal 1-->
+<div id="myModal1" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="background-color: black; border-color: salmon;">
+      <form action ="<?php echo base_url().'cPreguntas/cargar_respuesta/'.$idViaje; ?>" class="form-signin" method="POST">
+        <div class="modal-body">
+        <font color="salmon" face="sans-serif" size="4">Escriba su respuesta</font><br><br>
+          <input type="hidden" name="idPregunta" id="idPregunta"/>
+          <textarea class="form-control" id="respuesta" name="respuesta" required></textarea>
+        </div>
+        <div align="right" style="margin-right: 5px; margin-bottom: 5px">
+          <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Comentar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size:15px; padding:3px;">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------------------------------------------------------------>
+<!-- Modal 2 -->
+<div id="myModal2" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content" style="background-color: black; border-color: salmon;">
       <div class="modal-body">
-        <font color="salmon" face="sans-serif" size="4">Escriba su respuesta</font><br><br>
-        <form action ="<?php echo base_url().'cPreguntas/cargar_respuesta/'.$idViaje; ?>" class="form-signin" method="POST">
-        <input type="hidden" name="idPregunta" id="idPregunta"/>
-        <textarea class="form-control" id="respuesta" name="respuesta" required></textarea>
+        <font color="salmon" style="font-size: 22px">Puntuación de piloto:</font><br>
+        <p style="font-size: 15px; margin-bottom: 10px; font-style: italic;">
+          &nbsp;&nbsp;&nbsp;La puntuación del piloto puede basarse en su desempeño a la hora de llevar a cabo el viaje.<br>
+          <font color="salmon"> - </font>
+          Seleccione una opción para puntuar al piloto <br>
+        </p>
+      <!-- Falta acción del form -->
+        <form action ="" class="form-signin" method="POST">
+          <div align="center">
+            <input type="radio" name="gender" value="male">
+            Buena <font color="salmon"> (+1 punto) </font>
+            &nbsp;<input type="radio" name="gender" value="female">
+            Mala <font color="salmon"> (-1 punto) </font>
+            &nbsp;<input type="radio" name="gender" value="other">
+            Regular <font color="salmon"> (0 puntos) </font>
+          </div>
+            <p style="font-size: 15px; margin-bottom: 10px; margin-top: 10px; font-style: italic;">
+              <font color="salmon"> - </font>Además puede agregar un comentario adicional (opcional)
+            </p>
+            <textarea style="margin-top: 10px" class="form-control" id="respuesta" name="respuesta" required></textarea>
+        </form>
+      <!--------------------------->
       </div>
       <div align="right" style="margin-right: 5px; margin-bottom: 5px">
-        <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Comentar</button>
+        <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Puntuar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size:15px; padding:3px;">
           Cancelar
         </button>
@@ -298,7 +323,6 @@
   </div>
 </div>
 <!------------------------------------------------------------------------------------------------------>
-
 <br>
 <br>
 <br>
