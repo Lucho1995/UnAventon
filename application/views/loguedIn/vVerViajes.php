@@ -60,7 +60,7 @@
     </div>
   </div>
   <br>
-  <a href="<?php echo base_url() ?>cVerViajes/formulario_publicar" class="btn btn-default">Publicar viaje</a>
+  <a href="<?php echo base_url() .'cVerViajes/formulario_publicar'?>" class="btn btn-default">Publicar viaje</a>
 </section>
 
         

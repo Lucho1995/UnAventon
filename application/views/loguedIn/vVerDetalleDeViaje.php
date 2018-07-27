@@ -100,9 +100,28 @@
       <br>
     </div>
         <br>
-        <?php if ($this->session->userdata('idUsuario')==){ ?>
-          <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:65px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Puntuar Piloto</h3></a>  
+        <?php   
+          $horaActual= date(' G:i:s');
+          $FechaActual =date('Y-m-d');
+          $fechaHoraActual=strtotime($FechaActual.''.$horaActual);
+          $horaFinViaje= $viaje[0]['horaFin'];
+          $fechaViaje=($viaje[0]['fecha']);
+          $fechaHoraFin=strtotime($viaje[0]['fecha'].''.$viaje[0]['horaFin']);
+          if ($fechaHoraActual>$fechaHoraFin){
+            $postulantes = array('postulantes' => $this->mPostulantes->get_postulantes($idViaje));
+            $cant=0;
+            foreach ($postulantes['postulantes'] as $row) {
+                if(($row['idUsuario']==$this->session->userdata('idUsuario'))&&($row['estado']=='Aceptado')){
+                  $cant++;
+                }
+            }
+            if($cant>0){
+              ?>
+              <a href="<?php echo base_url().'cPuntaje/vista_puntuar_copiloto'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:355px; height:65px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Puntuar Piloto</h3></a>
+            <?php } ?>
         <?php } ?>
+
+        
     </div>
 
     <div class="col-sm-4">
