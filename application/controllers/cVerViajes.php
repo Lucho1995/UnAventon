@@ -54,11 +54,19 @@ class CVerViajes extends CI_Controller {
 
   public function vista_detalle_viaje($id,$idViaje){
     $viaje = $this->mViajes->get_viaje($idViaje);
+    if ($this->mPostulantes->usuario_postulado($id,$idViaje)) {
+      $estoy_postulado=TRUE;
+    } else {
+      $estoy_postulado=FALSE;
+    }
+    $postulacion=$this->mPostulantes->get_postulado($id);
     $parametros = array(
                         'idViaje' => $idViaje,
                         'viaje' => $viaje,
                         'piloto' => $this->mLogin->get_perfil($viaje[0]['usuarioId']),
                         'preguntas' => $this->mPreguntas->get_pregunta($idViaje),
+                        'postulado' => $estoy_postulado,
+                        'estado_postulado' => $postulacion[0]['estado']
                         );
     $vehiculo =$this->mVehiculos->get_vehiculo($viaje[0]['vehiculoId']);
     if ($this->session->userdata('logueado')){

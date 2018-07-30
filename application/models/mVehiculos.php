@@ -19,17 +19,20 @@ class MVehiculos extends CI_Model {
      	return ($query->result_array());
    }
 
-    public function eliminar_vehiculo($idVehiculo){
-      $query = ($this->db->query('SELECT vehiculoId FROM viaje where vehiculoId='.$idVehiculo));
-	    $viajesAsociados=($query->result_array());
-      if (! $viajesAsociados) {
+   public function viajes_asociados($idVehiculo){
+     $query=($this->db->query('SELECT vehiculoId FROM viaje WHERE vehiculoId='.$idVehiculo));
+     return ($query->result_array());
+   }
+
+    public function baja_fisica_vehiculo($idVehiculo){
         $this->db->where('idVehiculo', $idVehiculo);
         $this->db->delete('vehiculo');
-      }else{
-    	 $this->db->set('eliminado', 1);
-    	 $this->db->where('idVehiculo',$idVehiculo);
-    	 $this->db->update('vehiculo');
-   	  }
+    }
+
+    public function baja_logica_vehiculo($idVehiculo){
+      	 $this->db->set('eliminado', 1);
+      	 $this->db->where('idVehiculo',$idVehiculo);
+      	 $this->db->update('vehiculo');
     }
 
     public function patente_existe($patente, $idVehiculo){
@@ -108,6 +111,5 @@ class MVehiculos extends CI_Model {
       $query = $this->db->get();
       return ($query->result_array());
     }
-
 
 }

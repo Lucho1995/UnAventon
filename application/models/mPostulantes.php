@@ -44,7 +44,7 @@ class MPostulantes extends CI_Model {
      $this->db->where('viajeId', $postulado[0]['viajeId']);
      $this->db->update('postulacion', $postulado[0]);
    }
-    private function usuario_postulado($idViaje,$idUsuario){
+    public function usuario_postulado($idViaje,$idUsuario){
       $this->db->select('*');
       $this->db->from('postulacion');
       $this->db->where('usuarioId',$idUsuario);
@@ -102,6 +102,15 @@ class MPostulantes extends CI_Model {
       $this->db->join('usuario', 'usuario.idUsuario = viaje.usuarioId');
       $this->db->where('postulacion.usuarioId', $usuarioId);
       $query = $this->db->get();
+      return $query->result_array();
+    }
+
+    public function get_viajes_con_pendientes($idVehiculo){
+      $query=($this->db->query( 'SELECT * 
+                                      FROM postulacion 
+                                      JOIN viaje 
+                                      ON viaje.idViaje=postulacion.viajeId 
+                                      WHERE viaje.vehiculoId='.$idVehiculo.' AND postulacion.estado="Pendiente" OR postulacion.estado="Aceptado"'));
       return $query->result_array();
     }
 }

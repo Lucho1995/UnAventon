@@ -8,6 +8,7 @@ class CVerMisVehiculos extends CI_Controller {
        $this->load->model('mVehiculos');
        $this->load->model('mLogin');
        $this->load->model('mVehiculos');
+       $this->load->model('mPostulantes');
    }
 
    public function vista_registrar($id){
@@ -112,20 +113,28 @@ class CVerMisVehiculos extends CI_Controller {
        }*/
     }
 
-    public function eliminar_vehiculo($idVehiculo){
-        if ($this->session->userdata('logueado')) {
-          //$perfil = $this->mLogin->get_perfil($id);
-          //$data['vehiculos']=$this->mVehiculos->get_vehiculos();
-          if ($this->session->userdata('idUsuario') == $id){
-            $this->mVehiculos->eliminar_vehiculo($idVehiculo);
+    public function eliminar_vehiculo($idVehiculo,$idUsuario){
+    if ($this->session->userdata('logueado')) {
+      if ($this->session->userdata('idUsuario') == $idUsuario) {
+        if (! $this->mVehiculos->viajes_asociados($idVehiculo)){
+            $this->mVehiculos->baja_fisica_vehiculo($idVehiculo);
+            redirect('http://localhost/UnAventon/cVerMisVehiculos/ver_mis_vehiculos/'.$this->session->userdata('idUsuario'), 'refresh');
+        } else {
+          if ($this->mPostulantes->get_viajes_con_pendientes($idVehiculo)){
+            echo "<script language='javascript'>alert('No se puede eliminar un vehiculo asociado a un viaje si tiene postulantes pendientes o aceptados.');</script>";
             redirect('http://localhost/UnAventon/cVerMisVehiculos/ver_mis_vehiculos/'.$this->session->userdata('idUsuario'), 'refresh');
           } else {
-            echo "<script language='javascript'>alert('Accseso denegado');</script>";
+            $this->mVehiculos->baja_logica_vehiculo($idVehiculo);
+            redirect('http://localhost/UnAventon/cVerMisVehiculos/ver_mis_vehiculos/'.$this->session->userdata('idUsuario'), 'refresh');
+            }
+          }
+          } else {
+            echo "<script language='javascript'>alert('Para eliminar un vehiculo, inicia sesion');</script>";
             redirect(base_url().'#iniciar','refresh');
           }
-        } else {
-              echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
-              redirect(base_url().'#iniciar','refresh');            
-        }
+      } else {
+      echo "<script language='javascript'>alert('Para eliminar un vehiculo, inicia sesion');</script>";
+      redirect(base_url().'#iniciar','refresh');
+    }
     }
 }
