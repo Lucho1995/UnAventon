@@ -70,10 +70,9 @@ class CVerViajes extends CI_Controller {
                         'viaje' => $viaje,
                         'piloto' => $this->mLogin->get_perfil($viaje[0]['usuarioId']),
                         'preguntas' => $this->mPreguntas->get_pregunta($idViaje),
-
                         'postulado' => $estoy_postulado,
                         'estado_postulado' => $postulacion[0]['estado'],
-                        'viaje_pagado' => $this->mPagos->viaje_pagado($id,$idViaje)
+                        'viaje_pagado' => $this->mPagos->viaje_pagado($id,$idViaje),
 
                         'voto'=>$this->mPuntaje->Copiloto_voto($viaje[0]['usuarioId'], $idViaje),
 
