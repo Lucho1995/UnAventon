@@ -142,7 +142,7 @@
             <br>
           <?php
           }
-          if ($estado_postulado=='Aceptado') {
+          if ($estado_postulado=='Aceptado' && !$viaje_pagado) {
           ?>
             <a href="" class="button button-flat-caution" data-toggle="modal" data-target="#myModal3" style='width:360px; height:40px;'><h3><i class="fa fa-money" style="font-weight: 20px;"></i>Pagar viaje</h3></a>
           <?php
