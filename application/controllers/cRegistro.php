@@ -19,8 +19,7 @@ class CRegistro extends CI_Controller {
       $param['fechaNac'] = $this->input->post('fechaNac');
       $param['dni'] = $this->input->post('dni');
       $param['clave'] = $this->input->post('clave');
-      $nombre= $this->input->post('nombre');
-      
+      $nombre= $this->input->post('nombre'); 
       $this->mRegistro->registrarse($param);    
     } 
     else {

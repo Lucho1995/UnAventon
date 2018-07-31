@@ -8,17 +8,27 @@ class CPuntaje extends CI_Controller {
       $this->load->library('form_validation'); 
       $this->load->model('mViajes');
       $this->load->model('mPostulantes');
+      $this->load->model('mPuntaje');
 
   	}
+  	public function puntuarPiloto($idPiloto,$idViaje){
+  	  	$comentario = $this->input->post('respuesta');
+  	  	if($this->input->post('puntaje')=='bueno'){
+  	  		$this->mPuntaje->sumarPuntaje($idPiloto,$comentario);
+  	  		$this->mPuntaje->comentar($idPiloto,$comentario);
+  	  		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
+  	  	}
+  	  	elseif ($this->input->post('puntaje')=='malo') {
+  	  		$this->mPuntaje->restarPuntaje($idPiloto,$comentario);
+  	  		$this->mPuntaje->comentar($idPiloto,$comentario);
+  	  		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
+  	  	}
+  	  	else{
+  	  		$this->mPuntaje->puntajeNeutro($idPiloto,$comentario);
+  	  		$this->mPuntaje->comentar($idPiloto,$comentario);
+  	  		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
+  	  	}
 
-
-	public function vista_puntuar_copiloto(){
-		$this->load->view('vHead');
-        $this->load->view('loguedIn/vHeader');
-		$this->load->view('loguedIn/vPuntajeCopiloto');
-		$this->load->view('loguedIn/vFooter');	
-  		$x='hola';
-  		print_r('hola');
   	}  	
-
+  	  
 }
