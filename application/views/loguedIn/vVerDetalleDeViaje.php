@@ -97,13 +97,31 @@
             <br>
             </font>
         <br>
-      <!-- Falta esconder el botón si fuiste copiloto aceptado o si el viaje no terminó -->
-      <?php if($viaje[0]['usuarioId'] != $this->session->userdata('idUsuario')) { ?>
-        <div class="card-footer" align="center">
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" style="font-size: 15px; padding: 3px; border-color: black;">
-            <font color="black"> Puntuar piloto</font>
-          </button>
-        </div>
+      <?php 
+          $horaActual= date(' G:i:s');
+          $FechaActual =date('Y-m-d');
+          $fechaHoraActual=strtotime($FechaActual.''.$horaActual);
+          $horaFinViaje= $viaje[0]['horaFin'];
+          $fechaViaje=($viaje[0]['fecha']);
+          $fechaHoraFin=strtotime($viaje[0]['fecha'].''.$viaje[0]['horaFin']);  
+          if ($fechaHoraActual>$fechaHoraFin){
+            $postulantes = array('postulantes' => $this->mPostulantes->get_postulantes($idViaje));
+            $cant=0;
+            foreach ($postulantes['postulantes'] as $row) {
+                if(($row['idUsuario']==$this->session->userdata('idUsuario'))&&($row['estado']=='Aceptado')){
+                  $cant++;
+                 }
+            }     
+      ?>     
+            <?php if($cant > 0){ ?>
+              <?php if($voto==FALSE) {?>
+                <div class="card-footer" align="center">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" style="font-size: 15px; padding: 3px; border-color: black;">
+                     <font color="black"> Puntuar piloto</font>
+                    </button>
+                </div>
+              <?php } ?>  
+           <?php } ?>
       <?php } ?>
       <!---------------------------------------------------------------------------------->
       </div>
@@ -297,24 +315,25 @@
           Seleccione una opción para puntuar al piloto <br>
         </p>
       <!-- Falta acción del form -->
-        <form action ="" class="form-signin" method="POST">
+        <form action ="<?php echo base_url().'cPuntaje/PuntuarPiloto/'. $viaje[0]['usuarioId'].'/'.$viaje[0]['idViaje']; ?>" class="form-signin" method="POST">
           <div align="center">
-            <input type="radio" name="gender" value="male">
+            <input type="radio" name="puntaje" value="bueno">
             Buena <font color="salmon"> (+1 punto) </font>
-            &nbsp;<input type="radio" name="gender" value="female">
+            &nbsp;<input type="radio" name="puntaje" value="malo">
             Mala <font color="salmon"> (-1 punto) </font>
-            &nbsp;<input type="radio" name="gender" value="other">
+            &nbsp;<input type="radio" name="puntaje" value="neutro">
             Regular <font color="salmon"> (0 puntos) </font>
           </div>
+
             <p style="font-size: 15px; margin-bottom: 10px; margin-top: 10px; font-style: italic;">
               <font color="salmon"> - </font>Además puede agregar un comentario adicional (opcional)
             </p>
-            <textarea style="margin-top: 10px" class="form-control" id="respuesta" name="respuesta" required></textarea>
-        </form>
+            <textarea style="margin-top: 10px" class="form-control" id="respuesta" name="respuesta" ></textarea>
       <!--------------------------->
-      </div>
-      <div align="right" style="margin-right: 5px; margin-bottom: 5px">
-        <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Puntuar</button>
+          </div>
+          <div align="right" style="margin-right: 5px; margin-bottom: 5px">
+          <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Puntuar</button>
+        </form>
         <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size:15px; padding:3px;">
           Cancelar
         </button>

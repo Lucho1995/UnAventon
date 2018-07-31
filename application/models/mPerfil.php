@@ -53,7 +53,7 @@ class MPerfil extends CI_Model {
         $this->db->select('email');
         $this->db->from('usuario');
         $this->db->where('email',$email);
-        $this->db->where('idUsuario<>', $idUsuario);
+        $this->db->where('idUsuario', $idUsuario);
         if($this->db->count_all_results()>=1){
             return FALSE;
         }
