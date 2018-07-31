@@ -150,9 +150,22 @@
         <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Dar de baja viaje</font></h3>
       </a>
       </div>
-    <?php }else{ ?>
-      <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
-    <?php } ?>
+    <?php } 
+          else {
+          ?>
+
+            <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
+            <br>
+            <br>
+            <br>
+          <?php
+          }
+          if ($estado_postulado=='Aceptado' && !$viaje_pagado) {
+          ?>
+            <a href="" class="button button-flat-caution" data-toggle="modal" data-target="#myModal3" style='width:360px; height:40px;'><h3><i class="fa fa-money" style="font-weight: 20px;"></i>Pagar viaje</h3></a>
+          <?php
+          } 
+          ?>
     <br>
     <br>
     <br>
@@ -342,6 +355,57 @@
   </div>
 </div>
 <!------------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------------>
+<!-- Modal 3-->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="background-color: black; border-color: salmon;">
+      <form action="<?php echo base_url().'cPagos/pagar/'.$viaje[0]['idViaje'].'/'.$viaje[0]['Costo']; ?>" class="form-signin" method="POST">
+        <div class="modal-body">
+        <font color="salmon" face="sans-serif" size="4">Realice su pago</font><br><br>
+        <p>Los pagos solo pueden realizarse con tarjeta de debito o credito.</p>
+        <p>El monto a pagar es de $ <?php echo $viaje[0]['Costo']; ?>.   </p>
+        <br>
+            <label for="numTarjeta"><b>Ingrese su numero de tarjeta</b></label>
+            <div class="form-group col-md-6">
+              <input type="number" name="numTarjeta" id="numTarjeta" required>
+            </div>
+          <br>
+          <label for="formaPago"><b>Ingrese la forma de pago</b></label>
+            <div class="form-group col-md-6">
+            <select class="custom-select mr-sm-2" id="formaPago" name="formaPago">
+              <option selected name='tarjeta' id='tarjeta'>Elegir...</option>
+              <option value="debito">Debito</option>
+              <option value="credito">Credito</option>
+            </select>
+          </div>
+          <br>
+          <label for="tarjeta"><b>Tarjeta</b></label>
+            <div class="form-group col-md-6">
+            <select class="custom-select mr-sm-2" id="tarjeta" name="tarjeta">
+              <option selected>Elegir...</option>
+              <option value="Visa">Visa</option>
+              <option value="MasterCard">MasterCard</option>
+              <option value="AmericanExpress">American Express</option>
+              <option value="DinnersClub">Dinners Club</option>
+            </select>
+            <br>
+            <p><i class="fa fa-cc-visa" style="font-size:36px"></i> <i class="fa fa-cc-mastercard" style="font-size:36px"></i> <i class="fa fa-cc-amex" style="font-size:36px"></i> <i class="fa fa-cc-diners-club" style="font-size:36px"></i>
+            <br>
+          </div>
+          <!------------------->
+          <div align="right" style="margin-right: 5px; margin-bottom: 5px">
+          <button class="btn btn-default" type="submit" style="font-size: 15px; padding: 3px;">Pagar</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size:15px; padding:3px;">
+            Cancelar
+          </button>
+          </div>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
 <br>
 <br>
 <br>
