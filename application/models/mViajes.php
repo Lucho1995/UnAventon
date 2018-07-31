@@ -95,11 +95,9 @@ class MViajes extends CI_Model{
 	}
 
 	public function baja_de_viaje_sin_postulantes($viaje){
-		if (! $this->hay_postulantes($viaje) ) {
-			$this->db->set('idViaje', ($viaje* -1));
+			$this->db->set('eliminado', 1);
 			$this->db->where('idViaje',$viaje);
 			$this->db->update('viaje');
-		}
 	}
 
 	public function obtener_usuario($idUsuario){
@@ -114,7 +112,7 @@ class MViajes extends CI_Model{
 		    $usuario=$this->obtener_usuario($idUsuario);
 		    //die(print_r($usuario));
 		    $rep=$usuario[0]['reputacionPiloto'] -1;
-			$this->db->set('idViaje', ($viaje* -1));
+			$this->db->set('eliminado', 1);
 			$this->db->where('idViaje', $viaje);
 			$this->db->update('viaje');
 			$this->db->set('reputacionPiloto', $rep);

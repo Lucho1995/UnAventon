@@ -206,19 +206,17 @@ class CVerViajes extends CI_Controller {
     public function baja_de_viaje($id,$idViaje){
       $postulantes =$this->mPostulantes->get_postulantes($idViaje);
       $cantAceptados=0;
-      foreach ($postulantes as $row ) {
-        if($row['estado']== 'Aceptado'){
+      /*foreach ($postulantes as $row ) {
+        if($row['estado'] == 'Aceptado'){
           $cantAceptados++;
         }
-      }
-      if($cantAceptados>0){
+      }*/
+      if($this->mPostulantes->hay_postulantes_aceptados($idViaje)){
         $this->mViajes->baja_de_viaje_con_postulantes($idViaje,$id);
       }else{
         $this->mViajes->baja_de_viaje_sin_postulantes($idViaje);
       }
       redirect(base_url().'cVerViajes/misViajes/'.$id, 'refresh');
-
-
   }
 
   public function filtrar($id='visitante'){

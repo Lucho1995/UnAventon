@@ -24,7 +24,7 @@
           <tbody style="text-align: center;">
             <?php  $columna1=false; ?>
             <?php  foreach ($viajes as $row) {  ?>
-              <?php  if ($row['idViaje'] > 0) { ?>
+              <?php  if ($row['eliminado'] <> 1) { ?>
                <?php  if ($columna1 == true) { ?>
                 <tr class="alt" style="height: 55px;">
                   <td><font size="3"><?php echo $row['origen'] ?></td>
