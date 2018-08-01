@@ -113,4 +113,13 @@ class MPostulantes extends CI_Model {
                                       WHERE viaje.vehiculoId='.$idVehiculo.' AND postulacion.estado="Pendiente" OR postulacion.estado="Aceptado"'));
       return $query->result_array();
     }
+    public function get_postulantes_aceptados($idViaje){
+        $query=($this->db->query(
+         'SELECT * FROM postulacion
+          INNER JOIN usuario ON postulacion.usuarioId = usuario.idUsuario
+          INNER JOIN viaje ON postulacion.viajeId = viaje.idViaje
+          WHERE viajeId='.$idViaje.' AND estado = "Aceptado"'
+        ));
+        return $query->result_array();
+    }
 }

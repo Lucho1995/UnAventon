@@ -125,6 +125,11 @@
       <?php } ?>
       <!---------------------------------------------------------------------------------->
       </div>
+       <br>
+       <br>
+       <a href="<?php echo base_url().'cPuntaje/vista_puntuar_copilotos'.'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:365px; height:60px;'>
+        <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Puntuar Copilotos</font></h3>
+      </a>
     </div>
 
     <div class="col-sm-4">

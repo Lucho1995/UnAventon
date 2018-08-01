@@ -3,14 +3,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class CPuntaje extends CI_Controller {
 
-  function __construct() {
+    function __construct() {
       parent::__construct();
       $this->load->library('form_validation'); 
       $this->load->model('mViajes');
       $this->load->model('mPostulantes');
       $this->load->model('mPuntaje');
 
-  	}
+    }
+    public function vista_puntuar_copilotos($idViaje){
+        if($this->session->userdata('logueado')){
+          $parametro=array('postulantes'=>$this->mPostulantes->get_postulantes_aceptados($idViaje));
+          $this->load->view('vHead');
+          $this->load->view('loguedIn/vHeader');
+          $this->load->view('loguedIn/vPuntajeCopilotos', $parametro);
+          $this->load->view('loguedIn/vFooter');
+        }
+  
+    }
   	public function puntuarPiloto($idPiloto,$idViaje){
   	  	$comentario = $this->input->post('respuesta');
   	  	if($this->input->post('puntaje')=='bueno'){
@@ -20,15 +30,32 @@ class CPuntaje extends CI_Controller {
   	  	}
   	  	elseif ($this->input->post('puntaje')=='malo') {
   	  		$this->mPuntaje->restarPuntaje($idPiloto,$comentario);
-  	  		$this->mPuntaje->comentar($idPiloto,$comentario);
+  	  		$this->mPuntaje->comentar($idPiloto,$comentario,$idViaje);
   	  		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
   	  	}
   	  	else{
   	  		$this->mPuntaje->puntajeNeutro($idPiloto,$comentario);
-  	  		$this->mPuntaje->comentar($idPiloto,$comentario);
+  	  		$this->mPuntaje->comentar($idPiloto,$comentario,$idViaje);
   	  		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
   	  	}
-
-  	}  	
-  	  
-}
+    }  	
+  	public function puntuarCopiloto($viajeId){
+      $comentario= $this->input->post('respuesta');
+      $idUsuario= $this->input->post('usuarioId');
+      if($this->input->post('puntaje')=='bueno'){
+        $this->mPuntaje->sumarPuntajeCopiloto($idUsuario,$comentario);
+        $this->mPuntaje->comentarCopiloto($idUsuario,$comentario,$viajeId);
+        redirect(base_url().'cPuntaje/vista_puntuar_copilotos/'.$viajeId, 'refresh');
+      }
+      elseif ($this->input->post('puntaje')=='malo') {
+          $this->mPuntaje->restarPuntajeCopiloto($idUsuario,$comentario);
+          $this->mPuntaje->comentarCopiloto($idUsuario,$comentario,$viajeId);
+          redirect(base_url().'cPuntaje/vista_puntuar_copilotos/'.$viajeId, 'refresh');
+      }
+      else{
+        $this->mPuntaje->puntajeNeutroCopiloto($idUsuario,$comentario);
+        $this->mPuntaje->comentarCopiloto($idUsuario,$comentario,$viajeId);
+        redirect(base_url().'cPuntaje/vista_puntuar_copilotos/'.$viajeId, 'refresh');
+      } 
+    }
+  } 
