@@ -94,7 +94,7 @@ class MPuntaje extends CI_Model {
     	}
     }
 
-}   
+ 
 
     public function get_calificaciones(){
         $this->db->select('*');
@@ -118,7 +118,7 @@ class MPuntaje extends CI_Model {
         $query = $this->db->get('calificaciones');
         return $query->result_array();
     }
-}
+
 
     public function sumarPuntajeCopiloto($idCopiloto,$comentario){
         $copiloto = $this->get_copiloto($idCopiloto);
