@@ -17,7 +17,14 @@ class MPuntaje extends CI_Model {
 		return $query->result_array();		    	
     }
   		    		
-    
+    public function get_copiloto($copilotoId)    {
+        $this->db->select('usuario.*');
+        $this->db->from('calificaciones');
+        $this->db->join('usuario','calificaciones.usuarioId =usuario.idUsuario');
+        $this->db->where('idUsuario',$copilotoId);
+        $query = $this->db->get();
+        return $query->result_array()[0];
+    }
 
     public function sumarPuntaje($idPiloto,$comentario){
     	$piloto = $this->get_piloto($idPiloto);
@@ -32,7 +39,7 @@ class MPuntaje extends CI_Model {
     	$puntaje=$piloto[0]['reputacionPiloto'] -1;
     	$this->db->set('reputacionPiloto',$puntaje);
     	$this->db->where('idUsuario',$idPiloto);
-    	$this->db->update('usuario',$idPiloto);
+    	$this->db->update('usuario');
     	
     }
     public function puntajeNeutro($idPiloto,$comentario){
@@ -52,13 +59,26 @@ class MPuntaje extends CI_Model {
 			'comentarioCopiloto'=>$comentario,
 			'fecha'=>$FechaActual,
 			'usuarioId'=>$idPiloto,
-			'comentoId'=>$this->session->userdata('idUsuario')	,
+			'comentoId'=>$this->session->userdata('idUsuario'),
             'viajeId' => $idViaje
 		 );    
     	$this->db->insert('calificaciones',$campos);
-    	
-
     }
+    public function comentarCopiloto($idCopiloto,$comentario,$idViaje){
+        $copiloto = $this->get_copiloto($idCopiloto);
+        $FechaActual =date('Y-m-d');
+        $campos = array(
+            'calificacion'=>$this->input->post('puntaje'),
+            'comentarioPiloto'=>$comentario,
+            'comentarioCopiloto'=>'',
+            'fecha'=>$FechaActual,
+            'usuarioId'=>$idCopiloto,
+            'comentoId'=>$this->session->userdata('idUsuario')  ,
+            'viajeId' => $idViaje
+         );
+         $this->db->insert('calificaciones',$campos);    
+    }
+
     public function Copiloto_voto($usuarioId, $viajeId){
         
     	$this->db->select('*');
@@ -73,6 +93,7 @@ class MPuntaje extends CI_Model {
     		return FALSE;
     	}
     }
+
 }   
 
     public function get_calificaciones(){
@@ -98,3 +119,28 @@ class MPuntaje extends CI_Model {
         return $query->result_array();
     }
 }
+
+    public function sumarPuntajeCopiloto($idCopiloto,$comentario){
+        $copiloto = $this->get_copiloto($idCopiloto);
+        $puntaje=$copiloto['reputacionCopiloto'] +1;
+        $this->db->set('reputacionCopiloto',$puntaje);
+        $this->db->where('idUsuario',$idCopiloto);
+        $this->db->update('usuario');
+    }
+    public function restarPuntajeCopiloto($idCopiloto,$comentario){
+        $copiloto = $this->get_copiloto($idCopiloto);
+        $puntaje=$copiloto['reputacionCopiloto'] -1;
+        $this->db->set('reputacionCopiloto',$puntaje);
+        $this->db->where('idUsuario',$idCopiloto);
+        $this->db->update('usuario');  
+    }
+    public function puntajeNeutroCopiloto($idCopiloto,$comentario){
+        $copiloto = $this->get_copiloto($idCopiloto);
+        $puntaje=$copiloto['reputacionCopiloto'] +0;
+        $this->db->where('idUsuario',$idCopiloto);
+        $this->db->set('reputacionCopiloto',$puntaje);
+        $this->db->update('usuario');
+        
+    }
+}   
+

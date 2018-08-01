@@ -114,6 +114,7 @@ class MPostulantes extends CI_Model {
       return $query->result_array();
     }
 
+
     public function hay_postulantes_aceptados ($idViaje) {
       $this->db->select('*');
       $this->db->from('postulacion');
@@ -127,4 +128,15 @@ class MPostulantes extends CI_Model {
         return FALSE; 
       }
     } 
+
+    public function get_postulantes_aceptados($idViaje){
+        $query=($this->db->query(
+         'SELECT * FROM postulacion
+          INNER JOIN usuario ON postulacion.usuarioId = usuario.idUsuario
+          INNER JOIN viaje ON postulacion.viajeId = viaje.idViaje
+          WHERE viajeId='.$idViaje.' AND estado = "Aceptado"'
+        ));
+        return $query->result_array();
+    }
+
 }
