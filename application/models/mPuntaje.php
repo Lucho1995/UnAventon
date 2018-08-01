@@ -7,6 +7,7 @@ class MPuntaje extends CI_Model {
        parent::__construct();
     }
 
+
     public function get_piloto($pilotoId){
     	$this->db->select('usuario.*');
     	$this->db->from('calificaciones');
@@ -73,3 +74,27 @@ class MPuntaje extends CI_Model {
     	}
     }
 }   
+
+    public function get_calificaciones(){
+        $this->db->select('*');
+        $this->db->from('calificaciones');
+        $query=$this->db->get();
+        return ($query->result_array());
+    }
+
+    public function get_calificaciones_piloto($usuarioId){
+    	$this->db->where('usuarioId', $usuarioId);
+    	$this->db->where('comentarioCopiloto', "");
+    	$this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
+    	$query = $this->db->get('calificaciones');
+    	return $query->result_array();
+    }
+
+    public function get_calificaciones_copiloto($usuarioId){
+        $this->db->where('usuarioId', $usuarioId);
+        $this->db->where('comentarioPiloto', "");
+        $this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
+        $query = $this->db->get('calificaciones');
+        return $query->result_array();
+    }
+}

@@ -27,17 +27,8 @@
               <a class="card-text" align="left"><font color="black" size="4"><b>Asientos Disponibles:</b> <?php echo $viaje[0]['asientosDisp']; ?> </font></a>
               <hr align="right" size="100" color="f1f1f1" size="100">
               <a class="card-text" align="left"><font color="black" size="4"><b>Costo:</b><?php echo $viaje[0]['Costo']; ?> </font></a>
-              <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="4"><b>Periodico:</b>
-                <?php if ($viaje[0]['Periodico'] == 1) {
-                  echo "Sí";
-                } else {
-                  echo "No";
-                }
-                 ?>
-              </font></a>
-              <hr align="right" size="100" color="f1f1f1" size="100">
-              <div class="card-header" align="left">
+              <br>
+              <div class="card-footer" align="left">
               <a class="card-text" style="margin-left: -20px"><font color="black" size="4"><b>Vehiculo: </b> </font></a><br>
               <a class="card-text" align="left"><font color="black" size="4"><i class="fa fa-chevron-right"></i> Marca y Modelo: <?php echo $viaje[0]['marca']. " ". $viaje[0]['modelo']; ?> </font></a><br>
               <a class="card-text" align="left"><font color="black" size="4"><i class="fa fa-chevron-right"></i> Patente: <?php echo $viaje[0]['patente']; ?> </font></a><br>
@@ -76,7 +67,7 @@
           <font color="black" size="4"><b>E-Mail:</b> <?php echo $piloto['email']; ?> </font>
         </a>
         <hr align="right" size="100" color="f1f1f1" size="100">
-        <a class="card-text" align="left">
+        <div class="card-text" align="left" style="float: left;">
           <font color="black" size="4"><b>Reputacion:</b> <?php
                 if ($piloto['reputacionPiloto'] > 50) {
                   echo "Excelente!";
@@ -122,6 +113,17 @@
                 </div>
               <?php } ?>  
            <?php } ?>
+      </div>
+      <!-- Falta esconder el botón si fuiste copiloto aceptado o si el viaje no terminó -->
+      <?php if($viaje[0]['idUsuario'] != $this->session->userdata('idUsuario')) { ?>
+        <div class="card-footer" align="center">
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" style="font-size: 15px; padding: 3px; border-color: black;">
+            <font color="black"> Puntuar piloto</font>
+          </button>
+          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3" style="font-size: 15px; padding: 3px; border-color: black;">
+            <font color="black"> Sus calificaciones</font>
+          </button>
+        </div>
       <?php } ?>
       <!---------------------------------------------------------------------------------->
       </div>
@@ -160,9 +162,9 @@
             <br>
           <?php
           }
-          if ($estado_postulado=='Aceptado' && !$viaje_pagado) {
+          
           ?>
-            <a href="" class="button button-flat-caution" data-toggle="modal" data-target="#myModal3" style='width:360px; height:40px;'><h3><i class="fa fa-money" style="font-weight: 20px;"></i>Pagar viaje</h3></a>
+            <a href="" class="button button-flat-caution" data-toggle="modal" data-target="#myModal4" style='width:360px; height:40px;'><h3><i class="fa fa-money" style="font-weight: 20px;"></i>Pagar viaje</h3></a>
           <?php
           } 
           ?>
@@ -259,7 +261,7 @@
                 </font>
               </div>
             </div>
-          <?php } elseif($viaje[0]['usuarioId'] == $this->session->userdata('idUsuario')) { ?>
+          <?php } elseif($viaje[0]['idUsuario'] == $this->session->userdata('idUsuario')) { ?>
             <div class="card-header">
               <button type="button" class="btn btn-default" onclick="javascript:respuesta(<?php echo$row['idPregunta'] ?>)" data-toggle="modal" data-target="#myModal1" style="font-size: 15px; padding: 3px; border-color: black;">
                 <font color="black"> Responder</font>
@@ -356,8 +358,52 @@
 </div>
 <!------------------------------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------------------------------>
-<!-- Modal 3-->
+<!------------------------------------------------------------------------------------------------------>
+<!-- Modal 3 -->
 <div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="background-color: black; border-color: salmon;">
+      <div class="modal-header">
+        <font color="salmon" size="4">Sus calificaciones como piloto</font>
+        <button type="button" class="btn btn-default close" data-dismiss="modal" style="font-size:15px; padding:3px; margin: 1px; text-shadow: 1px 1px 1px salmon; border-width: 2px;">
+          &nbsp;x&nbsp;
+        </button>
+      </div>
+      <div class="modal-body">
+        <?php foreach ($calificaciones as $calificacion) { ?>
+        <div class="col-sm-6" style="float: left; margin-right: 30px;">
+          <font color="salmon" size="2"> Calificado por: <br>&nbsp;&nbsp;&nbsp;&nbsp;• </font>
+          <font size="2"><?php echo $calificacion['nombre'].' '.$calificacion['apellido']; ?></font>
+        </div>
+        <div>
+          <font color="salmon" size="2"> Calificación: <br>&nbsp;&nbsp;&nbsp;&nbsp;• </font>
+          <font size="2"><?php echo $calificacion['calificacion']; ?></font>
+        </div>
+        <br>
+        <div>
+          <font color="salmon" size="2">
+            &nbsp;&nbsp;&nbsp;&nbsp;Comentario: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
+          </font>
+          <font size="2"><?php echo $calificacion['comentarioPiloto']; ?></font>
+        </div>
+        <br>
+        <div>
+          &nbsp;&nbsp;
+          <font style="font-style: italic; font-size: 11px" color="salmon" size="2"> Calificado el 
+            <?php echo date("d-m-Y", strtotime($calificacion['fecha'])); ?></font>
+        </div>
+        <hr color="salmon">
+        <?php } ?>
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------------------------------------------------------------>
+
+<!------------------------------------------------------------------------------------------------------>
+<!-- Modal 4-->
+<div id="myModal4" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content" style="background-color: black; border-color: salmon;">
