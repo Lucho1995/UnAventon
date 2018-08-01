@@ -41,6 +41,9 @@ class CPuntaje extends CI_Controller {
     }  	
   	public function puntuarCopiloto($viajeId){
       $comentario= $this->input->post('respuesta');
+      if($this->input->post('respuesta')==NULL){
+        $comentario="Sin Comentario";
+      }
       $idUsuario= $this->input->post('usuarioId');
       if($this->input->post('puntaje')=='bueno'){
         $this->mPuntaje->sumarPuntajeCopiloto($idUsuario,$comentario);

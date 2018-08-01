@@ -93,9 +93,6 @@ class MPuntaje extends CI_Model {
     		return FALSE;
     	}
     }
-
- 
-
     public function get_calificaciones(){
         $this->db->select('*');
         $this->db->from('calificaciones');
@@ -105,7 +102,7 @@ class MPuntaje extends CI_Model {
 
     public function get_calificaciones_piloto($usuarioId){
     	$this->db->where('usuarioId', $usuarioId);
-    	$this->db->where('comentarioCopiloto', "");
+    	$this->db->where('comentarioPiloto', "Sin Comentario");
     	$this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
     	$query = $this->db->get('calificaciones');
     	return $query->result_array();

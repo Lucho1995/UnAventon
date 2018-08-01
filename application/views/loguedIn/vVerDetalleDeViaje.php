@@ -390,7 +390,7 @@
           <font color="salmon" size="2">
             &nbsp;&nbsp;&nbsp;&nbsp;Comentario: <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-
           </font>
-          <font size="2"><?php echo $calificacion['comentarioPiloto']; ?></font>
+          <font size="2"><?php echo $calificacion['comentarioPiloto'] ?></font>
         </div>
         <br>
         <div>
