@@ -30,7 +30,7 @@ class MVehiculos extends CI_Model {
     }
 
     public function baja_logica_vehiculo($idVehiculo){
-      	 $this->db->set('eliminado', 1);
+      	 $this->db->set('vehiculoEliminado', 1);
       	 $this->db->where('idVehiculo',$idVehiculo);
       	 $this->db->update('vehiculo');
     }

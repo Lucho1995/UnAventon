@@ -126,5 +126,5 @@ class MPostulantes extends CI_Model {
       } else {
         return FALSE; 
       }
-    }
+    } 
 }

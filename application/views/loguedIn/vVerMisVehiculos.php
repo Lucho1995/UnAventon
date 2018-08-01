@@ -20,7 +20,7 @@
                 foreach ($vehiculos as $row) { 
                   $idVehiculo=$row['idVehiculo'];  
                   $idUsuario=$row['usuarioId'];
-                  if ($row['eliminado']<>1) {
+                  if ($row['vehiculoEliminado']<>1) {
                   ?>
                   <tr> 
                           <td> <?php echo $row['marca'] ?> </td>

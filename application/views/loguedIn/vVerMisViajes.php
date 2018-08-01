@@ -1,43 +1,7 @@
 
-
-
-<section id=vVerViajesFiltro class="content-section text-center">
-
-  <div id="oculto2" align="left" style="display: block;">
-    <button class="btn btn-default" onclick="mostrar()">
-      <font size="4">Filtrar viajes </font><i class="fa fa-search"></i>
-    </button>
-  </div>
-  
-  <div id="oculto" style="display: none;">
-  <br> 
-      <form method="POST" action="<?php echo base_url(); ?>cVerViajes/filtrar/<?php echo ($this->session->userdata('idUsuario')); ?>">
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <br>
-            <label for="origen" class="css-label"></label> <b> Ciudad origen </b>
-            <input type="text" name="origen" id="origen"  class="form-control" required></br>
-          </div>
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <br>
-            <label for="destino" class="css-label"></label> <b> Ciudad destino </b>
-            <input type="text" name="destino" id="destino"  class="form-control" required></br>
-          </div>
-          <br>
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <label for="fecha" class="css-label"></label><b> Fecha </b>
-            <input type="date" name="fecha" id="fecha" class="form-control">
-          </div>
-          <br>
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <button type="submit" class="btn btn-default">Enviar</button>
-          </div>
-      </form>
-  </div>
-
-  <br>
-
+<section id=vVerMisViajes class="content-section text-center">
   <div class="col-form-label-sm">
-    <div class="card h-99" style="background-color: #E8E6E6">
+    <div class="card h-99" style="background-color: black;">
       <h5 class="card-header"><font color="salmon"><u><?php echo $titulo ?></u></font></h5>
       <div class="datagrid">
         <table>
@@ -56,10 +20,8 @@
           </thead>
           <tbody style="text-align: center;">
             <?php  $columna1=false; ?>
-            <?php  
-              if ($result) {
-              foreach ($result as $row) {  ?>
-              <?php  if ($row['viajeEliminado'] != 1) { ?>
+            <?php  foreach ($viajes as $row) {  ?>
+              <?php  if ($row['eliminado'] != 1) { ?>
                <?php  if ($columna1 == true) { ?>
                 <tr class="alt" style="height: 55px;">
                   <td><font size="3"><?php echo $row['origen'] ?></td>
@@ -93,9 +55,7 @@
                     </tr>
                 <?php $columna1 = true; } ?>
                 <?php }  ?>
-                <?php } 
-                } 
-                ?>
+                <?php } ?>
           </tbody>
         </table>
       </div>
@@ -106,53 +66,4 @@
 </br>
 </br>
 </br>
-<button class="btn btn-default" 
- onClick="document.getElementById('oculto').style.visibility='visible'">Filtrar viajes</button>
-<div id="oculto" style="visibility:hidden">
-<br> 
-<form method="POST" action="<?php echo base_url(); ?>cVerViajes/filtrar/<?php echo ($this->session->userdata('idUsuario')); ?>">
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <br>
-            <label for="origen" class="css-label"></label> <b> Ciudad origen </b>
-            <input type="text" name="origen" id="origen"  class="form-control" required></br>
-          </div>
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <br>
-            <label for="destino" class="css-label"></label> <b> Ciudad destino </b>
-            <input type="text" name="destino" id="destino"  class="form-control"></br>
-          </div>
-          <br>
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <label for="fecha" class="css-label"></label><b> Fecha </b>
-            <input type="date" name="fecha" id="fecha" class="form-control" required>
-          </div>
-          <br>
-          <div class="form-group col-sm-3" style="float: left; height: 58px;">
-            <button type="submit" class="btn btn-default">Enviar</button>
-          </div>
-      </form>
 </section>
-
-<script>
-  function validar(){
-    if (document.getElementById('origen').value.length==0){
-      alert("Debe llenar el campo origen");
-      return false;
-    }
-    if (document.getElementById('destino').value.length==0){
-      alert("Debe llenar el campo destino");
-      return false;
-    }
-    return true;
-  }
-
-  function mostrar(){
-    if (document.getElementById('oculto').style.display == 'none') {
-      document.getElementById('oculto').style.display = 'block';
-      document.getElementById('oculto2').style.display = 'none';
-    } else {
-      document.getElementById('oculto').style.display = 'none';
-      document.getElementById('oculto2').style.display = 'block';
-    }
-  }
-</script>

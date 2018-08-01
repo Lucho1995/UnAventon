@@ -8,15 +8,20 @@ class CPostulantes extends CI_Controller {
       $this->load->library('form_validation'); 
       $this->load->model('mViajes');
       $this->load->model('mPostulantes');
+      $this->load->model('mPuntaje');
   }   
 
   public function vista_postulantes($id,$idViaje){
-    $postulantes = array('postulantes' => $this->mPostulantes->get_postulantes($idViaje));
+    $datos =
+      array(
+        'postulantes' => $this->mPostulantes->get_postulantes($idViaje),
+        'calificaciones' => $this->mPuntaje->get_calificaciones()
+      );
     if ($this->session->userdata('logueado')) {
       if ($this->session->userdata('idUsuario') == $id) {
         $this->load->view('vHead');
         $this->load->view('loguedIn/vHeader');
-        $this->load->view('loguedIn/vPostulantes', $postulantes);
+        $this->load->view('loguedIn/vPostulantes', $datos);
         $this->load->view('loguedIn/vFooter');
       } else {
         echo "<script language='javascript'>alert('Para ver la lista de postulantes, inicia sesion');</script>";
@@ -27,6 +32,7 @@ class CPostulantes extends CI_Controller {
       redirect(base_url().'#iniciar','refresh');
     }
   }
+
   public function rechazar_postulado($idPostulado){
      $postulado=$this->mPostulantes->get_postulado($idPostulado);
      if($postulado[0]['estado']=='Aceptado'){

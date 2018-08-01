@@ -12,6 +12,7 @@ class CVerViajes extends CI_Controller {
       $this->load->model('mPostulantes');
       $this->load->model('mPreguntas');
       $this->load->model('mPagos');
+      $this->load->model('mPuntaje');
   }   
 
    public function viajes($id='visitante'){
@@ -53,6 +54,25 @@ class CVerViajes extends CI_Controller {
     }
   }
 
+  public function misViajesHechos($id){
+    if ($this->session->userdata('logueado')){
+      if ($this->session->userdata('idUsuario') == $id){
+        $viajes = array('viajes' => $this->mViajes->get_viajesHechos($id),
+                        'titulo' => 'Mis viajes hechos');
+        $this->load->view('vHead');
+        $this->load->view('loguedIn/vHeader');
+        $this->load->view('loguedIn/vMisViajesHechos', $viajes);
+        $this->load->view('loguedIn/vFooter');
+      } else {
+        echo "<script language='javascript'>alert('Accseso denegado');</script>";
+        redirect(base_url().'#iniciar','refresh');
+      }
+    } else {
+      echo "<script language='javascript'>alert('Por favor inicia sesion');</script>";
+      redirect(base_url().'#iniciar','refresh');       
+    }
+  }
+
   public function vista_detalle_viaje($id,$idViaje){
     $viaje = $this->mViajes->get_viaje($idViaje);
     if ($this->mPostulantes->usuario_postulado($id,$idViaje)) {
@@ -66,6 +86,7 @@ class CVerViajes extends CI_Controller {
                         'viaje' => $viaje,
                         'piloto' => $this->mLogin->get_perfil($viaje[0]['usuarioId']),
                         'preguntas' => $this->mPreguntas->get_pregunta($idViaje),
+                        'calificaciones' => $this->mPuntaje->get_calificaciones_piloto($viaje[0]['idUsuario']),
                         'postulado' => $estoy_postulado,
                         'estado_postulado' => $postulacion[0]['estado'],
                         'viaje_pagado' => $this->mPagos->viaje_pagado($id,$idViaje)
@@ -204,14 +225,14 @@ class CVerViajes extends CI_Controller {
     }
   }
     public function baja_de_viaje($id,$idViaje){
-      $postulantes =$this->mPostulantes->get_postulantes($idViaje);
+      /*$postulantes =$this->mPostulantes->get_postulantes($idViaje);
       $cantAceptados=0;
-      /*foreach ($postulantes as $row ) {
+      foreach ($postulantes as $row ) {
         if($row['estado'] == 'Aceptado'){
           $cantAceptados++;
         }
       }*/
-      if($this->mPostulantes->hay_postulantes_aceptados($idViaje)){
+      if($this->mViajes->hay_postulantes_aceptados($idViaje)){
         $this->mViajes->baja_de_viaje_con_postulantes($idViaje,$id);
       }else{
         $this->mViajes->baja_de_viaje_sin_postulantes($idViaje);
@@ -245,12 +266,24 @@ class CVerViajes extends CI_Controller {
           $datos=array( 'result' => '',
                         'titulo' => 'No se encontraron viajes que coincidan con tu busqueda');
         } 
+        
+        if ($this->session->userdata('logueado')) {
+          if ($this->session->userdata('idUsuario') == $id){
 
-        $this->load->view('vHead');
-        $this->load->view('loguedIn/vHeader');
-        $this->load->view('loguedIn/vVerViajesFiltro',$datos);
-        $this->load->view('loguedIn/vFooter');        
-
-
-      } 
+              $this->load->view('vHead');
+              $this->load->view('loguedIn/vHeader');
+              $this->load->view('loguedIn/vVerViajesFiltro',$datos);
+              $this->load->view('loguedIn/vFooter');        
+          } else {
+            echo "<script language='javascript'>alert('Accseso denegado');</script>";
+            redirect(base_url().'#iniciar','refresh');
+          }
+          } else {
+              $this->load->view('vHead');
+              $this->load->view('vheader2');
+              $this->load->view('loguedIn/vVerViajesFiltro', $datos);
+              $this->load->view('loguedIn/vFooter');       
+          }     
+      }
+ 
 }

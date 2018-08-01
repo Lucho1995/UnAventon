@@ -13,18 +13,6 @@ class MViajes extends CI_Model{
 	}
 
 
-	/*public function get_viajes($usuarioId='Nulo'){
-		if ($usuarioId == 'Nulo') {
-			$query = $this->db->get('viaje');
-		}
-	}*/
-
-	/*public function get_mis_viajes($usuarioId){
-		$this->db->where('usuarioId', $usuarioId);
-		$query = $this->db->get('viaje');
-		return $query->result_array();
-	}*/
-
 	public function get_viajes($usuarioId='Nulo'){
 		if ($usuarioId == 'Nulo') {
 			$query=(
@@ -46,7 +34,17 @@ class MViajes extends CI_Model{
 				);
 		}
 		return $query->result_array();
-	}		
+	}
+
+	public function get_ViajesHechos($usuarioId){
+		date_default_timezone_set('America/Argentina/Buenos_Aires');//define la zona horaria
+		$this->db->where('fecha <', date('Y/m/d')); //Fecha de hoy
+		$this->db->join('vehiculo', 'viaje.vehiculoId = vehiculo.idVehiculo');
+		$this->db->join('usuario', 'viaje.usuarioId = usuario.idUsuario');
+		$query=$this->db->get('viaje');
+		return $query->result_array();
+	}
+	
 	public function get_viaje($idViaje){
 		$query=(
 			$this->db->query(
@@ -78,13 +76,13 @@ class MViajes extends CI_Model{
 		$this->db->where('idViaje',$idViaje);
       	$this->db->update('viaje',$datos);
 	}
-	public function hay_postulantes($viaje){
+	public function hay_postulantes_aceptados($viaje){
 		$query =(
 			$this->db->query(
 				'select * from viaje
 				inner join postulacion
 				on postulacion.viajeId=viaje.idViaje
-				WHERE viaje.idViaje='.$viaje
+				WHERE viaje.idViaje='.$viaje.' AND postulacion.estado="Aceptado"'
 			)
 		);
 		if ($this->db->count_all_results()>=1){
@@ -95,7 +93,7 @@ class MViajes extends CI_Model{
 	}
 
 	public function baja_de_viaje_sin_postulantes($viaje){
-			$this->db->set('eliminado', 1);
+			$this->db->set('viajeEliminado', 1);
 			$this->db->where('idViaje',$viaje);
 			$this->db->update('viaje');
 	}
@@ -112,7 +110,7 @@ class MViajes extends CI_Model{
 		    $usuario=$this->obtener_usuario($idUsuario);
 		    //die(print_r($usuario));
 		    $rep=$usuario[0]['reputacionPiloto'] -1;
-			$this->db->set('eliminado', 1);
+			$this->db->set('viajeEliminado', 1);
 			$this->db->where('idViaje', $viaje);
 			$this->db->update('viaje');
 			$this->db->set('reputacionPiloto', $rep);
