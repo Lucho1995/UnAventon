@@ -73,9 +73,7 @@ class CVerViajes extends CI_Controller {
                         'postulado' => $estoy_postulado,
                         'estado_postulado' => $postulacion[0]['estado'],
                         'viaje_pagado' => $this->mPagos->viaje_pagado($id,$idViaje),
-
-                        'voto'=>$this->mPuntaje->Copiloto_voto($viaje[0]['usuarioId'], $idViaje),
-
+                        'voto'=>$this->mPuntaje->Copiloto_voto($viaje[0]['usuarioId'], $idViaje)
                         );
     $vehiculo =$this->mVehiculos->get_vehiculo($viaje[0]['vehiculoId']);
     if ($this->session->userdata('logueado')){

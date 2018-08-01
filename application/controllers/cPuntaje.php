@@ -15,7 +15,7 @@ class CPuntaje extends CI_Controller {
   	  	$comentario = $this->input->post('respuesta');
   	  	if($this->input->post('puntaje')=='bueno'){
   	  		$this->mPuntaje->sumarPuntaje($idPiloto,$comentario);
-  	  		$this->mPuntaje->comentar($idPiloto,$comentario);
+  	  		$this->mPuntaje->comentar($idPiloto,$comentario,$idViaje);
   	  		redirect(base_url().'cVerViajes/vista_detalle_viaje/'.$this->session->userdata('idUsuario').'/'.$idViaje, 'refresh');
   	  	}
   	  	elseif ($this->input->post('puntaje')=='malo') {
