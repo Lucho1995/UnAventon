@@ -42,7 +42,7 @@ class MPuntaje extends CI_Model {
     	$this->db->update('usuario');
     	
     }
-    public function comentar($idPiloto,$comentario){
+    public function comentar($idPiloto,$comentario,$idViaje){
     	$piloto = $this->get_piloto($idPiloto);
     	$FechaActual =date('Y-m-d');
 		$campos = array(
@@ -51,18 +51,21 @@ class MPuntaje extends CI_Model {
 			'comentarioCopiloto'=>$comentario,
 			'fecha'=>$FechaActual,
 			'usuarioId'=>$idPiloto,
-			'comentoId'=>$this->session->userdata('idUsuario')	
+			'comentoId'=>$this->session->userdata('idUsuario')	,
+            'viajeId' => $idViaje
 		 );    
     	$this->db->insert('calificaciones',$campos);
     	
 
     }
     public function Copiloto_voto($usuarioId, $viajeId){
+        
     	$this->db->select('*');
     	$this->db->from('calificaciones');
-    	$this->db->where('usuarioId',$usuarioId);
+    	$this->db->where('comentoId',$this->session->userdata('idUsuario'));
+        $this->db->where('viajeId',$viajeId);
     	$query = $this->db->get();
-    	if($query->num_rows()>0){
+        if($query->num_rows()>=1){
     		return TRUE;
     	}	
     	else{
