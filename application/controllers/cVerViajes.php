@@ -267,7 +267,6 @@ class CVerViajes extends CI_Controller {
           $datos=array( 'result' => '',
                         'titulo' => 'No se encontraron viajes que coincidan con tu busqueda');
         } 
-        
         if ($this->session->userdata('logueado')) {
           if ($this->session->userdata('idUsuario') == $id){
 

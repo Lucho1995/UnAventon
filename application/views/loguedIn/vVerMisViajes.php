@@ -1,4 +1,3 @@
-
 <section id=vVerMisViajes class="content-section text-center">
   <div class="col-form-label-sm">
     <div class="card h-99" style="background-color: black;">
