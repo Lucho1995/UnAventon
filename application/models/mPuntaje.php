@@ -7,6 +7,13 @@ class MPuntaje extends CI_Model {
        parent::__construct();
     }
 
+    public function get_calificaciones_copiloto($usuarioId){
+        $this->db->where('usuarioId', $usuarioId);
+        $this->db->where('comentarioCopiloto', "Sin Comentario");
+        $this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
+        $query = $this->db->get('calificaciones');
+        return $query->result_array();
+    }
 
     public function get_piloto($pilotoId){
     	$this->db->select('usuario.*');
@@ -55,8 +62,8 @@ class MPuntaje extends CI_Model {
     	$FechaActual =date('Y-m-d');
 		$campos = array(
 			'calificacion'=>$this->input->post('puntaje'),
-			'comentarioPiloto'=>'',
-			'comentarioCopiloto'=>$comentario,
+            'comentarioPiloto'=>$comentario,
+			'comentarioCopiloto'=>'',
 			'fecha'=>$FechaActual,
 			'usuarioId'=>$idPiloto,
 			'comentoId'=>$this->session->userdata('idUsuario'),
@@ -93,6 +100,17 @@ class MPuntaje extends CI_Model {
     		return FALSE;
     	}
     }
+    public function copiloto_votado($usuarioId,$viajeId){
+        $this->db->where('usuarioId',$usuarioId);
+        $this->db->where('viajeId',$viajeId);
+       // $this->db->where('comentarioCopiloto',"Sin Comentario");
+        $query=$this->db->get('calificaciones');
+        if($query->num_rows()>=1){
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
     public function get_calificaciones(){
         $this->db->select('*');
         $this->db->from('calificaciones');
@@ -106,14 +124,6 @@ class MPuntaje extends CI_Model {
     	$this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
     	$query = $this->db->get('calificaciones');
     	return $query->result_array();
-    }
-
-    public function get_calificaciones_copiloto($usuarioId){
-        $this->db->where('usuarioId', $usuarioId);
-        $this->db->where('comentarioPiloto', "");
-        $this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
-        $query = $this->db->get('calificaciones');
-        return $query->result_array();
     }
 
 
@@ -138,22 +148,5 @@ class MPuntaje extends CI_Model {
         $this->db->set('reputacionCopiloto',$puntaje);
         $this->db->update('usuario');
         
-    }
-
-    
-    public function get_calificaciones_piloto($usuarioId){
-        $this->db->where('usuarioId', $usuarioId);
-        $this->db->where('comentarioCopiloto', "");
-        $this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
-        $query = $this->db->get('calificaciones');
-        return $query->result_array();
-    }
-
-    public function get_calificaciones_copiloto($usuarioId){
-        $this->db->where('usuarioId', $usuarioId);
-        $this->db->where('comentarioPiloto', "");
-        $this->db->join('usuario', 'calificaciones.comentoId = usuario.idUsuario');
-        $query = $this->db->get('calificaciones');
-        return $query->result_array();
     }
 }   

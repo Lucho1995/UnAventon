@@ -165,6 +165,7 @@ class CVerViajes extends CI_Controller {
                 'destino' => $this->input->post('destino'),
                 'fecha' => $fecha,
                 'hora' => $this->input->post('hora'),
+                'horaFin' => $this->input->post('horaFin'), 
                 'descripcion' => $this->input->post('descripcion'),
                 'costo' => $this->input->post('costo'),
                 'origen' => $this->input->post('origen'),
@@ -181,6 +182,7 @@ class CVerViajes extends CI_Controller {
             'destino' => $this->input->post('destino'),
             'fecha' => $this->input->post('fecha'),
             'hora' => $this->input->post('hora'),
+            'horaFin' => $this->input->post('horaFin'), 
             'descripcion' => $this->input->post('descripcion'),
             'costo' => $this->input->post('costo'),
             'origen' => $this->input->post('origen'),
@@ -188,7 +190,11 @@ class CVerViajes extends CI_Controller {
             'asientosDisp'=> $asientos[0]['capacidad'],
             'usuarioId' => $this->session->userdata('idUsuario')
           );
-      $this->mViajes->publicar_viaje($datos);
+      if(!$this->mViajes->hay_superposicion_horarios($datos)){
+           $this->mViajes->publicar_viaje($datos);
+      } else {
+            echo "<script language='javascript'>alert('Ya existe un viaje en ese horario con ese vehiculo');</script>";
+          }
       //redirect (base_url().'cVerViajes/misViajes/'.$idUsuario, 'refresh');
       }
       redirect (base_url().'cVerViajes/misViajes/'.$idUsuario, 'refresh');

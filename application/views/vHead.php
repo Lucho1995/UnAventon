@@ -30,6 +30,8 @@
     <link href="<?php echo base_url();?>css/fuentes.css" rel="stylesheet" type="text/css">
     <!-- Checkbox personalizados -->
     <link href="<?php echo base_url();?>css/checkbox.css" rel="stylesheet" type="text/css">
+    <!-- Calificaciones copiloto -->
+    <link href="<?php echo base_url();?>css/lista_puntuaciones.css" rel="stylesheet" type="text/css">
     
     
     <style type="text/css">

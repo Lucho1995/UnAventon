@@ -10,7 +10,7 @@
               <th align="center"><font color="black" size="3">Apeliido</font></th>
               <th align="center"><font color="black" size="3">Reputacion Piloto</font></th>
               <th align="center"><font color="black" size="3">Reputacion Copiloto</font></th>
-              <th align="center"><font color="black" size="3"></font>Puntuar</th>
+              <th align="center"><font color="black" size="3">Puntuar</font></th>
             </tr>
           </thead>
          
@@ -25,9 +25,16 @@
                   <td><font size="3"><?php echo $row['reputacionPiloto'] ?></td>
                   <td><font size="3"><?php echo $row['reputacionCopiloto'] ?></td>
                   <td><font size="3"><div class="card-footer" align="center">
+                  
+                   <?php
+                   $modelo=&get_instance();
+                    $modelo->load->model('mPuntaje');
+                   if (!$modelo->mPuntaje->copiloto_votado($row['idUsuario'],$row['viajeId'])){ ?> 
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3" style="font-size: 15px; padding: 3px; border-color: black;" onclick="javascript:usuarioId(<?php echo $row['idUsuario']; ?>)">
-                     <font color="black"> Puntuar piloto</font>
-                    </button> </td> </div> 
+                     <font color="black"> Puntuar copiloto</font>
+                    </button>
+                  <?php } ?>
+                  </td> </div> 
                   <td align="center"> 
                 </tr>
                 <?php $columna1 = false; }else{ ?>
@@ -37,9 +44,16 @@
                   <td><font color="White" size="3"><?php echo $row['reputacionPiloto'] ?></td>
                   <td><font color="White" size="3"><?php echo $row['reputacionCopiloto'] ?></td>
                   <td><font color="White" size="3"><div class="card-footer" align="center">
-                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3" style="font-size: 15px; padding: 3px; border-color: black;" onclick="javascript:usuarioId(<?php echo $row['idUsuario']; ?>)">
-                     <font color="White"> Puntuar piloto</font>
-                    </button> </td> </div> </td>
+                  <?php
+                   $modelo=&get_instance();
+                    $modelo->load->model('mPuntaje');
+                   if (!$modelo->mPuntaje->copiloto_votado($row['idUsuario'],$row['viajeId'])){ ?> 
+                  <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3" style="font-size: 15px; padding: 3px;" onclick="javascript:usuarioId(<?php echo $row['idUsuario']; ?>)">
+                     <font> Puntuar copiloto</font>
+                    </button>
+                  <?php }?>
+                     </td> </div> </td>
+
                   <td align="center">
                 </tr>
                 <?php $columna1 = true; } ?>

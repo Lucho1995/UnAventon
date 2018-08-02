@@ -1,7 +1,10 @@
 <br><br><br>
+<br><br><br>
+<br>
+
 <body>
- <div id="wrapper" style="background-color: black; margin-left: 150px">
-  <h1><font color="salmon" size="6">Lista de copilotos postulados</font></h1>
+  <h5 align="center"><font color="salmon" size="6"><b>Lista de copilotos postulados</b></font></h5>
+  <br>
   <table id="keywords" style="background-color: black">
     <thead>
       <tr style="background-color: salmon; color: black;">
@@ -9,8 +12,9 @@
         <th><span>Edad</span></th>
         <th><span>Reputación(copiloto)</span></th>
         <th><span>Estado</span></th>
-        <th><span><font color="salmon">Aceptar</font></span></th>
-        <th><span><font color="salmon">Rechazar</font></span></th>
+        <th><span>Sus Calificaciones</span></th>
+        <th><span></span></th>
+        <th><span></span></th>
       </tr>
     </thead>
     <tbody> 
@@ -49,14 +53,20 @@
           <td>
             <?php echo $row['estado'] ?>
           </td>
+          <td>
+            <button onclick="window.location.href='<?php echo base_url().'cPuntaje/vista_puntajes_copiloto/'.$row['idUsuario'] ?>'" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
+              <i class="fa fa-star" style="font-size: 15px"></i>
+              <font style="font-size:15px"> Calificaciones</font>
+            </button>
+            </td>
           <?php  if ($row['estado'] == 'Pendiente' ) { ?>
             <td>
               <a href="<?php echo base_url().'cPostulantes/aceptar_postulado'.'/'.$row['idUsuario'] ?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
                 <i class="fa fa-check-circle" style="font-size:15px" ></i>
-                <font style="font-size:15px"> Aceptar</font>
+              <font style="font-size:15px"> Aceptar</font>
               </a>
             </td>
-            <td>
+          <td>
               <a href="<?php echo base_url().'cPostulantes/rechazar_postulado'.'/'.$row['idUsuario'] ?>" class="button button-pill button-flat-caution" style="font-size: 15px; padding: 1px 3px;">
                 <i class="fa fa-times-circle" style="font-size:15px" ></i>
                <font style="font-size:15px"> Rechazar</font>
@@ -75,5 +85,4 @@
       <?php } ?>
     </tbody>
   </table>
- </div>
  <br><br><br><br><br><br><br><br><br><br>

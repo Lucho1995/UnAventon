@@ -11,15 +11,19 @@ class CPuntaje extends CI_Controller {
       $this->load->model('mPuntaje');
 
     }
+    public function vista_puntajes_copiloto($idCopiloto){
+    $datos = array('calificaciones' => $this->mPuntaje->get_calificaciones_copiloto($idCopiloto));
+    $this->load->view('vHead');
+    $this->load->view('loguedIn/vHeader');
+    $this->load->view('loguedIn/vPuntuaciones',$datos);
+    $this->load->view('loguedIn/vFooter');
+  }
     public function vista_puntuar_copilotos($idViaje){
-        if($this->session->userdata('logueado')){
           $parametro=array('postulantes'=>$this->mPostulantes->get_postulantes_aceptados($idViaje));
           $this->load->view('vHead');
           $this->load->view('loguedIn/vHeader');
           $this->load->view('loguedIn/vPuntajeCopilotos', $parametro);
           $this->load->view('loguedIn/vFooter');
-        }
-  
     }
   	public function puntuarPiloto($idPiloto,$idViaje){
   	  	$comentario = $this->input->post('respuesta');

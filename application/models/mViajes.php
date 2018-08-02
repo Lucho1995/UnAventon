@@ -62,6 +62,7 @@ class MViajes extends CI_Model{
 			'destino' => $param['destino'],
 			'fecha' => $param['fecha'],
 			'hora' => $param['hora'],
+			'horaFin'=>$param['horaFin'],
 			'descripcion' => $param['descripcion'],
 			'costo' => $param['costo'],
 			'vehiculoId' => $param['vehiculoId'],
@@ -69,9 +70,43 @@ class MViajes extends CI_Model{
 			'usuarioId' => $param['usuarioId'],
 			//'periodico' => $param['periodico']
 		);
-		$this->db->insert('viaje', $campos);
+		$horaActual= date(' G:i:s');
+        $FechaActual =date('Y-m-d');
+        $fechaHoraActual=strtotime($FechaActual.''.$horaActual);
+        $horainicioviaje= $campos['hora'];
+        $fechaViaje= $campos['fecha'];
+        $horaFechaInicioViaje= strtotime($campos['fecha'].''.$campos['hora']);
+		if($horaFechaInicioViaje>$fechaHoraActual){
+			if (!$this->hay_superposicion_horarios($campos)) {
+				$this->db->insert('viaje', $campos);
+			} else {
+				echo "<script language='javascript'>alert('El horario con ese vehiculo se superpone con otro viaje');</script>";
+			}
+			
+		} else {
+			echo "<script language='javascript'>alert('La fecha que ingreso ya expiro');</script>";
+		}
 	}
 	
+	public function hay_superposicion_horarios($datos) {
+		$this->db->where('fecha', $datos['fecha']);
+		$this->db->where('viaje.vehiculoId', $datos['vehiculoId']);
+		$this->db->where('viaje.hora<',$datos['hora']);
+		$this->db->where('viaje.horaFin>',$datos['hora']);
+		$this->db->or_where('viaje.hora<', $datos['horaFin']);
+		$this->db->where('viaje.horaFin>', $datos['horaFin']);
+		$this->db->or_where('viaje.hora>', $datos['hora']);
+		$this->db->where('viaje.horaFin<', $datos['horaFin']);
+		$query=$this->db->get('viaje');
+		/*print_r($query->result_array());
+		die();*/
+		if ($query->num_rows()>=1){
+			return TRUE; 
+			} else {
+				return FALSE;
+			}
+	}
+
 	public function modificar_viaje($datos, $idViaje){
 		$this->db->where('idViaje',$idViaje);
       	$this->db->update('viaje',$datos);

@@ -102,10 +102,12 @@
                 if(($row['idUsuario']==$this->session->userdata('idUsuario'))&&($row['estado']=='Aceptado')){
                   $cant++;
                  }
-            }     
+            }  
+            //die($);   
       ?>     
             <?php if($cant > 0){ ?>
-              <?php if(!$voto) {?>
+              <?php if(!$voto) { ?>
+
                 <div class="card-footer" align="center">
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" style="font-size: 15px; padding: 3px; border-color: black;">
                      <font color="black"> Puntuar piloto</font>
@@ -113,13 +115,11 @@
                 </div>
               <?php } ?>  
            <?php } ?>
+         <?php } ?>
       </div>
       <!-- Falta esconder el botón si fuiste copiloto aceptado o si el viaje no terminó -->
       <?php if($viaje[0]['idUsuario'] != $this->session->userdata('idUsuario')) { ?>
-        <div class="card-footer" align="center">
-          <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal2" style="font-size: 15px; padding: 3px; border-color: black;">
-            <font color="black"> Puntuar piloto</font>
-          </button>
+       <div class="card-footer" align="center">
           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal3" style="font-size: 15px; padding: 3px; border-color: black;">
             <font color="black"> Sus calificaciones</font>
           </button>
@@ -129,9 +129,11 @@
       </div>
        <br>
        <br>
+        <?php if($viaje[0]['idUsuario'] == $this->session->userdata('idUsuario')) { ?>
        <a href="<?php echo base_url().'cPuntaje/vista_puntuar_copilotos'.'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:365px; height:60px;'>
         <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Puntuar Copilotos</font></h3>
       </a>
+    <?php }?>
     </div>
 
     <div class="col-sm-4">
@@ -157,22 +159,20 @@
         <h3><i class="fa fa-list" style="font-size:25px"></i><font size="5">Dar de baja viaje</font></h3>
       </a>
       </div>
-    <?php } 
-          else {
+      <br>
+      <br>
+      <br>
+          <?php
+          if(($fechaHoraActual>$fechaHoraFin)&&(!$viaje_pagado)){
           ?>
 
-            <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
-            <br>
-            <br>
-            <br>
-          <?php
-          }
-          
-          ?>
             <a href="" class="button button-flat-caution" data-toggle="modal" data-target="#myModal4" style='width:360px; height:40px;'><h3><i class="fa fa-money" style="font-weight: 20px;"></i>Pagar viaje</h3></a>
           <?php
           } 
-          ?>
+        }else{?>
+            <a href="<?php echo base_url().'cPostulantes/postularse'.'/'.$this->session->userdata('idUsuario').'/'.$viaje[0]['idViaje'] ?>" class="button button-flat-caution" style='width:360px; height:40px;'><h3><i class="fa fa-arrow-circle-right" style="font-weight: 20px;"></i>Postularme</h3></a>
+        <?php }?> 
+
     <br>
     <br>
     <br>
