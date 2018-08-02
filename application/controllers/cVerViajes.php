@@ -204,12 +204,12 @@ class CVerViajes extends CI_Controller {
       $viaje=array(
         'fecha' => $this->input->post('fecha'),
         'hora' => $this->input->post('hora'),
+        'horaFin' => $this->input->post('horaFin'),
         'costo' => $this->input->post('costo'),
         'vehiculoId'=> $this->input->post('vehiculoId'),
         'descripcion'=> $this->input->post('descripcion'),
       );
       $this->mViajes->modificar_viaje($viaje, $idViaje);
-      echo "<script language='javascript'>alert('Viaje actualizado correctamente');</script>";
       redirect (base_url().'cVerViajes/misViajes/'.$id, 'refresh');
     }
 

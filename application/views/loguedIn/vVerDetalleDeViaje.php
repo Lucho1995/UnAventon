@@ -26,7 +26,7 @@
               <hr align="right" size="100" color="f1f1f1" size="100">
               <a class="card-text" align="left"><font color="black" size="4"><b>Asientos Disponibles:</b> <?php echo $viaje[0]['asientosDisp']; ?> </font></a>
               <hr align="right" size="100" color="f1f1f1" size="100">
-              <a class="card-text" align="left"><font color="black" size="4"><b>Costo:</b><?php echo $viaje[0]['Costo']; ?> </font></a>
+              <a class="card-text" align="left"><font color="black" size="4"><b>Costo:</b><?php echo $viaje[0]['Costo']/($viaje[0]['asientosDisp']+1); ?> </font></a>
               <br>
               <div class="card-footer" align="left">
               <a class="card-text" style="margin-left: -20px"><font color="black" size="4"><b>Vehiculo: </b> </font></a><br>

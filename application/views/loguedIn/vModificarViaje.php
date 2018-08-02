@@ -15,9 +15,11 @@
                     <label>x - Destino </label></br>
                     <input value="<?php echo $viaje['destino']; ?>" type="text" name="destino" id="destino" class="form-group" disabled></br>   
                     <label>Fecha</label></br>
-                    <input value="<?php echo $viaje['fecha']; ?>" type="text" name="fecha" id="fecha" value="" class="form-group" required></br>
-                    <label>Hora</label></br>
-                    <input value="<?php echo $viaje['hora']; ?>" type="text" name="hora" id="hora" value="" class="form-group" required></br>
+                    <input value="<?php echo $viaje['fecha']; ?>" type="date" name="fecha" id="fecha" value="" class="form-group" required></br>
+                    <label>Hora Inicio</label></br>
+                    <input value="<?php echo $viaje['hora']; ?>" type="time" name="hora" id="hora" value="" class="form-group" required></br>
+                    <label>Hora fin</label></br>
+                    <input value="<?php echo $viaje['horaFin']; ?>" type="time" name="horaFin" id="horaFin" value="" class="form-group" required></br>
                     <label>Costo</label></br>
                     <input value="<?php echo $viaje['Costo']; ?>" type="text" name="costo" id="costo" value="" class="form-group" required></br>
                     <label>x - Vehiculo </label></br>

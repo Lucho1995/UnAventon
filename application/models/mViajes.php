@@ -108,9 +108,28 @@ class MViajes extends CI_Model{
 	}
 
 	public function modificar_viaje($datos, $idViaje){
-		$this->db->where('idViaje',$idViaje);
-      	$this->db->update('viaje',$datos);
+		$horaActual= date(' G:i:s');
+        $FechaActual =date('Y-m-d');
+        $fechaHoraActual=strtotime($FechaActual.''.$horaActual);
+        $horainicioviaje= $datos['hora'];
+        $fechaViaje= $datos['fecha'];
+        $horaFechaInicioViaje= strtotime($datos['fecha'].''.$datos['hora']);
+
+		if($horaFechaInicioViaje>$fechaHoraActual) { 
+			if(!$this->hay_superposicion_horarios($datos)) {
+				if(!$this->hay_postulantes_aceptados($idViaje)) {
+					$this->db->where('idViaje',$idViaje);
+					$this->db->update('viaje',$datos);
+				} else {			
+					echo "<script language='javascript'>alert('No se puede modificar un viaje si tiene postulantes aceptados');</script>"; }
+			} else {
+					echo "<script language='javascript'>alert('Ya existe un viaje para ese vehiculo en esa fecha y en ese horario.');</script>";
+					}
+		} else { 
+			echo "<script language='javascript'>alert('La fecha que ingreso ya expiro');</script>";		
+		}
 	}
+
 	public function hay_postulantes_aceptados($viaje){
 		$query =(
 			$this->db->query(
@@ -120,7 +139,7 @@ class MViajes extends CI_Model{
 				WHERE viaje.idViaje='.$viaje.' AND postulacion.estado="Aceptado"'
 			)
 		);
-		if ($this->db->count_all_results()>=1){
+		if ($query->num_rows()>=1){
 			return true;
 		} else {
 			return false;
